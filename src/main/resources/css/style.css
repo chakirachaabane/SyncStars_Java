@@ -1,0 +1,23 @@
+.button{
+    -fx-background-color:  #343F3E;
+
+}
+
+.button:hover{
+    -fx-background-color: #2A1C42;
+}
+
+.button:pressed{
+    -fx-background-color: #7156DD;
+}
+
+.table-view .column-header,
+.table-view .column-header-background .filter{
+    -fx-background-color: #4a7dff;
+}
+
+.table-view .column-header .label{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+}
