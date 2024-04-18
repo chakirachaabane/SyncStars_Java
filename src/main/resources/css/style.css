@@ -4,7 +4,7 @@
 }
 
 .button:hover{
-    -fx-background-color: #2A1C42;
+    -fx-background-color: #4b5553;
 }
 
 .button:pressed{
@@ -13,7 +13,7 @@
 
 .table-view .column-header,
 .table-view .column-header-background .filter{
-    -fx-background-color: #4a7dff;
+    -fx-background-color: #94B0DA;
 }
 
 .table-view .column-header .label{
