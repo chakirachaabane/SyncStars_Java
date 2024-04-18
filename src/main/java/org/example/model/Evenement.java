@@ -1,6 +1,5 @@
 package org.example.model;
 
-import java.sql.Date;
 
 public class Evenement {
 
