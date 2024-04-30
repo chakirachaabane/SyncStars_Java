@@ -1,0 +1,18 @@
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.XYChart?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <LineChart layoutX="50" layoutY="100" prefHeight="400" prefWidth="800">
+            <xAxis>
+                <NumberAxis side="BOTTOM" label="Mois" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis side="LEFT" label="Nombre de RDV" />
+            </yAxis>
+            <!-- Les données de la courbe seront ajoutées dynamiquement depuis le code Java -->
+        </LineChart>
+    </children>
+</AnchorPane>

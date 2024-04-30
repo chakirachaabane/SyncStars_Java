@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="571.0" prefWidth="831.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.rdvAdd">
+    <children>
+        <VBox layoutY="142.0" prefHeight="430.0" prefWidth="175.0" stylesheets="@../css/style.css">
+            <children>
+                <Button alignment="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="157.0" stylesheets="@../css/style.css" text="Gestion Evénement" textFill="#153b04">
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+                </Button>
+                <Button alignment="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="158.0" text="Gestion Catégories" textFill="#0c4a1c">
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Button>
+                <Button alignment="CENTER" layoutX="10.0" layoutY="68.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="158.0" text="Gestion Formats" textFill="#18461e">
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Button>
+            </children>
+        </VBox>
+        <ImageView fitHeight="138.0" fitWidth="158.0" layoutY="3.0">
+            <image>
+                <Image url="@../../../../../Downloads/422016965_343535238582400_658338224272071431_n-removebg-preview.png" />
+            </image>
+        </ImageView>
+        <Pane layoutX="154.0" prefHeight="144.0" prefWidth="687.0" style="-fx-background-color: #18593B;">
+            <children>
+                <Label alignment="CENTER" layoutX="116.0" layoutY="14.0" prefHeight="114.0" prefWidth="378.0" text="Formulaire rendez-vous " textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+        <Pane layoutX="280.0" layoutY="164.0" prefHeight="245.0" prefWidth="423.0" style="-fx-background-color: #69BFA7;">
+            <children>
+                <Label fx:id="Horaireid" layoutX="53.0" layoutY="99.0" text="Horaire" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="Horairefield" layoutX="122.0" layoutY="92.0" />
+                <Label fx:id="Problèmeid" layoutX="46.0" layoutY="152.0" text="Problème" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="Problemefield" layoutX="122.0" layoutY="145.0" />
+                <Label fx:id="Dateid" layoutX="53.0" layoutY="42.0" prefHeight="31.0" prefWidth="42.0" text="Date" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <DatePicker fx:id="datefield" layoutX="122.0" layoutY="42.0" prefHeight="31.0" prefWidth="221.0" />
+            </children>
+        </Pane>
+        <Button layoutX="351.0" layoutY="438.0" mnemonicParsing="false" onAction="#addRdv" prefHeight="49.0" prefWidth="123.0" text="Ajouter" textFill="#18593b">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+      <Button fx:id="rdvListid" layoutX="492.0" layoutY="438.0" mnemonicParsing="false" onAction="#goToRdvList" prefHeight="49.0" prefWidth="123.0" text="Aller vers la liste " textFill="#18593b">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+    </children>
+</AnchorPane>
