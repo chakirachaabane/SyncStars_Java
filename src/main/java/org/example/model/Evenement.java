@@ -1,15 +1,20 @@
 package org.example.model;
 
 
+import javafx.scene.image.Image;
+
+import java.sql.Date;
+import java.time.LocalDate;
+
 public class Evenement {
 
     private int id;
 
     private String titre;
 
-    private String format_id;
+    private Format format_id;
 
-    private String categorie_id;
+    private Category categorie_id;
 
     private String adresse;
 
@@ -17,8 +22,12 @@ public class Evenement {
 
     private java.sql.Date date;
 
+    private int nbPlaces;
 
-    public Evenement(int id, String titre, String adresse ,java.sql.Date date, String categorie_id , String format_id, String image) {
+    private String description;
+
+
+    public Evenement(int id, String titre, String adresse ,java.sql.Date date, Category categorie_id , Format format_id, String image,String description, int nbPlaces) {
         this.id = id;
         this.titre = titre;
         this.adresse = adresse;
@@ -26,6 +35,8 @@ public class Evenement {
         this.categorie_id = categorie_id;
         this.format_id = format_id;
         this.image = image;
+        this.nbPlaces=nbPlaces;
+        this.description=description;
     }
 
 
@@ -77,27 +88,43 @@ public class Evenement {
         this.adresse = adresse;
     }
 
-    public java.sql.Date getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(java.sql.Date date) {
-        this.date = date;
+    public void setDate(LocalDate localDate) {
+        this.date = java.sql.Date.valueOf(localDate);
     }
 
-    public String getFormat() {
+    public Format getFormat() {
         return format_id;
     }
 
-    public String getCategorie() {
+    public Category getCategorie() {
         return categorie_id;
     }
 
-    public void setFormat(String format) {
+    public void setFormat(Format format) {
         this.format_id = format;
     }
 
-    public void setCategorie(String categorie) {
+    public void setCategorie(Category categorie) {
         this.categorie_id = categorie;
+    }
+
+    public int getNbPlaces() {
+        return nbPlaces;
+    }
+
+    public void setNbPlaces(int nbPlaces) {
+        this.nbPlaces = nbPlaces;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

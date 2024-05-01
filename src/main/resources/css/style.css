@@ -1,14 +1,14 @@
-.button{
+/* .button{
     -fx-background-color:  #343F3E;
 
 }
 
 .button:hover{
-    -fx-background-color: #4b5553;
+    -fx-background-color: #1e6e46;
 }
 
 .button:pressed{
-    -fx-background-color: #7156DD;
+    -fx-background-color: #18593BFF;
 }
 
 .table-view .column-header,
@@ -20,4 +20,96 @@
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-alignment: CENTER;
+} */
+
+#search-button-event {
+    -fx-background-color: #69BFA7;
+    -fx-background-radius: 30;
+}
+
+#search-button-event:hover {
+    -fx-background-color: #1e6e46;
+}
+
+#search-button-event:pressed {
+    -fx-background-color: #18593BFF;
+}
+
+.search-box-event{
+    -fx-background-color:#FFFFFF;
+    -fx-background-radius: 100;
+}
+
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.search-button-event{
+    -fx-background-color: #69BFA7;
+    -fx-background-radius: 30;
+}
+
+.right-bar{
+    -fx-background-color: #D3D3D3;
+}
+
+.shadow-event{
+    -fx-effect: dropShadow(three-pass-box, rgba(17, 17, 17, 0.1), 10.0 , 0.0 , 0.0 ,10.0);
+}
+
+.textfield:focused{
+    -fx-border-color:#69BFA7;
+    -fx-border-width:1.8px;
+}
+
+.returnBtn {
+    -fx-background-color: #D9AA55;
+    -fx-background-radius:50;
+}
+
+.returnBtn:hover {
+    -fx-background-color: #b68734;
+    -fx-border-width: 0px 0px 0px 3px;
+}
+
+.validerBtn {
+    -fx-background-color:  #18593B;
+    -fx-background-radius:50;
+}
+
+.validerBtn:hover {
+    -fx-background-color: #0c462d;
+    -fx-border-width: 0px 0px 0px 3px;
+}
+
+.imgBtn {
+    -fx-background-color:   #69BFA7;
+    -fx-background-radius:50;
+}
+
+.imgBtn:hover {
+    -fx-background-color: #428f7b;
+    -fx-border-width: 0px 0px 0px 3px;
+}
+
+.buttonDelete {
+    -fx-background-color: #FF0000;
+    -fx-background-radius:50;
+}
+
+.buttonDelete:hover {
+    -fx-background-color: #b43535;
+    -fx-border-width: 0px 0px 0px 3px;
+}
+
+.navBarBtn {
+    -fx-text-fill: #0c462d;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-color: transparent;
+}
+
+.navBarBtn:hover {
+    -fx-text-fill: #339f6f;
+    -fx-background-color: rgba(201, 200, 200, 0.4);
 }
