@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.addEntrainement"
+            style="-fx-background-color: #DFF2E7;"> <!-- Définir la couleur de l'arrière-plan -->
+
+    <children>
+        <!-- Titre de la page avec style CSS pour la police et la couleur du texte -->
+        <Label layoutX="220.0" layoutY="23.0" text="Ajouter Entrainement" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #18593B;" />
+
+        <!-- Champ Niveau -->
+        <Label layoutX="150.0" layoutY="92.0" text="Niveau:" />
+        <TextField fx:id="niveauTF" layoutX="250.0" layoutY="88.0" prefWidth="200.0" />
+
+        <!-- Champ Durée -->
+        <Label layoutX="150.0" layoutY="148.0" text="Durée:" />
+        <TextField fx:id="dureeTF" layoutX="250.0" layoutY="144.0" prefWidth="200.0" />
+
+        <!-- Champ Objectif -->
+        <Label layoutX="150.0" layoutY="191.0" text="Objectif:" />
+        <TextField fx:id="objectifTF" layoutX="250.0" layoutY="187.0" prefWidth="200.0" />
+
+        <!-- Champ Nom de l'entraînement -->
+        <Label layoutX="80.0" layoutY="241.0" text="Nom de l'entraînement:" />
+        <TextField fx:id="nomEntrainementTF" layoutX="250.0" layoutY="237.0" prefWidth="200.0" />
+
+        <!-- Champ Période -->
+        <Label layoutX="150.0" layoutY="282.0" text="Période:" />
+        <TextField fx:id="periodeTF" layoutX="250.0" layoutY="278.0" prefWidth="200.0" />
+
+        <!-- Bouton Ajouter avec couleur de fond personnalisée -->
+        <Button fx:id="ajoutBtn" layoutX="250.0" layoutY="327.0" mnemonicParsing="false" onAction="#addEntrainement" prefWidth="100.0" text="Ajouter" style="-fx-background-color: #69BFA7; -fx-text-fill: #18593B;" />
+
+        <!-- Bouton Liste d'Entraînements avec couleur de fond personnalisée -->
+        <Button fx:id="listEntrainement" layoutX="370.0" layoutY="327.0" mnemonicParsing="false" onAction="#listEntrainement" prefWidth="150.0" text="Liste des Entraînements" style="-fx-background-color: #69BFA7; -fx-text-fill: #18593B;" />
+    </children>
+
+</AnchorPane>

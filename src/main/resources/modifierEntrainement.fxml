@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.modifEntrainementController"
+            style="-fx-background-color: #DFF2E7;"> <!-- Définir la couleur d'arrière-plan -->
+
+    <children>
+        <Label layoutX="183.0" layoutY="23.0" prefHeight="17.0" prefWidth="165.0" text="Modifier Entrainement" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #18593B;" />
+
+        <Label layoutX="167.0" layoutY="56.0" text="ID" />
+        <Label fx:id="idLabel" layoutX="286.0" layoutY="56.0" />
+
+        <Label layoutX="166.0" layoutY="92.0" text="Niveau" />
+        <TextField fx:id="niveauTF" layoutX="286.0" layoutY="88.0" />
+
+        <Label layoutX="169.0" layoutY="148.0" text="Durée" />
+        <TextField fx:id="dureeTF" layoutX="286.0" layoutY="144.0" />
+
+        <Label layoutX="164.0" layoutY="191.0" text="Objectif" />
+        <TextField fx:id="objectifTF" layoutX="286.0" layoutY="187.0" />
+
+        <Label layoutX="132.0" layoutY="241.0" text="Nom de l'entraînement" />
+        <TextField fx:id="nomEntrainementTF" layoutX="286.0" layoutY="237.0" />
+
+        <Label layoutX="181.0" layoutY="282.0" text="Période" />
+        <TextField fx:id="periodeTF" layoutX="286.0" layoutY="278.0" />
+
+        <Button id="modifBtn" fx:id="modifBtn" layoutX="300.0" layoutY="327.0" mnemonicParsing="false" onAction="#modifEntrainement" text="Modifier"
+                style="-fx-background-color: #69BFA7; -fx-text-fill: #18593B;" /> <!-- Définir les styles du bouton -->
+
+        <Button fx:id="listEntrainement" layoutX="413.0" layoutY="327.0" mnemonicParsing="false" onAction="#listEntrainement" prefHeight="25.0" prefWidth="134.0" text="List Entrainement"
+                style="-fx-background-color: #69BFA7; -fx-text-fill: #18593B;" /> <!-- Définir les styles du bouton -->
+    </children>
+
+</AnchorPane>
