@@ -20,7 +20,7 @@
                 <!-- Logo -->
                 <ImageView fitHeight="84.0" fitWidth="115.0" layoutX="14.0" layoutY="8.0">
                     <image>
-                        <Image url="/Fxml/logoAlignVibe .png" />
+                        <Image url="/img/logoAlignVibe.png" />
                     </image>
                 </ImageView>
                 <!-- Boutons de gestion -->
@@ -57,7 +57,7 @@
             </children>
         </Pane>
         <!-- Background -->
-        <Pane layoutX="-4.0" layoutY="90.0" prefHeight="488.0" prefWidth="916.0" style="-fx-background-image: url('/Fxml/backgroundRDV.jpg');" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="-4.0">
+        <Pane layoutX="-4.0" layoutY="90.0" prefHeight="488.0" prefWidth="916.0" style="-fx-background-image: url('/img/backgroundRDV.jpg');" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="-4.0">
             <children>
                 <!-- Liste des recettes -->
                 <TableView fx:id="tableViewRecettes" layoutX="39.0" layoutY="103.0" prefHeight="311.0" prefWidth="863.0">
@@ -89,11 +89,12 @@
                         <Font name="System Bold" size="17.0" />
                     </font>
                 </Button>
-                <Button fx:id="AllerVersFormulaireButton" layoutX="347.0" layoutY="480.0" mnemonicParsing="false" onAction="#AllerVersFormulaire" prefHeight="38.0" prefWidth="204.0" style="-fx-background-radius: 10;" text="Ajouter une recette" textFill="#18593b">
+                <Button fx:id="AllerVersFormulaireButton" layoutX="680.0" layoutY="425.0" mnemonicParsing="false" onAction="#AllerVersFormulaire" prefHeight="38.0" prefWidth="204.0" style="-fx-background-radius: 10;" text="Ajouter une recette" textFill="#18593b">
                     <font>
                         <Font name="System Bold" size="17.0" />
                     </font>
                 </Button>
+
             </children>
         </Pane>
     </children>

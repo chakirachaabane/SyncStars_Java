@@ -32,7 +32,10 @@ public class RecetteService implements Irecette<recette> {
             return false;
         }
 
-
+        if (!validerNomRecette(recette.getNom_recette())) {
+            System.out.println("ATTENTION AJOUT RECETTE: Le nom de la recette ne peut contenir que des lettres !!!");
+            return false;
+        }
 
         if (recette.getIngredients() == null || recette.getIngredients().isEmpty()) {
             System.out.println("ATTENTION AJOUT RECETTE: Le champ ingredients est obligatoire !");
@@ -87,7 +90,10 @@ public class RecetteService implements Irecette<recette> {
             return;
         }
 
-
+        if (!validerNomRecette(recette.getNom_recette())) {
+            System.out.println("ATTENTION UPDATE RECETTE: Le nom de la recette ne peut contenir que des lettres !!!");
+            return;
+        }
 
         if (recette.getIngredients() == null || recette.getIngredients().isEmpty()) {
             System.out.println("ATTENTION UPDATE RECETTE: Le champ ingredients est obligatoire !");

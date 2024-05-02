@@ -2,12 +2,15 @@ package tn.esprit.controllers;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -23,7 +26,9 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class rdvListBack {
     @FXML
@@ -282,10 +287,6 @@ public class rdvListBack {
 
 
 
-
-
-
-
     @FXML
     void Retour(ActionEvent event) throws IOException {
         // Charger le fichier FXML
@@ -346,6 +347,44 @@ public class rdvListBack {
         // Inverser l'état du tri
         isTriAscendant = !isTriAscendant;
     }
+
+    @FXML
+    private void calculerEtAfficherStatistiques() {
+        List<rdv> rdvs = rdvService.getAll();
+        int totalRDVs = rdvs.size();
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+
+        // Parcourir les rendez-vous et compter le nombre de rendez-vous pour chaque problème
+        Map<String, Integer> problemCountMap = new HashMap<>();
+        for (rdv rdv : rdvs) {
+            String problem = rdv.getProbleme();
+            problemCountMap.put(problem, problemCountMap.getOrDefault(problem, 0) + 1);
+        }
+
+        // Ajouter les données au graphique camembert
+        problemCountMap.forEach((problem, count) -> {
+            double pourcentage = (double) count / totalRDVs * 100;
+            String dataLabel = String.format("%s (%d)", problem, count);
+            pieChartData.add(new PieChart.Data(dataLabel, count));
+        });
+
+        // Afficher les statistiques dans le graphique camembert
+        PieChart pieChart = new PieChart(pieChartData);
+        pieChart.setTitle("Statistiques des rendez-vous par problème");
+        pieChart.setLegendVisible(true);
+        pieChart.setLabelsVisible(true);
+
+        // Créer une nouvelle fenêtre pour afficher le graphique camembert
+        Stage stage = new Stage();
+        Scene scene = new Scene(pieChart);
+        stage.setScene(scene);
+        stage.setTitle("Statistiques des rendez-vous par problème");
+        stage.show();
+    }
+
+
+
+
 
 }
 

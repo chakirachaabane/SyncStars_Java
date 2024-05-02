@@ -21,7 +21,7 @@
                 <!-- Logo -->
                 <ImageView fitHeight="84.0" fitWidth="115.0" layoutX="14.0" layoutY="8.0">
                     <image>
-                        <Image url="/Fxml/logoAlignVibe .png" />
+                        <Image url="/img/logoAlignVibe.png" />
                     </image>
                 </ImageView>
                 <!-- Boutons de gestion -->
@@ -58,7 +58,7 @@
             </children>
         </Pane>
         <!-- Background -->
-        <Pane layoutX="-4.0" layoutY="90.0" prefHeight="488.0" prefWidth="916.0" style="-fx-background-image: url('/Fxml/backgroundRDV.jpg');" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="-4.0">
+        <Pane layoutX="-4.0" layoutY="90.0" prefHeight="488.0" prefWidth="916.0" style="-fx-background-image: url('/img/backgroundRDV.jpg');" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="-4.0">
             <children>
                 <!-- Liste des RDV -->
                 <TableView fx:id="rdvTableView" layoutX="30.0" layoutY="65.0" prefHeight="311.0" prefWidth="510.0" style="-fx-background-color: linear-gradient(to bottom, #b360ac, #69BFA7);">
@@ -132,18 +132,23 @@
                 </Label>
 
                 <!-- Ajout du bouton de tri par date -->
-                <Button fx:id="triDateButton" layoutX="194.0" layoutY="394.0" mnemonicParsing="false" onAction="#trierParDate" prefHeight="38.0" prefWidth="204.0" style="-fx-background-radius: 10;" text="Tri par date" textFill="#18593b">
+                <Button fx:id="triDateButton" layoutX="81.0" layoutY="394.0" mnemonicParsing="false" onAction="#trierParDate" prefHeight="38.0" prefWidth="204.0" style="-fx-background-radius: 10;" text="Tri par date" textFill="#18593b">
                     <font>
                         <Font name="System Bold" size="17.0" />
                     </font>
                 </Button>
 
                 <!-- Ajout du bouton de retour -->
-                <Button fx:id="RetourButton" layoutX="511.0" layoutY="394.0" mnemonicParsing="false" onAction="#Retour" prefHeight="38.0" prefWidth="204.0" style="-fx-background-radius: 10;" text="Retour" textFill="#18593b">
+                <Button fx:id="RetourButton" layoutX="629.0" layoutY="394.0" mnemonicParsing="false" onAction="#Retour" prefHeight="38.0" prefWidth="204.0" style="-fx-background-radius: 10;" text="Retour" textFill="#18593b">
                     <font>
                         <Font name="System Bold" size="17.0" />
                     </font>
                 </Button>
+            <Button fx:id="statButton" layoutX="356.0" layoutY="394.0" mnemonicParsing="false" onAction="#calculerEtAfficherStatistiques" prefHeight="38.0" prefWidth="220.0" style="-fx-background-radius: 10;" text="Voir Stat par problème" textFill="#18593b">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
 
             </children>
         </Pane>

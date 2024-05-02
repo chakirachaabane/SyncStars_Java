@@ -21,7 +21,7 @@
                 <!-- Logo -->
                 <ImageView fitHeight="84.0" fitWidth="115.0" layoutX="14.0" layoutY="8.0">
                     <image>
-                        <Image url="/Fxml/logoAlignVibe .png" />
+                        <Image url="/img/logoAlignVibe.png" />
                     </image>
                 </ImageView>
                 <!-- Boutons de gestion -->
@@ -58,7 +58,7 @@
             </children>
         </Pane>
         <!-- Background -->
-        <Pane layoutX="-4.0" layoutY="90.0" prefHeight="488.0" prefWidth="916.0" style="-fx-background-image: url('/Fxml/backgroundRDV.jpg');" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="-4.0">
+        <Pane layoutX="-4.0" layoutY="90.0" prefHeight="488.0" prefWidth="916.0" style="-fx-background-image: url('/img/backgroundRDV.jpg');" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="-4.0">
             <children>
                 <Pane layoutX="199.0" layoutY="32.0" prefHeight="372.0" prefWidth="505.0" style="-fx-background-color: rgba(179, 96, 172, 0.8); -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: rgba(179,96,172,0.8); -fx-border-width: 5;">
                     <children>

@@ -78,6 +78,9 @@ public class recetteUpdate {
         if (nouveauNom.isEmpty()) {
             showError(nomErrorLabel, "Veuillez saisir le nom de la recette.");
             isError = true;
+        } else if (nouveauNom.matches(".*\\d.*")) { // Vérifier s'il y a des chiffres dans le nom
+            showError(nomErrorLabel, "Le nom de la recette ne doit pas contenir de chiffres.");
+            isError = true;
         }
         if (nouveauxIngredients.isEmpty()) {
             showError(ingredientsErrorLabel, "Veuillez saisir les ingrédients.");
