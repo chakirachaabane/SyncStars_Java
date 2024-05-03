@@ -14,7 +14,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-public class recetteDiabete {
+public class recetteAnorexie {
 
     @FXML
     private AnchorPane anchorPane;
@@ -23,11 +23,11 @@ public class recetteDiabete {
         // Instancier le service de gestion des recettes
         RecetteService recetteService = new RecetteService();
 
-        // Récupérer toutes les recettes liées au problème "Diabète"
-        List<recette> recettesDiabete = recetteService.getByProbleme("Diabète");
+        // Récupérer toutes les recettes liées au problème "Anorexie"
+        List<recette> recettesAnorexie = recetteService.getByProbleme("Anorexie");
 
         // Afficher les recettes dans la fenêtre
-        afficherRecettes(recettesDiabete);
+        afficherRecettes(recettesAnorexie);
     }
 
     private void afficherRecettes(List<recette> recettes) {

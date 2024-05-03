@@ -103,4 +103,54 @@ public class recetteAcc {
         }
     }
 
+
+    @FXML
+    public void AnorexieButtonClicked(ActionEvent event) {
+        // Récupérer la scène actuelle à partir de l'événement
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        try {
+            // Charger et afficher recetteDiabete.fxml
+            Parent root = FXMLLoader.load(getClass().getResource("/Fxml/recetteAnorexie.fxml")); // Vérifiez le chemin ici
+            stage.setScene(new Scene(root));
+            stage.setTitle("Recette Diabète");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Gérer l'exception, par exemple, en affichant un message d'erreur
+        }
+    }
+    @FXML
+    public void DesequilibreAlButtonClicked(ActionEvent event) {
+        // Récupérer la scène actuelle à partir de l'événement
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        try {
+            // Charger et afficher recetteDiabete.fxml
+            Parent root = FXMLLoader.load(getClass().getResource("/Fxml/recetteDesequilibreAl.fxml")); // Vérifiez le chemin ici
+            stage.setScene(new Scene(root));
+            stage.setTitle("Recette Diabète");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Gérer l'exception, par exemple, en affichant un message d'erreur
+        }
+    }
+    @FXML
+    public void CholesterolButtonClicked(ActionEvent event) {
+        // Récupérer la scène actuelle à partir de l'événement
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        try {
+            // Charger et afficher recetteDiabete.fxml
+            Parent root = FXMLLoader.load(getClass().getResource("/Fxml/recetteCholesterol.fxml")); // Vérifiez le chemin ici
+            stage.setScene(new Scene(root));
+            stage.setTitle("Recette Diabète");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Gérer l'exception, par exemple, en affichant un message d'erreur
+        }
+    }
+
 }

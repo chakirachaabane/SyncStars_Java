@@ -89,7 +89,7 @@
                         <Image url="/img/Anorexie.jpg" />
                     </image>
                 </ImageView>
-                <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="193.0" style="-fx-background-radius: 10;" text="Anorexie" textFill="#18593b">
+                <Button mnemonicParsing="false" onAction="#AnorexieButtonClicked" prefHeight="35.0" prefWidth="193.0" style="-fx-background-radius: 10;" text="Anorexie" textFill="#18593b">
                     <font>
                         <Font name="System Bold" size="17.0" />
                     </font>
@@ -123,7 +123,7 @@
                         <Image url="/img/DesequilibreAl.jpg" />
                     </image>
                 </ImageView>
-                <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="210.0" style="-fx-background-radius: 10;" text="Déséquilibre alimentaire" textFill="#18593b">
+                <Button mnemonicParsing="false" onAction="#DesequilibreAlButtonClicked" prefHeight="39.0" prefWidth="210.0" style="-fx-background-radius: 10;" text="Déséquilibre alimentaire" textFill="#18593b">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
@@ -140,7 +140,7 @@
                         <Image url="/img/cholesterol.jpg" />
                     </image>
                 </ImageView>
-                <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="193.0" style="-fx-background-radius: 10;" text="Cholestérol" textFill="#18593b">
+                <Button mnemonicParsing="false" onAction="#CholesterolButtonClicked" prefHeight="35.0" prefWidth="193.0" style="-fx-background-radius: 10;" text="Cholestérol" textFill="#18593b">
                     <font>
                         <Font name="System Bold" size="17.0" />
                     </font>
@@ -170,6 +170,6 @@
         </Button>
 
 
-  
+
 
 </AnchorPane>

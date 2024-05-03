@@ -67,7 +67,7 @@ public class rdvAcc {
 
     @FXML
     private void handleQuestion1() {
-        showResponse("Nos horaires sont de 08:00 à 11:30 et entre 14:00 et 17:00.");
+        showResponse("Nos horaires sont de 08:00 à 17:00.");
     }
 
     @FXML

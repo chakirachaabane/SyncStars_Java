@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -53,28 +54,12 @@ public class recetteList {
 
     @FXML
     public void initialize() {
-        idColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
         nomColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNom_recette()));
         ingredientsColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getIngredients()));
         etapesColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEtapes()));
         problemeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProbleme()));
 
         // Centre le contenu de chaque cellule dans la TableView
-        idColumn.setCellFactory(column -> {
-            return new TableCell<recette, Integer>() {
-                @Override
-                protected void updateItem(Integer item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (empty || item == null) {
-                        setText(null);
-                        setStyle("");
-                    } else {
-                        setText(String.valueOf(item));
-                        setAlignment(Pos.CENTER);
-                    }
-                }
-            };
-        });
 
         // Ajout des boutons Modifier et Supprimer
         actionsColumn.setCellFactory(param -> new TableCell<recette, Void>() {
@@ -110,13 +95,14 @@ public class recetteList {
             }
         });
 
-
         try {
             List<recette> recettes = recetteService.getAllRecettes();
             tableViewRecettes.getItems().addAll(recettes);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        configureTableView(); // Appel de la méthode pour configurer les colonnes du TableView
     }
 
     private void openRecetteUpdate(recette selectedRecette) {
@@ -135,6 +121,20 @@ public class recetteList {
         }
     }
 
+    private void configureTableView() {
+        // Ajustement de la largeur des colonnes
+        nomColumn.setPrefWidth(80);
+        ingredientsColumn.setPrefWidth(80);
+        etapesColumn.setPrefWidth(80);
+        problemeColumn.setPrefWidth(80);
+
+        // Centrage du contenu des colonnes
+        nomColumn.setStyle("-fx-alignment: CENTER;");
+        ingredientsColumn.setStyle("-fx-alignment: CENTER;");
+        etapesColumn.setStyle("-fx-alignment: CENTER;");
+        problemeColumn.setStyle("-fx-alignment: CENTER;");
+    }
+
     public void AllerVersFormulaire(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/recetteAdd.fxml"));
@@ -146,6 +146,7 @@ public class recetteList {
             e.printStackTrace();
         }
     }
+
     public void searchRecette(ActionEvent actionEvent) {
         String searchQuery = searchTextField.getText().trim().toLowerCase();
 
@@ -170,5 +171,72 @@ public class recetteList {
             tableViewRecettes.setPlaceholder(new Label("Aucune recette comportant ce nom."));
         }
     }
+
+
+
+    @FXML
+    public void ConsulterRDVButtonAction(ActionEvent actionEvent) {
+        try {
+            // Charger rdvListBack.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/rdvListBack.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène
+            Scene scene = new Scene(root);
+
+            // Obtenir la scène actuelle à partir du bouton et la mettre dans une fenêtre (Stage)
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+
+            // Afficher la nouvelle scène dans la même fenêtre
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Gérer l'exception en conséquence
+        }
+    }
+
+    @FXML
+    public void handleConsulterListeRecettesButtonAction(javafx.event.ActionEvent actionEvent) {
+        try {
+            // Charger le fichier FXML de la nouvelle vue
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/recetteList.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène avec la vue chargée
+            Scene scene = new Scene(root);
+
+            // Obtenir la fenêtre principale (stage) à partir de l'événement
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+            // Mettre la nouvelle scène dans la fenêtre principale
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void handleAjouterRecettesButtonAction(javafx.event.ActionEvent actionEvent) {
+        try {
+            // Charger le fichier FXML de la nouvelle vue
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/recetteAdd.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène avec la vue chargée
+            Scene scene = new Scene(root);
+
+            // Obtenir la fenêtre principale (stage) à partir de l'événement
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+            // Mettre la nouvelle scène dans la fenêtre principale
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 }

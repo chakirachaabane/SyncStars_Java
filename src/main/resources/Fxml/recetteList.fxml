@@ -5,64 +5,20 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="571.0" prefWidth="908.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.recetteList">
+<AnchorPane prefHeight="700.0" prefWidth="888.0" style="-fx-background-color: #DCEDFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.recetteList">
     <children>
-        <!-- Navbar avec logo -->
-        <Pane prefHeight="100.0" prefWidth="908.0" style="-fx-background-color: linear-gradient(to bottom, #b360ac, #69BFA7);">
-            <children>
-                <!-- Logo -->
-                <ImageView fitHeight="84.0" fitWidth="115.0" layoutX="14.0" layoutY="8.0">
-                    <image>
-                        <Image url="/img/logoAlignVibe.png" />
-                    </image>
-                </ImageView>
-                <!-- Boutons de gestion -->
-                <Button layoutX="141.0" layoutY="34.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" style="-fx-background-radius: 10;" text="Espace User" textFill="#18593b">
-                    <font>
-                        <Font name="System Bold" size="11.0" />
-                    </font>
-                </Button>
-                <Button layoutX="267.0" layoutY="34.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" style="-fx-background-radius: 10;" text="Espace RDV" textFill="#18593b">
-                    <font>
-                        <Font name="System Bold" size="11.0" />
-                    </font>
-                </Button>
-                <Button layoutX="394.0" layoutY="34.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" style="-fx-background-radius: 10;" text="Espace Produit" textFill="#18593b">
-                    <font>
-                        <Font name="System Bold" size="11.0" />
-                    </font>
-                </Button>
-                <Button layoutX="520.0" layoutY="34.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" style="-fx-background-radius: 10;" text="Espace events" textFill="#18593b">
-                    <font>
-                        <Font name="System Bold" size="11.0" />
-                    </font>
-                </Button>
-                <Button layoutX="647.0" layoutY="34.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" style="-fx-background-radius: 10;" text="Espace Forum" textFill="#18593b">
-                    <font>
-                        <Font name="System Bold" size="11.0" />
-                    </font>
-                </Button>
-                <Button layoutX="774.0" layoutY="34.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" style="-fx-background-radius: 10;" text="Espace workouts" textFill="#18593b">
-                    <font>
-                        <Font name="System Bold" size="11.0" />
-                    </font>
-                </Button>
-            </children>
-        </Pane>
-        <!-- Background -->
-        <Pane layoutX="-4.0" layoutY="90.0" prefHeight="488.0" prefWidth="916.0" style="-fx-background-image: url('/img/backgroundRDV.jpg');" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="-4.0">
-            <children>
+
+
                 <!-- Liste des recettes -->
-                <TableView fx:id="tableViewRecettes" layoutX="39.0" layoutY="103.0" prefHeight="311.0" prefWidth="863.0">
+                <TableView fx:id="tableViewRecettes" layoutX="223.0" layoutY="195.0" prefHeight="311.0" prefWidth="638.0">
                     <columns>
-                        <TableColumn fx:id="idColumn" prefWidth="75" text="ID" />
+                      
                         <TableColumn fx:id="nomColumn" prefWidth="100" text="Nom" />
                         <TableColumn fx:id="ingredientsColumn" prefWidth="200" text="Ingredients" />
                         <TableColumn fx:id="etapesColumn" prefWidth="200" text="Etapes" />
@@ -72,30 +28,88 @@
                     </columns>
                 </TableView>
 
-                <!-- Titre -->
-                <Label layoutX="309.0" layoutY="53.0" prefHeight="50.0" prefWidth="280.0" text="Liste des recettes" textFill="#f8fbff">
-                    <font>
-                        <Font name="System Bold" size="34.0" />
-                    </font>
-                    <effect>
-                        <DropShadow color="#b360ac" radius="5" spread="0.5" />
-                    </effect>
-                </Label>
-
                 <!-- Champ de recherche -->
-                <TextField fx:id="searchTextField" layoutX="39.0" layoutY="425.0" prefHeight="38.0" prefWidth="204.0" promptText="Nom de la recette" />
-                <Button fx:id="searchButton" layoutX="263.0" layoutY="425.0" mnemonicParsing="false" onAction="#searchRecette" prefHeight="38.0" prefWidth="120.0" style="-fx-background-radius: 10;" text="Rechercher" textFill="#18593b">
+                <TextField fx:id="searchTextField" layoutX="540.0" layoutY="523.0" prefHeight="31.0" prefWidth="189.0" promptText="Nom de la recette" />
+                <Button fx:id="searchButton" layoutX="741.0" layoutY="523.0" mnemonicParsing="false" onAction="#searchRecette" prefHeight="31.0" prefWidth="104.0" style="-fx-background-radius: 10;" text="Rechercher" textFill="#18593b">
                     <font>
-                        <Font name="System Bold" size="17.0" />
+                        <Font name="System Bold" size="15.0" />
                     </font>
                 </Button>
-                <Button fx:id="AllerVersFormulaireButton" layoutX="680.0" layoutY="425.0" mnemonicParsing="false" onAction="#AllerVersFormulaire" prefHeight="38.0" prefWidth="204.0" style="-fx-background-radius: 10;" text="Ajouter une recette" textFill="#18593b">
+                <Button fx:id="AllerVersFormulaireButton" layoutX="263.0" layoutY="523.0" mnemonicParsing="false" onAction="#AllerVersFormulaire" prefHeight="26.0" prefWidth="174.0" style="-fx-background-radius: 10;" text="Ajouter une recette" textFill="#18593b">
                     <font>
-                        <Font name="System Bold" size="17.0" />
+                        <Font name="System Bold" size="15.0" />
                     </font>
                 </Button>
+      <VBox layoutY="156.0" prefHeight="442.0" prefWidth="205.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="205.0" styleClass="buttonSidebar" stylesheets="/css/backUserStyle.css" text="Statistiques" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="205.0" styleClass="buttonSidebar" text="Liste des utilisateurs">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="205.0" styleClass="buttonSidebar" text="Ajouter un admin">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="205.0" styleClass="buttonSidebar" text="Liste des produits">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="205.0" styleClass="buttonSidebar" text="Ajouter un prduit">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="205.0" styleClass="buttonSidebar" text="Ajouter une catégorie">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="205.0" styleClass="buttonSidebar" text="Liste des catégories">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="prendreRdvButton" mnemonicParsing="false" onAction="#handleAjouterRecettesButtonAction" prefHeight="37.0" prefWidth="205.0" styleClass="buttonSidebar" text="Ajouter une recette">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleConsulterListeRecettesButtonAction" prefHeight="40.0" prefWidth="205.0" styleClass="buttonSidebar" text="Consulter liste Recettes">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#ConsulterRDVButtonAction" prefHeight="39.0" prefWidth="205.0" styleClass="buttonSidebar" text="Consulter liste des RDV">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <ImageView fitHeight="123.0" fitWidth="149.0" layoutX="30.0" layoutY="24.0">
+         <image>
+            <Image url="/img/logoAlignVibe.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="270.0" layoutY="49.0" prefHeight="74.0" prefWidth="523.0" text="Espace recettes">
+         <font>
+            <Font name="System Bold" size="50.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="444.0" layoutY="137.0" prefHeight="58.0" prefWidth="196.0" text="Liste des recettes">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
 
             </children>
-        </Pane>
-    </children>
+
 </AnchorPane>

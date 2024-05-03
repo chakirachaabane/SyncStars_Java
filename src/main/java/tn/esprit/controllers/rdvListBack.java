@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
@@ -87,10 +88,6 @@ public class rdvListBack {
 
     private void configureTableView() {
         // Colonnes existantes
-        TableColumn<rdv, Integer> idColumn = new TableColumn<>("ID");
-        idColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getId()));
-        idColumn.setPrefWidth(100); // Définissez la largeur de la colonne ici
-        idColumn.setStyle("-fx-alignment: CENTER;"); // Centrer les données
 
         TableColumn<rdv, String> dateColumn = new TableColumn<>("Date");
         dateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getdate_rdv()));
@@ -109,7 +106,7 @@ public class rdvListBack {
                 }
             };
         });
-        dateColumn.setPrefWidth(150); // Définissez la largeur de la colonne ici
+        dateColumn.setPrefWidth(100); // Définissez la largeur de la colonne ici
         dateColumn.setStyle("-fx-alignment: CENTER;"); // Centrer les données
 
         TableColumn<rdv, String> horaireColumn = new TableColumn<>("Horaire");
@@ -119,7 +116,7 @@ public class rdvListBack {
 
         TableColumn<rdv, String> problemeColumn = new TableColumn<>("Problème");
         problemeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProbleme()));
-        problemeColumn.setPrefWidth(80); // Définissez la largeur de la colonne ici
+        problemeColumn.setPrefWidth(100); // Définissez la largeur de la colonne ici
         problemeColumn.setStyle("-fx-alignment: CENTER;"); // Centrer les données
 
         // Appliquer un style personnalisé aux lignes de la TableView directement à partir du code Java
@@ -130,7 +127,7 @@ public class rdvListBack {
         });
 
         // Ajouter les colonnes existantes à la TableView
-        rdvTableView.getColumns().addAll(idColumn, dateColumn, horaireColumn, problemeColumn);
+        rdvTableView.getColumns().addAll( dateColumn, horaireColumn, problemeColumn);
     }
 
 
@@ -186,7 +183,7 @@ public class rdvListBack {
         while (jourCourant <= joursDansMois) {
             for (int col = 0; col < 7; col++) {
                 Button btnJour = new Button(Integer.toString(jourCourant));
-                btnJour.setStyle("-fx-background-color: linear-gradient(#69bfa7, #b360ac); -fx-text-fill: #F2F2F2; -fx-font-size: 14px;");
+                btnJour.setStyle("-fx-background-color: linear-gradient(#69bfa7, #00a480); -fx-text-fill: #F2F2F2; -fx-font-size: 14px;");
                 btnJour.setPrefWidth(40);
                 btnJour.setPrefHeight(40);
 
@@ -287,37 +284,9 @@ public class rdvListBack {
 
 
 
-    @FXML
-    void Retour(ActionEvent event) throws IOException {
-        // Charger le fichier FXML
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/recetteAccBack.fxml"));
-        Parent root = loader.load();
-
-        // Créer la scène
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) RetourButton.getScene().getWindow();
-
-        // Afficher la nouvelle scène
-        stage.setScene(scene);
-        stage.show();
-    }
 
 
 
-    public void trierParDate(boolean ascendant) {
-        List<rdv> rdvs = rdvService.getAll();
-        if (ascendant) {
-            rdvs.sort(Comparator.comparing(rdv -> LocalDate.parse(rdv.getdate_rdv())));
-        } else {
-            rdvs.sort((rdv1, rdv2) -> {
-                LocalDate date1 = LocalDate.parse(rdv1.getdate_rdv());
-                LocalDate date2 = LocalDate.parse(rdv2.getdate_rdv());
-                return date2.compareTo(date1);
-            });
-        }
-        rdvTableView.getItems().clear();
-        rdvTableView.getItems().addAll(rdvs);
-    }
 
     @FXML
     public void trierParDate(ActionEvent actionEvent) {
@@ -382,6 +351,68 @@ public class rdvListBack {
         stage.show();
     }
 
+    @FXML
+    public void ConsulterRDVButtonAction(ActionEvent actionEvent) {
+        try {
+            // Charger rdvListBack.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/rdvListBack.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène
+            Scene scene = new Scene(root);
+
+            // Obtenir la scène actuelle à partir du bouton et la mettre dans une fenêtre (Stage)
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+
+            // Afficher la nouvelle scène dans la même fenêtre
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Gérer l'exception en conséquence
+        }
+    }
+
+    @FXML
+    public void handleConsulterListeRecettesButtonAction(javafx.event.ActionEvent actionEvent) {
+        try {
+            // Charger le fichier FXML de la nouvelle vue
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/recetteList.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène avec la vue chargée
+            Scene scene = new Scene(root);
+
+            // Obtenir la fenêtre principale (stage) à partir de l'événement
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+            // Mettre la nouvelle scène dans la fenêtre principale
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void handleAjouterRecettesButtonAction(javafx.event.ActionEvent actionEvent) {
+        try {
+            // Charger le fichier FXML de la nouvelle vue
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/recetteAdd.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène avec la vue chargée
+            Scene scene = new Scene(root);
+
+            // Obtenir la fenêtre principale (stage) à partir de l'événement
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+            // Mettre la nouvelle scène dans la fenêtre principale
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 

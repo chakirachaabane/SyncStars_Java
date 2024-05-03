@@ -14,12 +14,24 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import tn.esprit.models.rdv;
 import tn.esprit.services.RdvService;
+import com.twilio.rest.api.v2010.account.Message;
+import io.github.cdimascio.dotenv.Dotenv;
+
+import com.twilio.Twilio;
+import com.twilio.type.PhoneNumber;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class rdvAdd {
+
+    private static final Dotenv dotenv = Dotenv.load();
+    private static final String ACCOUNT_SID = dotenv.get("ACCOUNT_SID");
+    private static final String AUTH_TOKEN = dotenv.get("AUTH_TOKEN");
+    static {
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+    }
 
     @FXML
     private DatePicker datefield;
@@ -88,6 +100,7 @@ public class rdvAdd {
         if (ajoutReussi) {
             successLabel.setTextFill(Color.GREEN);
             successLabel.setText("Rendez-vous ajouté avec succès !");
+            sendSMS();
             // Réinitialiser les champs
             datefield.setValue(null);
             Horairefield.clear();
@@ -99,6 +112,23 @@ public class rdvAdd {
         }
     }
 
+    private void sendSMS() {
+        // Remplacer les valeurs suivantes par votre numéro Twilio et le numéro de téléphone de destination
+        String twilioNumber = "+13342922542"; // Votre numéro Twilio
+        String recipientNumber = "+21696348060"; // Numéro de téléphone du destinataire
+
+        // Message à envoyer
+        String messageBody = "Rendez-vous chez AlignVibe confirmé !";
+
+        // Envoyer le message SMS
+        Message message = Message.creator(
+                new PhoneNumber(recipientNumber),
+                new PhoneNumber(twilioNumber),
+                messageBody
+        ).create();
+
+        System.out.println("Message SID: " + message.getSid());
+    }
 
 
 

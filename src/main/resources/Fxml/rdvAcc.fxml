@@ -18,15 +18,15 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="752.0" prefWidth="962.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.rdvAcc">
+<AnchorPane prefHeight="700.0" prefWidth="888.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.rdvAcc">
     <children>
 
-        <ImageView fitHeight="752.0" fitWidth="1000.0">
+        <ImageView fitHeight="700.0" fitWidth="888.0">
             <image>
                 <Image url="/img/backgroundRDV.jpg" />
             </image>
         </ImageView>
-        <Rectangle accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#dff2e7" height="752.0" opacity="0.5" stroke="#dff2e7" strokeType="INSIDE" width="1000.0" />
+        <Rectangle accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#dff2e7" height="700.0" opacity="0.5" stroke="#dff2e7" strokeType="INSIDE" width="888.0" />
         <HBox prefHeight="62.0" prefWidth="900.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
                 <Button mnemonicParsing="false" opacity="0.8" prefHeight="38.0" prefWidth="82.0" styleClass="navBarBtn" stylesheets="/css/frontUserStyle.css" text="Accueil " />
@@ -45,7 +45,7 @@
                 <Rectangle arcHeight="50" arcWidth="50" height="50" width="50" />
             </clip>
         </ImageView>
-        <ComboBox fx:id="comboBoxUser" layoutX="715.0" layoutY="8.0" opacity="0.9" prefHeight="34.0" prefWidth="179.0" style="-fx-text-fill: #18593b; -fx-font-family: 'Dubai Bold'; -fx-font-size: 13px;">
+        <ComboBox fx:id="comboBoxUser" layoutX="670.0" layoutY="9.0" opacity="0.9" prefHeight="34.0" prefWidth="179.0" style="-fx-text-fill: #18593b; -fx-font-family: 'Dubai Bold'; -fx-font-size: 13px;">
             <effect>
                 <InnerShadow>
                     <color>
@@ -54,16 +54,16 @@
                 </InnerShadow>
             </effect>
         </ComboBox>
-        <Label fx:id="userNameTf" layoutX="723.0" layoutY="13.0" opacity="0.8" prefHeight="26.0" prefWidth="144.0" textFill="#18593b">
+        <Label fx:id="userNameTf" layoutX="687.0" layoutY="13.0" opacity="0.8" prefHeight="26.0" prefWidth="144.0" textFill="#18593b">
             <font>
                 <Font name="Dubai Bold" size="13.0" />
             </font>
         </Label>
 
-        <Pane layoutX="221.0" layoutY="153.0" prefHeight="325.0" prefWidth="558.0" style="-fx-background-color: rgba(105, 191, 167, 0.8); -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #69BFA7; -fx-border-width: 5;">
+                                            <Pane layoutX="185.0" layoutY="153.0" prefHeight="325.0" prefWidth="558.0" style="-fx-background-color: rgba(105, 191, 167, 0.8); -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #69BFA7; -fx-border-width: 5;">
             <children>
 
-                <Button fx:id="prendreRdvButton" layoutX="199.0" layoutY="119.0" mnemonicParsing="false" onAction="#showChatBubble" prefHeight="39.0" prefWidth="171.0" style="-fx-background-radius: 10; -fx-background-color: linear-gradient(to bottom, #69BFA7, #18593B); -fx-text-fill: white;">
+                                                    <Button fx:id="prendreRdvButton" layoutX="199.0" layoutY="119.0" mnemonicParsing="false" onAction="#showChatBubble" prefHeight="39.0" prefWidth="171.0" style="-fx-background-radius: 10; -fx-background-color: linear-gradient(to bottom, #69BFA7, #18593B); -fx-text-fill: white;">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>
@@ -89,7 +89,7 @@
                     </effect>
                 </Button>
 
-                <Label layoutX="70.0" layoutY="30.0" prefHeight="59.0" prefWidth="405.0" text="Espace Rendez-vous" textFill="WHITE">
+                                                    <Label layoutX="70.0" layoutY="30.0" prefHeight="59.0" prefWidth="405.0" text="Espace Rendez-vous" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="41.0" />
                     </font>
@@ -99,6 +99,9 @@
                 </Label>
             </children>
         </Pane>
+
+
+
         <!-- Cercle pour le chatbot -->
         <StackPane layoutX="862.0" layoutY="668.0" />
         <!-- Bulle de discussion -->
@@ -114,23 +117,23 @@
             </VBox>
         </Pane>
 
-
-
-
-        <Circle fx:id="chatbotCircle" fill="#18593b" layoutX="953.0" layoutY="707.0" radius="35.0" />
+            
+            
+            
+                    <Circle fx:id="chatbotCircle" fill="#18593b" layoutX="843.0" layoutY="651.0" radius="35.0" />
         <!-- Insérer votre gif ici -->
-        <ImageView fx:id="firstGifImageView" fitHeight="122.0" fitWidth="118.0" layoutX="882.0" layoutY="630.0" onMouseClicked="#showChatBubble">
+        <ImageView fx:id="firstGifImageView" fitHeight="122.0" fitWidth="118.0" layoutX="772.0" layoutY="574.0" onMouseClicked="#showChatBubble">
             <image>
                 <Image url="/img/gif 9.gif" />
             </image>
         </ImageView>
         <!-- Deuxième gif à afficher lorsque la bulle de discussion apparaît -->
-        <ImageView fx:id="secondGifImageView" fitHeight="122.0" fitWidth="118.0" layoutX="882.0" layoutY="630.0" onMouseClicked="#showFirstGif" visible="true">
+        <ImageView fx:id="secondGifImageView" fitHeight="122.0" fitWidth="118.0" layoutX="772.0" layoutY="574.0" onMouseClicked="#showFirstGif" visible="true">
             <image>
                 <Image url="/img/gif-8.gif" />
             </image>
         </ImageView>
-        <Label fx:id="floatingMessage" layoutX="770" layoutY="630" style="-fx-background-color: #18593b; -fx-text-fill: white; -fx-padding: 15px; -fx-border-radius: 20px; -fx-background-radius: 20px; -fx-font-size: 16px;" text="Besoin d'aide ?" visible="false">
+        <Label fx:id="floatingMessage" layoutX="660.0" layoutY="574.0" style="-fx-background-color: #18593b; -fx-text-fill: white; -fx-padding: 15px; -fx-border-radius: 20px; -fx-background-radius: 20px; -fx-font-size: 16px;" text="Besoin d'aide ?" visible="false">
         </Label>
 
 

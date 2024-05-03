@@ -107,7 +107,7 @@ public class recetteObesite {
             document.open();
 
             // Charger le logo
-            Image logo = Image.getInstance("C:\\Users\\HP\\IdeaProjects\\projetpi - Version FRONT +Back + Calendrier + TRI +Recherche\\src\\main\\resources\\img\\logoAlignVibe.png");
+            Image logo = Image.getInstance("C:\\Users\\HP\\IdeaProjects\\projetpi - Version FRONT +Back + TousMetiers\\src\\main\\resources\\img\\logoAlignVibe.png");
             logo.scaleToFit(100, 100); // Redimensionner le logo si nécessaire
 
             // Ajouter le logo en haut à gauche de la page
