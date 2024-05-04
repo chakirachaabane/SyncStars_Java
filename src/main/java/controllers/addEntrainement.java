@@ -90,10 +90,11 @@ public class addEntrainement {
             try {
 
 
-                sendNotificationEmail(nouvelEntrainement);  // Send notification email
+                sendNotificationEmail();  // Send notification email
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
                 alert.setTitle("Success");
-                alert.setContentText("Thread added successfully!");
+                alert.setContentText("entrainement added successfully!");
 
                 alert.showAndWait();
                 changeScene();
@@ -136,101 +137,53 @@ public class addEntrainement {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
-
-    private void sendNotificationEmail(entrainements entrainement) throws MessagingException {
-        // SMTP server properties
-        Properties props = new Properties();
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "587");  // Updated to use port 587
-
-        // Sender's email credentials
-        String username = "feten.azizi@esprit.tn";
-        String password = "211JFT5051";  // Change to your actual password
-
-        Session session = Session.getInstance(props, new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
-            }
-        });
-
-        // Receiver's email
-        String receiverEmail = "feten.azizi@esprit.tn";
-
-        if (receiverEmail != null) {
-            sendEmail(session, username, receiverEmail, createEmailContent(entrainement));
-            System.out.println("Notification email sent successfully.");
-        } else {
-            System.out.println("Receiver email not found.");
-        }
-
-    }
-
-    private String createEmailContent(entrainements entrainement) {
-
-
+    private void sendNotificationEmail() {
         try {
-
-            EntrainementServices es = new EntrainementServices(); // Création d'une instance de EntrainementServices
-            es.add(entrainement); // Ajout de l'entraînement
-            //sendNotificationEmail(entrainement);  // Envoyer une notification par e-mail
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success");
-            alert.setContentText("Training session added successfully!");
-
-            alert.showAndWait();
-            changeScene();
-
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return "New training session added: " + entrainement.getNom_entrainement() +
-                "\nLevel: " + entrainement.getNiveau() +
-                "\nDuration: " + entrainement.getDuree() + " minutes" +
-                "\nObjective: " + entrainement.getObjectif() +
-                "\nPeriod: " + entrainement.getPeriode() + " days";
-    }
-
-
-    private void sendEmail(Session ignoredSession, String receiverEmail, String subject, String content) {
-        try {
-            // Configuration de la session SMTP
+            System.out.println("sendNotificationEmail is being called");
+            // SMTP server properties
             Properties props = new Properties();
             props.put("mail.smtp.auth", "true");
             props.put("mail.smtp.starttls.enable", "true");
             props.put("mail.smtp.host", "smtp.gmail.com");
             props.put("mail.smtp.port", "587");
 
-            // Adresse email et mot de passe de l'expéditeur
-            String username = "votre_adresse_email@gmail.com";
-            String password = "votre_mot_de_passe";
+            // Sender's email credentials
+            String username = "zoghlami.dhirar.10@gmail.com";
+            String password =  "badt mwvs cgpd bueg";  // Add your password/ key  here
 
-            // Création d'une session avec authentification
-            Session session = Session.getInstance(props, new Authenticator() {
+            javax.mail.Session session = javax.mail.Session.getInstance(props, new Authenticator() {
                 @Override
                 protected PasswordAuthentication getPasswordAuthentication() {
                     return new PasswordAuthentication(username, password);
                 }
             });
 
-            // Création du message email
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(username));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(receiverEmail));
-            message.setSubject(subject);
-            message.setText(content);
+            // Receiver's email
+            String receiverEmail = "feten.azizi21@gmail.com";
 
-            // Envoi du message
-            Transport.send(message);
-            System.out.println("Email envoyé avec succès à " + receiverEmail);
-        } catch (MessagingException e) {
-            System.out.println("Erreur lors de l'envoi de l'email : " + e.getMessage());
+            if (receiverEmail != null) {
+                sendEmail(session, username, receiverEmail,"Nouvel entraînement ajouté : ");
+                System.out.println("Notification email sent successfully.");
+            } else {
+                System.out.println("Receiver email not found.");
+            }
+
+        } catch (MessagingException ex) {
+            ex.printStackTrace();
         }
     }
+
+    private void sendEmail(javax.mail.Session session, String from, String to, String content) throws MessagingException {
+        System.out.println("sendEmail is being called");
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(from));
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+        message.setSubject("New entrainement Notification");
+        message.setText(content);
+        Transport.send(message);
+    }
+
+
     private void changeScene() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/getEntrainement.fxml"));

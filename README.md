@@ -1,1 +1,0 @@
-# SyncStars_Java
