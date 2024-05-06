@@ -14,6 +14,10 @@ import tn.esprit.models.Data;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,7 +52,8 @@ public class WelcomeController implements Initializable {
             if (newValue != null && newValue.equals("Se déconnecter")) {
                 System.out.println("Se deconnecter is selected!");
                 Data.user=null;
-
+                clearEmailFileContent();
+                Data.currentUserMail="";
                 loginSwitch();
             }
         });
@@ -93,6 +98,22 @@ public class WelcomeController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(WelcomeController.class
                     .getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void clearEmailFileContent() {
+        try {
+            // Get the path to the email.txt file in the resources directory
+            Path filePath = Paths.get(getClass().getResource("/email.txt").toURI());
+
+            // Write an empty string to the file to clear its content
+            Files.write(filePath, "".getBytes(StandardCharsets.UTF_8));
+
+            System.out.println("File content cleared successfully.");
+        } catch (IOException e) {
+            System.err.println("Error clearing email file content: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
     }
 }

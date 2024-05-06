@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.stage.Stage;
 import tn.esprit.services.UserService;
@@ -16,6 +17,10 @@ import tn.esprit.models.Data;
 import tn.esprit.utils.MyDatabase;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -65,18 +70,50 @@ public class SignInController implements Initializable {
     private String captchaText;
     private Cage cage = new GCage();
 
+    //Session ouverte
+    @FXML
+    private ImageView imageViewSession;
+    @FXML
+    private ImageView imageViewUser;
+    @FXML
+    private Button logoutButton;
+    @FXML
+    private Button sessionButton;
+    @FXML
+    private Label welcomeUser;
+    UserService userService = new UserService();
+
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        emailTf.setPromptText("Entrez votre email");
-        passwordTf.setPromptText("Entrez votre mdps");
-        repeatedCaptchaTf.setPromptText("Retapez texte");
-        captchaText = cage.getTokenGenerator().next();
-        System.out.println(captchaText);
-        BufferedImage image = cage.drawImage(captchaText);
-        WritableImage fxImage = SwingFXUtils.toFXImage(image, null);
-        captchaImageView.setImage(fxImage);
-    }
 
+        if (Data.currentUserMail.equals("")){
+            imageViewSession.setVisible(false);
+            imageViewUser.setVisible(false);
+            logoutButton.setDisable(true);
+            sessionButton.setDisable(true);
+            logoutButton.setVisible(false);
+            sessionButton.setVisible(false);
+            welcomeUser.setVisible(false);
+            emailTf.setPromptText("Entrez votre email");
+            passwordTf.setPromptText("Entrez votre mdps");
+            repeatedCaptchaTf.setPromptText("Retapez texte");
+            captchaText = cage.getTokenGenerator().next();
+            System.out.println(captchaText);
+            BufferedImage image = cage.drawImage(captchaText);
+            WritableImage fxImage = SwingFXUtils.toFXImage(image, null);
+            captchaImageView.setImage(fxImage);
+        }else{
+            Data.user = userService.getUserData(Data.currentUserMail);
+            String imagePath = "file:\\C:\\Users\\user\\Desktop\\SecondProject1\\public\\FrontOffice\\img\\"+Data.user.getImage();
+            // Load the image
+            Image image = new Image(imagePath);
+            // Set the image to the ImageView
+            imageViewUser.setImage(image);
+            welcomeUser.setText("Bonjour, " + Data.user.getFirstname() +" "+ Data.user.getLastname()+" !");
+
+        }
+    }
     @FXML
     private void signUpClicked(ActionEvent event) {
 
@@ -98,7 +135,7 @@ public class SignInController implements Initializable {
     @FXML
     private void loginClicked(ActionEvent event) throws NoSuchAlgorithmException, IOException, SQLException {
 
-        UserService user = new UserService();
+
         captchaErrorMsg.setText("");
         emailErrorMsg.setText(" ");
         passwordErrorMsg.setText(" ");
@@ -132,7 +169,8 @@ public class SignInController implements Initializable {
                     System.out.println(result.verified);
                     if(result.verified == true){
                         if (captchaErrorMsg.getText().equals("")){
-                            Data.user = user.getUserData(emailTf.getText());
+                            Data.user = userService.getUserData(emailTf.getText());
+                            saveEmailToFile(emailTf.getText());
                             if(Data.user.getRole().equals("Client")) {
                                 welcomeSwitch(event);
                             }else {
@@ -227,4 +265,73 @@ public class SignInController implements Initializable {
 
     }
 
+    private void saveEmailToFile(String email) {
+        try {
+            // Get the path to the email.txt file in the resources directory
+            Path filePath = Paths.get(getClass().getResource("/email.txt").toURI());
+
+            // Write the email to the file
+            Files.writeString(filePath, email , StandardCharsets.UTF_8);
+
+            System.out.println("Email saved successfully.");
+
+            // Debug: Print the file content after writing
+            String fileContent = Files.readString(filePath, StandardCharsets.UTF_8);
+            System.out.println("File Content After Writing:\n" + fileContent);
+
+        } catch (IOException e) {
+            System.err.println("Error saving email to file: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+    @FXML
+    private void continueButtonClicked(ActionEvent event){
+        Data.user = userService.getUserData(Data.currentUserMail);
+        if(Data.user.getRole().equals("Client")) {
+            welcomeSwitch(event);
+        }else {
+            dashboardSwitch(event);
+        }
+    }
+
+    @FXML
+    void logoutClicked(ActionEvent event) {
+     clearEmailFileContent();
+     Data.currentUserMail="";
+     Data.user=null;
+     loginSwitch(event);
+
+    }
+
+    private void loginSwitch(ActionEvent event) {
+        try {
+            pt = FXMLLoader.load(getClass().getResource("/signIn-view.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(pt);
+            stage.setScene(scene);
+            stage.setTitle("Login");
+            stage.show();
+
+        } catch (IOException ex) {
+            Logger.getLogger(SignUpController.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    private void clearEmailFileContent() {
+        try {
+            // Get the path to the email.txt file in the resources directory
+            Path filePath = Paths.get(getClass().getResource("/email.txt").toURI());
+
+            // Write an empty string to the file to clear its content
+            Files.write(filePath, "".getBytes(StandardCharsets.UTF_8));
+
+            System.out.println("File content cleared successfully.");
+        } catch (IOException e) {
+            System.err.println("Error clearing email file content: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
 }

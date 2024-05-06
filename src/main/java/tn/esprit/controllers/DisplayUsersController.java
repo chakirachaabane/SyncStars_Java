@@ -18,10 +18,15 @@ import tn.esprit.models.Data;
 import tn.esprit.models.User;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class DisplayUsersController implements Initializable {
 
@@ -40,14 +45,14 @@ public class DisplayUsersController implements Initializable {
     @FXML
     private TableColumn<?, ?> roleColumn;
     @FXML
-    private Button deleteUserBtn;
-
-    @FXML
     private ImageView imageViewUser;
     @FXML
     private Label userNameTf;
     @FXML
     private ComboBox comboBoxUser;
+
+    @FXML
+    private TextField searchTf;
     private Stage stage;
     private Scene scene;
     private Parent pt;
@@ -58,16 +63,6 @@ public class DisplayUsersController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         showUsers();
-
-        //Déselection btn supprimer
-        deleteUserBtn.setDisable(true);
-        usersTab.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection == null) {
-                deleteUserBtn.setDisable(true);
-            } else {
-                deleteUserBtn.setDisable(false);
-            }
-        });
 
 
         String imagePath = "file:\\C:\\Users\\user\\Desktop\\SecondProject1\\public\\FrontOffice\\img\\"+ Data.user.getImage();
@@ -88,6 +83,9 @@ public class DisplayUsersController implements Initializable {
             if (newValue != null && newValue.equals("Se déconnecter")) {
                 System.out.println("Se deconnecter is selected!");
                 Data.user=null;
+                //Session
+                clearEmailFileContent();
+                Data.currentUserMail="";
 
                 loginSwitch();
             }
@@ -101,9 +99,13 @@ public class DisplayUsersController implements Initializable {
 
 
     public void showUsers() {
-        usersList = UserService.displayUsers();
-        System.out.println(usersList);
 
+        if (searchTf.getText().isEmpty()) {
+            usersList = UserService.displayUsers();
+            System.out.println(usersList);
+        }else{
+            usersList = (ArrayList<User>) UserService.displayUsers().stream().filter(user->user.getFirstname().toLowerCase().contains(searchTf.getText().toLowerCase())).collect(Collectors.toList());
+        }
         cinColumn.setCellValueFactory(new PropertyValueFactory<>("cin"));
         fNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstname"));
         lNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastname"));
@@ -114,30 +116,6 @@ public class DisplayUsersController implements Initializable {
         if (usersTab != null && usersTab instanceof TableView) {
             // Cast usersTab to TableView<users> and set its items
             ((TableView<User>) usersTab).setItems(FXCollections.observableArrayList(usersList));
-        }
-    }
-
-    @FXML
-    private void deleteUserFromListBtn(ActionEvent event) {
-
-        User selectedUser = usersTab.getSelectionModel().getSelectedItem();
-        if (selectedUser != null) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmer suppression");
-            alert.setHeaderText("Supprimer compte");
-            alert.setContentText("Etes vous sûr?");
-
-            alert.getButtonTypes().setAll(ButtonType.OK, ButtonType.CANCEL);
-
-            ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
-
-            if (result == ButtonType.OK) {
-                UserService.deleteUser(selectedUser.getId());
-                usersTab.getItems().remove(selectedUser);
-            } else {
-                // User clicked Cancel or closed the dialog, do nothing or handle accordingly
-            }
-
         }
     }
     private void loginSwitch() {
@@ -192,6 +170,23 @@ public class DisplayUsersController implements Initializable {
         }
     }
     @FXML
+    private void statisticsSwitch() {
+        try {
+            pt = FXMLLoader.load(getClass().getResource("/usersStatistics-view.fxml"));
+            stage = new Stage();
+            scene = new Scene(pt);
+            // Close the current stage
+            Stage currentStage = (Stage) comboBoxUser.getScene().getWindow(); // Assuming comboBox is part of your current scene
+            currentStage.close();
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException ex) {
+            Logger.getLogger(AddUserAdminController.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    @FXML
     public void dashboardUserSwitch(ActionEvent event) {
         try {
             Parent parent2 = FXMLLoader
@@ -207,6 +202,23 @@ public class DisplayUsersController implements Initializable {
             Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    private void clearEmailFileContent() {
+        try {
+            // Get the path to the email.txt file in the resources directory
+            Path filePath = Paths.get(getClass().getResource("/email.txt").toURI());
+
+            // Write an empty string to the file to clear its content
+            Files.write(filePath, "".getBytes(StandardCharsets.UTF_8));
+
+            System.out.println("File content cleared successfully.");
+        } catch (IOException e) {
+            System.err.println("Error clearing email file content: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+
 }
 
 

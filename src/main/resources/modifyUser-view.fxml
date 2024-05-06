@@ -65,7 +65,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="valideModifyBtn" layoutX="409.0" layoutY="560.0" mnemonicParsing="false" onAction="#valideModifyBtn_clicked" prefHeight="35.0" prefWidth="100.0" styleClass="validerBtn" stylesheets="@frontUserStyle.css" text=" Valider" textFill="WHITE">
+      <Button fx:id="valideModifyBtn" layoutX="409.0" layoutY="560.0" mnemonicParsing="false" onAction="#modifyClicked" prefHeight="35.0" prefWidth="100.0" styleClass="validerBtn" stylesheets="@frontUserStyle.css" text=" Valider" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -81,7 +81,7 @@
       <DatePicker fx:id="dobPicker" layoutX="400.0" layoutY="330.0" prefHeight="26.0" prefWidth="180.0" styleClass="textfield" />
       <RadioButton fx:id="male_gender" layoutX="411.0" layoutY="285.0" mnemonicParsing="false" styleClass="textfield" text="Male" />
       <RadioButton fx:id="female_gender" layoutX="497.0" layoutY="285.0" mnemonicParsing="false" styleClass="textfield" text="Female" />
-      <Button fx:id="btn_addimage" layoutX="404.0" layoutY="460.0" mnemonicParsing="false" onAction="#btn_addimage_clicked" prefHeight="30.0" prefWidth="172.0" styleClass="imgBtn" stylesheets="@frontUserStyle.css" text=" Choisir une image">
+      <Button fx:id="btn_addimage" layoutX="404.0" layoutY="460.0" mnemonicParsing="false" onAction="#addImageClicked" prefHeight="30.0" prefWidth="172.0" styleClass="imgBtn" stylesheets="@frontUserStyle.css" text=" Choisir une image">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

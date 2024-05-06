@@ -126,7 +126,7 @@ public class ModifyUserController implements Initializable {
 
 
     @FXML
-    private void btn_addimage_clicked(ActionEvent event) throws IOException {
+    private void addImageClicked(ActionEvent event) throws IOException {
 
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         FileChooser fileChooser = new FileChooser();
@@ -163,7 +163,7 @@ public class ModifyUserController implements Initializable {
     }
 
     @FXML
-    void valideModifyBtn_clicked(ActionEvent event) throws NoSuchAlgorithmException {
+    void modifyClicked(ActionEvent event) throws NoSuchAlgorithmException {
 
         String firstName = firstNameTf.getText();
         String lastName = lastNameTf.getText();

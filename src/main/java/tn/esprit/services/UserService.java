@@ -5,6 +5,11 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 import tn.esprit.models.User;
 import tn.esprit.utils.MyDatabase;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.time.LocalDate;
@@ -13,15 +18,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class UserService {
+public class UserService implements IUserService{
 
     static Connection conn = MyDatabase.getInstance().getConnection();
     PreparedStatement pst;
 
 
-    public UserService() {
+    public UserService()  {
     }
-
+    @Override
     public void addUser(User u){
 
         String sql = "insert into user (cin,first_name,last_name,gender,dob,roles,role,email,password,tel,address,image) values (? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -100,7 +105,7 @@ public class UserService {
     }
 
 
-
+    @Override
     public void modifyUser(User u){
 
         String sql = "update user set cin = ?, first_name = ?, last_name = ?, gender = ?, dob = ?, tel=?, address=?, image=? where id =?";
@@ -125,8 +130,8 @@ public class UserService {
         }
 
     }
-
-    public User getUserData(String email) throws NoSuchAlgorithmException {
+   @Override
+    public User getUserData(String email) {
         User data = null;
         ResultSet res = null;
         String sql = "SELECT id,cin,first_name,last_name,gender,dob,roles,role,email,password,tel,address,image FROM user WHERE email=?";
@@ -170,6 +175,24 @@ public class UserService {
     public static String hashPassword(String password) {
         String hashedPassword = BCrypt.with(BCrypt.Version.VERSION_2Y).hashToString(6, password.toCharArray());
         return hashedPassword;
+    }
+
+    public  String getEmailsFromFile() {
+        try {
+            // Get the path to the email.txt file in the resources directory
+            Path filePath = Paths.get(getClass().getResource("/email.txt").toURI());
+
+            // Read all lines from the file and concatenate them into a single string
+            String emails = Files.readString(filePath, StandardCharsets.UTF_8);
+
+            return emails;
+        } catch (IOException e) {
+            System.err.println("Error reading emails from file: " + e.getMessage());
+            return null;
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            return null;
+        }
     }
 }
 

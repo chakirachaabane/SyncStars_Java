@@ -91,5 +91,37 @@
             <FontAwesomeIconView fill="WHITE" glyphName="REFRESH" size="16.0" />
          </graphic>
       </Button>
+      <ImageView fx:id="imageViewSession" fitHeight="700.0" fitWidth="900.0">
+         <image>
+            <Image url="@UserImages/carousel-3.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="140.0" layoutX="760.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@UserImages/logo1.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="sessionButton" layoutX="339.0" layoutY="360.0" mnemonicParsing="false" onAction="#continueButtonClicked" prefHeight="38.0" prefWidth="208.0" styleClass="validerBtn" stylesheets="@frontUserStyle.css" text=" Session ouverte" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="ARROW_RIGHT" />
+         </graphic>
+      </Button>
+      <ImageView fx:id="imageViewUser" fitHeight="150.0" fitWidth="200.0" layoutX="356.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="logoutButton" layoutX="339.0" layoutY="414.0" mnemonicParsing="false" onAction="#logoutClicked" prefHeight="38.0" prefWidth="208.0" styleClass="returnBtn" text=" Se déconnecter" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <graphic>
+            <FontAwesomeIconView fill="#f4f2f2" glyphName="ARROW_LEFT" />
+         </graphic>
+      </Button>
+      <Label fx:id="welcomeUser" alignment="CENTER" layoutX="302.0" layoutY="319.0" prefHeight="27.0" prefWidth="281.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -108,7 +108,7 @@ public class ResetPasswordController implements Initializable {
         if (emailTf.getText().trim().isEmpty()) {
             emailErrorMsg.setText("Champ email vide ! ");
         }  else if (!emailTf.getText().matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")) {
-            emailErrorMsg.setText("Email non valide");
+            emailErrorMsg.setText("Email non valide !");
         }else {
             emailErrorMsg.setText("");
             Properties props = new Properties();
@@ -138,16 +138,45 @@ public class ResetPasswordController implements Initializable {
 
                 Random random = new Random();
                 resetCode = 100000+random.nextInt(900000);
-                String emailContent = "Bonjour "+ rs.getString(3)+" ,\n Merci pour votre confiance. Votre code de réinitialisation est : " + resetCode +
-                        " \n Equipe AlignVibe";
-
+                String emailContent ="<html>"
+                        + "<head>"
+                        + "<style>"
+                        + "body { font-family: Arial, sans-serif; background-color: #DCEDFF; }" // Setting clear blue background
+                        + ".container { max-width: 600px; margin: auto; }"
+                        + ".header { background-color: #57d2af; color: #ffffff; padding: 20px; text-align: center; }" // Increased padding for header
+                        + ".logo { text-align: center; margin-bottom: 20px; }"
+                        + ".logo img { width: 150px; border-radius: 50%; border: 4px solid #57d2af; box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2); }" // Added border and shadow to logo
+                        + ".content { padding: 30px; color: #333333; }"
+                        + ".content p { margin-bottom: 20px; }"
+                        + ".reset-code { color: orange; }" // Changed reset code text color to orange
+                        + ".footer { background-color: #f5f5f5; padding: 20px; text-align: center; }"
+                        + "</style>"
+                        + "</head>"
+                        + "<body>"
+                        + "<div class='container'>"
+                        + "<div class='header'>"
+                        + "<h2 style='margin: 0;'>Réinitialiser mot de passe</h2>"
+                        + "</div>"
+                        + "<div class='logo'>"
+                        + "<img src='https://i.imgur.com/qhBk2US.png' alt='AlignVibe Logo'>"
+                        + "</div>"
+                        + "<div class='content'>"
+                        + "<p>Bonjour " + rs.getString(3) + ",</p>"
+                        + "<p>Merci pour votre confiance. Votre code de réinitialisation est : <span class='reset-code'><strong>" + resetCode + "</strong></span></p>" // Fixed the style attribute and class name
+                        + "</div>"
+                        + "<div class='footer'>"
+                        + "<p>Equipe AlignVibe</p>"
+                        + "</div>"
+                        + "</div>"
+                        + "</body>"
+                        + "</html>";
                 Message message = new MimeMessage(session);
                 message.setFrom(new InternetAddress(Data.username));
 
                 message.setRecipients(Message.RecipientType.TO,
                         InternetAddress.parse(recipientEmail));
                 message.setSubject("Réinitialiser mot de passe");
-                message.setText(emailContent);
+                message.setContent(emailContent, "text/html; charset=utf-8");
                 Transport.send(message);
 
                 System.out.println("Email envoyé avec succes !");

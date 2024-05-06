@@ -16,32 +16,32 @@
                 <Font name="System Bold" size="50.0" />
             </font>
         </Label>
-        <Label layoutX="308.0" layoutY="195.0" text="Prénom :" textFill="#18593b">
+        <Label layoutX="362.0" layoutY="195.0" text="Prénom :" textFill="#18593b">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Label layoutX="308.0" layoutY="235.0" text="Nom :" textFill="#18593b">
+        <Label layoutX="362.0" layoutY="235.0" text="Nom :" textFill="#18593b">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Label layoutX="308.0" layoutY="275.0" text="Email :" textFill="#18593b">
+        <Label layoutX="362.0" layoutY="275.0" text="Email :" textFill="#18593b">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Label layoutX="308.0" layoutY="315.0" text="Date de naissance : " textFill="#18593b">
+        <Label layoutX="362.0" layoutY="315.0" text="Date de naissance : " textFill="#18593b">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Label layoutX="308.0" layoutY="355.0" text="Télephone :" textFill="#18593b">
+        <Label layoutX="362.0" layoutY="355.0" text="Télephone :" textFill="#18593b">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Label layoutX="308.0" layoutY="395.0" text="Adresse : " textFill="#18593b">
+        <Label layoutX="362.0" layoutY="395.0" text="Adresse : " textFill="#18593b">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
@@ -62,32 +62,32 @@
             <FontAwesomeIconView fill="WHITE" glyphName="TRASH" size="14.0" />
          </graphic>
         </Button>
-        <Label fx:id="firstNameTf" layoutX="448.0" layoutY="196.0" prefHeight="18.0" prefWidth="130.0">
+        <Label fx:id="firstNameTf" layoutX="502.0" layoutY="196.0" prefHeight="18.0" prefWidth="130.0">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
-        <Label fx:id="dobTf" layoutX="448.0" layoutY="315.0" prefHeight="18.0" prefWidth="130.0">
+        <Label fx:id="dobTf" layoutX="502.0" layoutY="315.0" prefHeight="18.0" prefWidth="130.0">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
-        <Label fx:id="emailTf" layoutX="448.0" layoutY="276.0" prefHeight="20.0" prefWidth="216.0">
+        <Label fx:id="emailTf" layoutX="502.0" layoutY="276.0" prefHeight="20.0" prefWidth="216.0">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
-        <Label fx:id="lastNameTf" layoutX="448.0" layoutY="235.0" prefHeight="18.0" prefWidth="130.0">
+        <Label fx:id="lastNameTf" layoutX="502.0" layoutY="235.0" prefHeight="18.0" prefWidth="130.0">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
-        <Label fx:id="addressTf" layoutX="448.0" layoutY="395.0" prefHeight="18.0" prefWidth="130.0">
+        <Label fx:id="addressTf" layoutX="502.0" layoutY="395.0" prefHeight="18.0" prefWidth="130.0">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
-        <Label fx:id="telephoneTf" layoutX="448.0" layoutY="355.0" prefHeight="18.0" prefWidth="130.0">
+        <Label fx:id="telephoneTf" layoutX="502.0" layoutY="355.0" prefHeight="18.0" prefWidth="130.0">
             <font>
                 <Font size="14.0" />
             </font>
@@ -100,7 +100,7 @@
             <FontAwesomeIconView fill="WHITE" glyphName="ARROW_LEFT" />
          </graphic>
         </Button>
-      <ImageView fx:id="imageViewUser" fitHeight="130.0" fitWidth="130.0" layoutX="590.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageViewUser" fitHeight="130.0" fitWidth="130.0" layoutX="204.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true">
          <clip>
             <Rectangle arcHeight="130" arcWidth="130" height="130" width="130" />
          </clip>
