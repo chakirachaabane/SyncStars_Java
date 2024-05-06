@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 public class MainFX extends Application {
     @Override
     public void start(Stage primaryStage)  throws  Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/test-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/signIn-view.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setTitle("AlignVibe");

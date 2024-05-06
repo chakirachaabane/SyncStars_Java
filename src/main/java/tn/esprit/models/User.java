@@ -48,10 +48,10 @@ public class User {
         this.image = image;
     }
 
-    public User(int id,int cin,String firstName, String lastName,LocalDate birth_date, String address,int phone_number, String gender,String image){
+    public User(int id,int cin,String firstname, String lastName,LocalDate birth_date, String address,int phone_number, String gender,String image){
         this.id=id;
         this.cin = cin;
-        this.firstname = firstName;
+        this.firstname = firstname;
         this.lastname = lastName;
         this.birth_date=birth_date;
         this.address = address;
