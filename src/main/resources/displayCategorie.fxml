@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.displayCategorie">
+   <center>
+      <AnchorPane style="-fx-background-color: #DCEDFF;" stylesheets="@accueilProduit.css">
+      
+            
+                <!-- Rest of the UI content -->
+          <TableView fx:id="tableC" layoutX="307.0" layoutY="92.0" prefHeight="418.0" prefWidth="430.0" styleClass="shadow" stylesheets="@accueilProduit.css">
+              <columns>
+                  <TableColumn fx:id="colNom" prefWidth="132.80005645751953" text="Nom" />
+                  <TableColumn fx:id="colDescription" prefWidth="151.20001220703125" text="Description" />
+                  <TableColumn fx:id="colDisponibilite" prefWidth="139.99996948242188" text="Disponibilité" />
+              </columns>
+          </TableView>
+          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="227.0" layoutY="49.0" prefHeight="18.0" prefWidth="229.0" text="Liste des Catégories">
+            <font>
+               <Font name="System Bold" size="20.0" />
+            </font></Label>
+          <ButtonBar layoutX="64.0" layoutY="530.0" prefHeight="40.0" prefWidth="657.0">
+              <buttons>
+                  <Button fx:id="btnModifier" layoutX="559.0" layoutY="17.0" mnemonicParsing="false" onAction="#openUpdateCategorieDialog" prefHeight="35.0" prefWidth="111.0" style="-fx-background-radius: 20px;" text="Modifier">
+                  <graphic>
+                     <ImageView fitHeight="24.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@images/Capture_d_écran_2024-03-29_221746-removebg-preview.png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </Button>
+                  <Button fx:id="btnDetails" layoutX="473.0" layoutY="17.0" mnemonicParsing="false" onAction="#afficherDetailsCategories" prefHeight="36.0" style="-fx-background-color: #ED982B; -fx-background-radius: 20px;" text="Afficher">
+                  <graphic>
+                     <ImageView fitHeight="24.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@images/Capture_d_écran_2024-03-29_221756-removebg-preview%20(1).png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </Button>
+                  <Button fx:id="btnSupprimer" layoutX="473.0" layoutY="17.0" mnemonicParsing="false" onAction="#deleteCategorie" style="-fx-background-color: #dc3545; -fx-background-radius: 20px;" text="Supprimer">
+                  <graphic>
+                     <ImageView fitHeight="24.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@images/Capture_d_écran_2024-03-29_221523-removebg-preview.png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </Button>
+      
+                                </buttons>
+          </ButtonBar>
+         <AnchorPane fx:id="sidebar">
+            <children>
+               <VBox prefHeight="700.0" prefWidth="206.0" style="-fx-background-color: #343F3E;">
+                  <children>
+                     <Button maxWidth="210.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="206.0" styleClass="sidebarItem" text="Dashboard" textFill="#fcfafa">
+                        <font>
+                           <Font name="System Bold" size="15.0" />
+                        </font>
+                        <graphic>
+                           <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@images/home.png" />
+                              </image>
+                           </ImageView>
+                        </graphic>
+                     </Button>
+                     <Button fx:id="sidebarProduit" maxWidth="210.0" mnemonicParsing="false" onAction="#ProduitsButtonAction" prefHeight="51.0" prefWidth="206.0" styleClass="sidebarItem" text="Liste des Produits" textFill="#fcfafa">
+                        <font>
+                           <Font name="System Bold" size="15.0" />
+                        </font>
+                        <graphic>
+                           <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true" />
+                        </graphic>
+                     </Button>
+                     <Button maxWidth="210.0" mnemonicParsing="false" onAction="#AddProduitSidebar" prefHeight="51.0" prefWidth="206.0" styleClass="sidebarItem" text="  Ajouter Produit" textFill="#fcfafa">
+                        <font>
+                           <Font name="System Bold" size="15.0" />
+                        </font>
+                        <graphic>
+                           <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@images/add.png" />
+                              </image>
+                           </ImageView>
+                        </graphic>
+                     </Button>
+                     <Button fx:id="sidebarCategorie" maxWidth="206.0" mnemonicParsing="false" onAction="#CategoriesButtonAction" prefHeight="51.0" prefWidth="206.0" styleClass="sidebarItem" text="Liste des Categories" textFill="#fcfafa">
+                        <font>
+                           <Font name="System Bold" size="15.0" />
+                        </font>
+                        <graphic>
+                           <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true" />
+                        </graphic>
+                     </Button>
+                     <Button maxWidth="210.0" mnemonicParsing="false" onAction="#AddCategorieSidebar" prefHeight="51.0" prefWidth="206.0" styleClass="sidebarItem" text="  Ajouter Categorie" textFill="#fcfafa">
+                        <font>
+                           <Font name="System Bold" size="15.0" />
+                        </font>
+                        <graphic>
+                           <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@images/add.png" />
+                              </image>
+                           </ImageView>
+                        </graphic>
+                     </Button>
+                     <Button maxWidth="210.0" mnemonicParsing="false" onAction="#StatistiquesButton" prefHeight="51.0" prefWidth="206.0" styleClass="sidebarItem" text="Statistiques" textFill="#fcfafa">
+                        <font>
+                           <Font name="System Bold" size="15.0" />
+                        </font>
+                        <graphic>
+                           <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true" />
+                        </graphic>
+                     </Button>
+                  </children>
+               </VBox>
+            </children>
+         </AnchorPane>
+         <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="213.0" layoutY="408.0" pickOnBounds="true" preserveRatio="true" />
+      </AnchorPane>
+   </center>
+</BorderPane>

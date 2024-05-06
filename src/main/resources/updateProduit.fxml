@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #DCEDFF;" stylesheets="@accueilProduit.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.updateProduit">
+   <children>
+      <StackPane layoutX="105.0" layoutY="55.0" prefHeight="618.0" prefWidth="690.0" style="-fx-background-radius: 20px; -fx-border-width: 1px; -fx-background-color: #94B0DA;" />
+      <Button fx:id="btnModifier" layoutX="401.0" layoutY="611.0" mnemonicParsing="false" onAction="#updateProduits" prefHeight="30.0" prefWidth="116.0" style="-fx-background-radius: 20px;" text="Modifier">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Capture_d_écran_2024-03-29_221746-removebg-preview.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="uploadButton" layoutX="583.0" layoutY="121.0" prefHeight="30.0" prefWidth="158.0" style="-fx-background-radius: 20px;" text="Télécharger une image" />
+      <TextField fx:id="nomTF" layoutX="340.0" layoutY="169.0" styleClass="shadow" stylesheets="@accueilProduit.css" />
+      <TextArea fx:id="descriptionArea" layoutX="340.0" layoutY="217.0" prefHeight="100.0" prefWidth="300.0" styleClass="shadow" stylesheets="@accueilProduit.css" />
+      <TextField fx:id="prixTF" layoutX="340.0" layoutY="344.0" styleClass="shadow" stylesheets="@accueilProduit.css" />
+      <TextField fx:id="stockTF" layoutX="340.0" layoutY="392.0" styleClass="shadow" stylesheets="@accueilProduit.css" />
+      <DatePicker fx:id="datePeremption" layoutX="340.0" layoutY="437.0" prefHeight="31.0" prefWidth="200.0" promptText="MM-DD-YYYY" styleClass="shadow" stylesheets="@accueilProduit.css" />
+      <DatePicker fx:id="dateProduction" layoutX="340.0" layoutY="485.0" prefHeight="31.0" prefWidth="200.0" promptText="MM-DD-YYYY" styleClass="shadow" stylesheets="@accueilProduit.css" />
+      <ComboBox fx:id="nomCategorie" layoutX="340.0" layoutY="535.0" prefHeight="30.0" prefWidth="200.0" promptText="Select the category" styleClass="shadow" stylesheets="@accueilProduit.css" />
+      <Label layoutX="223.0" layoutY="126.0" text="Image" />
+      <Label layoutX="221.0" layoutY="175.0" prefHeight="20.0" prefWidth="64.0" text="Nom" />
+      <Label layoutX="215.0" layoutY="226.0" text="Description" />
+      <Label layoutX="216.0" layoutY="350.0" text="Prix" />
+      <Label layoutX="209.0" layoutY="398.0" text="Stock" />
+      <Label layoutX="207.0" layoutY="443.0" text="Date Peremption" />
+      <Label layoutX="209.0" layoutY="491.0" text="Date Production" />
+      <Label layoutX="209.0" layoutY="540.0" text="Categorie" />
+      <TextField fx:id="imageTF" layoutX="340.0" layoutY="120.0" styleClass="shadow" stylesheets="@accueilProduit.css" />
+      <Text fx:id="imagetextError" layoutX="341.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.3999938964844" />
+      <Text fx:id="DescriptiontextError" layoutX="340.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="407.2000427246094" />
+      <Text fx:id="nomtextError" layoutX="340.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="407.2000427246094" />
+      <Text fx:id="prixTextError" layoutX="341.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.39999389648426" />
+      <Text fx:id="stocktextError" layoutX="341.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="328.800048828125" />
+      <Text fx:id="datePeremptionError" layoutX="340.0" layoutY="481.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="384.79998779296875" />
+      <Text fx:id="dateProductionError" layoutX="340.0" layoutY="529.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="384.79998779296875" />
+      <Text fx:id="CategorieComboBoxError" layoutX="341.0" layoutY="590.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="414.39996337890625" />
+      <Label alignment="CENTER" layoutX="51.0" layoutY="14.0" prefHeight="20.0" prefWidth="194.0" text="Modifier un Produit" />
+   </children>
+</AnchorPane>

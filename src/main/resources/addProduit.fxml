@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #DCEDFF;" stylesheets="@accueilProduit.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.addProduit">
+    <children>
+      <StackPane layoutX="105.0" layoutY="59.0" prefHeight="614.0" prefWidth="689.0" style="-fx-border-width: 1px; -fx-background-radius: 20px; -fx-background-color: #94B0DA;" />
+      <Label alignment="CENTER" layoutX="80.0" layoutY="14.0" prefHeight="20.0" prefWidth="194.0" text="Ajouter un Produit" />
+      <Button fx:id="uploadButton" layoutX="583.0" layoutY="121.0" prefHeight="30.0" prefWidth="160.0" style="-fx-background-radius: 20px;" text="Télécharger une image" />
+      <TextField fx:id="nomTF" layoutX="353.0" layoutY="169.0" promptText="Nom du produit" styleClass="shadow" stylesheets="@accueilProduit.css" />
+      <TextArea fx:id="descriptionArea" layoutX="353.0" layoutY="217.0" prefHeight="100.0" prefWidth="349.0" promptText="Description du produit" styleClass="shadow" stylesheets="@accueilProduit.css" />
+      <TextField fx:id="prixTF" layoutX="353.0" layoutY="334.0" prefHeight="31.0" prefWidth="349.0" promptText="Prix du produit" styleClass="shadow" stylesheets="@accueilProduit.css" />
+      <TextField fx:id="stockTF" layoutX="353.0" layoutY="382.0" prefHeight="31.0" prefWidth="300.0" promptText="Stock du produit" styleClass="shadow" stylesheets="@accueilProduit.css" />
+      <DatePicker fx:id="datePeremption" layoutX="353.0" layoutY="427.0" prefHeight="31.0" prefWidth="200.0" promptText="MM-DD-YYYY" styleClass="shadow" stylesheets="@accueilProduit.css" />
+      <DatePicker fx:id="dateProduction" layoutX="353.0" layoutY="475.0" prefHeight="31.0" prefWidth="200.0" promptText="MM-DD-YYYY" styleClass="shadow" stylesheets="@accueilProduit.css" />
+      <ComboBox fx:id="nomCategorie" layoutX="353.0" layoutY="522.0" prefHeight="42.0" prefWidth="235.0" promptText="Selectionner une categorie" styleClass="shadow" stylesheets="@accueilProduit.css" />
+      <Label layoutX="223.0" layoutY="126.0" text="Image">
+         <font>
+            <Font size="7.0" />
+         </font>
+      </Label>
+      <Label layoutX="221.0" layoutY="175.0" prefHeight="20.0" prefWidth="64.0" text="Nom" />
+      <Label layoutX="215.0" layoutY="226.0" text="Description" />
+      <Label layoutX="216.0" layoutY="340.0" text="Prix" />
+      <Label layoutX="209.0" layoutY="388.0" text="Stock" />
+      <Label layoutX="207.0" layoutY="433.0" text="Date Peremption" />
+      <Label layoutX="209.0" layoutY="481.0" text="Date Production" />
+      <Label layoutX="209.0" layoutY="527.0" text="Categorie" />
+      <TextField fx:id="imageTF" layoutX="353.0" layoutY="121.0" prefHeight="26.0" prefWidth="188.0" promptText="URL de l'image du produit" styleClass="shadow" stylesheets="@accueilProduit.css" />
+      <Text fx:id="imagetextError" layoutX="353.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="384.79998779296875" />
+      <Text fx:id="nomtextError" layoutX="353.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="365.60003662109375" />
+      <Text fx:id="DescriptiontextError" layoutX="353.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="365.60003662109375" />
+      <Text fx:id="prixTextError" layoutX="353.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="200.0" />
+      <Text fx:id="stocktextError" layoutX="353.0" layoutY="426.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="328.800048828125" />
+      <Text fx:id="datePeremptionError" layoutX="353.0" layoutY="471.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="384.79998779296875" />
+      <Text fx:id="dateProductionError" layoutX="353.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="384.79998779296875" />
+      <Text fx:id="CategorieComboBoxError" layoutX="353.0" layoutY="577.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="348.79998779296875" />
+      <Button fx:id="submitButton" layoutX="401.0" layoutY="611.0" mnemonicParsing="false" onAction="#addProduits" prefHeight="34.0" prefWidth="102.0" style="-fx-background-radius: 20px;" text="Ajouter">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Capture_d_écran_2024-03-29_222331-removebg-preview.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="retourButton" layoutX="696.0" layoutY="613.0" mnemonicParsing="false" onAction="#retourDispalay" prefHeight="34.0" prefWidth="74.0" style="-fx-background-color: #ED982B; -fx-background-radius: 20px;" text="Retour" />
+
+    </children>
+</AnchorPane>
