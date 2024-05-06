@@ -47,6 +47,24 @@ public class addExercice {
             return;
         }
 
+        // Validation de tous les champs
+        if (!isValidNumber(dureeTF.getText()) || !isValidNumber(nombresfoisTF.getText()) || !isValidType(typeTF.getText()) || !isValidName(nomExerciceTF.getText()) ) {
+            showAlert("Erreur de saisie", "Veuillez saisir des valeurs numériques valides pour Durée ou Nombre de fois ou type exercice ou nom exercice");
+            return;
+        }
+
+        // Validation du champ typeTF
+        if (!isValidType(typeTF.getText())) {
+            showAlert("Erreur de saisie", "Le champ Type contient des caractères non valides.");
+            return;
+        }
+
+        // Validation du champ nomExerciceTF
+        if (!isValidName(nomExerciceTF.getText())) {
+            showAlert("Erreur de saisie", "Le champ Nom de l'exercice contient des caractères non valides.");
+            return;
+        }
+
         // Validation des champs numériques
         try {
             int duree = Integer.parseInt(dureeTF.getText());
@@ -96,5 +114,30 @@ public class addExercice {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    private boolean isValidNumber(String text) {
+        // Add your validation logic for numeric fields
+        // Return true if the text is a valid number, otherwise return false
+        try {
+            Integer.parseInt(text);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private boolean isValidType(String text) {
+        // Add your validation logic for the name field
+        // Return true if the text is a valid name, otherwise return false
+        // For example, you can check if the text contains only alphabetic characters
+        return text.matches("[a-zA-Z]+");
+    }
+
+    private boolean isValidName(String text) {
+        // Add your validation logic for the name field
+        // Return true if the text is a valid name, otherwise return false
+        // For example, you can check if the text contains only alphabetic characters
+        return text.matches("[a-zA-Z]+");
     }
 }

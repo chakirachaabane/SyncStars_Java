@@ -18,23 +18,23 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #DFF2E7;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.serachEntrainementfront">
+<AnchorPane maxHeight="700.0" maxWidth="880.0" prefHeight="700.0" prefWidth="880.0" style="-fx-background-color: #DFF2E7;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.serachEntrainementfront">
     <children>
-        <Button fx:id="chatButton" text="Envoyer message" onAction="#handleChatButtonClicked" />
+        <Button fx:id="chatButton" onAction="#handleChatButtonClicked" text="Envoyer message" />
 
-        <ImageView fitHeight="700.0" fitWidth="900.0">
+        <ImageView fitHeight="700.0" fitWidth="880.0">
             <image>
                 <Image url="@img/carousel-3.jpg" />
             </image>
         </ImageView>
-        <Rectangle accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#dff2e7" height="700.0" opacity="0.7" stroke="#dff2e7" strokeType="INSIDE" width="900.0" />
-        <HBox prefHeight="62.0" prefWidth="900.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <Rectangle accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#dff2e7" height="700.0" opacity="0.7" stroke="#dff2e7" strokeType="INSIDE" width="880.0" />
+        <HBox prefHeight="62.0" prefWidth="880.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
                 <Button mnemonicParsing="false" opacity="0.8" prefHeight="38.0" prefWidth="82.0" styleClass="navBarBtn" stylesheets="@css/frontUserStyle.css" text="Accueil " />
                 <Button mnemonicParsing="false" opacity="0.8" prefHeight="38.0" prefWidth="86.0" styleClass="navBarBtn" stylesheets="@css/frontUserStyle.css" text="Produits" />
                 <Button mnemonicParsing="false" opacity="0.8" prefHeight="37.0" prefWidth="113.0" styleClass="navBarBtn" stylesheets="@css/frontUserStyle.css" text="Evènements" />
                 <Button mnemonicParsing="false" opacity="0.8" prefHeight="38.0" prefWidth="118.0" styleClass="navBarBtn" stylesheets="@css/frontUserStyle.css" text="Réservations" />
-                <Button mnemonicParsing="false" opacity="0.8" prefHeight="38.0" prefWidth="129.0" styleClass="navBarBtn" stylesheets="@css/frontUserStyle.css" text="Entrainements" />
+                <Button mnemonicParsing="false" opacity="0.8" prefHeight="38.0" prefWidth="151.0" styleClass="navBarBtn" stylesheets="@css/frontUserStyle.css" text="Entrainements" />
                 <Button mnemonicParsing="false" opacity="0.8" prefHeight="38.0" prefWidth="79.0" styleClass="navBarBtn" stylesheets="@css/frontUserStyle.css" text="Forums" />
             </children>
             <opaqueInsets>
@@ -51,7 +51,7 @@
                 <Rectangle arcHeight="50" arcWidth="50" height="50" width="50" />
             </clip>
         </ImageView>
-        <ComboBox fx:id="comboBoxUser" layoutX="715.0" layoutY="8.0" opacity="0.9" prefHeight="34.0" prefWidth="179.0" style="-fx-text-fill: #18593b; -fx-font-family: 'Dubai Bold'; -fx-font-size: 13px;">
+        <ComboBox fx:id="comboBoxUser" layoutX="685.0" layoutY="8.0" opacity="0.9" prefHeight="34.0" prefWidth="179.0" style="-fx-text-fill: #18593b; -fx-font-family: 'Dubai Bold'; -fx-font-size: 13px;">
             <effect>
                 <InnerShadow>
                     <color>
@@ -59,28 +59,27 @@
                     </color>
                 </InnerShadow>
             </effect></ComboBox>
-        <Label fx:id="userNameTf" layoutX="723.0" layoutY="13.0" opacity="0.8" prefHeight="26.0" prefWidth="144.0" textFill="#18593b">
+        <Label fx:id="userNameTf" layoutX="733.0" layoutY="12.0" opacity="0.8" prefHeight="26.0" prefWidth="144.0" textFill="#18593b">
             <font>
                 <Font name="Dubai Bold" size="13.0" />
             </font>
         </Label>
-        <HBox layoutX="70.0" layoutY="70.0" spacing="10.0">
-            <Label text="Objectif:" />
-            <ComboBox fx:id="objectifComboBox" promptText="Choisir un objectif">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="se muscler" />
-                        <String fx:value="perte de poids" />
-                    </FXCollections>
-                </items>
-            </ComboBox>
-            <Button onAction="#searchEntrainements" style="-fx-background-color: #18593B; -fx-text-fill: #FFFFFF;" text="Rechercher" />
-        </HBox>
-        <ScrollPane layoutX="28.0" layoutY="114.0" prefHeight="419.0" prefWidth="617.0">
+        <HBox layoutX="70.0" layoutY="70.0" spacing="10.0" />
+        <ScrollPane layoutX="18.0" layoutY="235.0" prefHeight="419.0" prefWidth="431.0">
             <content>
                 <TilePane fx:id="entrainementsTilePane" prefWidth="450.0" />
             </content>
         </ScrollPane>
-      <TextField fx:id="poidsTF" layoutX="126.0" layoutY="36.0" prefHeight="25.0" prefWidth="139.0" />
-      <Label layoutX="70.0" layoutY="40.0" prefHeight="17.0" prefWidth="45.0" text="Poids:" />  </children>
+      <TextField fx:id="poidsTF" layoutX="110.0" layoutY="142.0" prefHeight="25.0" prefWidth="139.0" />
+      <Label layoutX="55.0" layoutY="146.0" prefHeight="17.0" prefWidth="45.0" text="Poids:" />
+         <ComboBox fx:id="objectifComboBox" layoutX="110.0" layoutY="173.0" promptText="Choisir un objectif">
+             <items>
+                 <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="se muscler" />
+                     <String fx:value="perte de poids" />
+                 </FXCollections>
+             </items>
+         </ComboBox>
+         <Label layoutX="41.0" layoutY="177.0" text="Objectif:" />
+         <Button layoutX="266.0" layoutY="173.0" onAction="#searchEntrainements" style="-fx-background-color: #18593B; -fx-text-fill: #FFFFFF;" text="Rechercher" />  </children>
 </AnchorPane>

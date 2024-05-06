@@ -61,8 +61,8 @@ public class serachEntrainementfront {
                     EntrainementCardView cardView = new EntrainementCardView(entrainement,selectedObjectif,poids);
                     entrainementsTilePane.getChildren().add(cardView);
                 }
-                String messageToSend = "Hello, world!"; // You can replace this with any message
-                sendMessageToChatGPT(messageToSend);
+               String messageToSend = "Hello, world!"; // You can replace this with any message
+               sendMessageToChatGPT(messageToSend);
             } catch (Exception e) {
                 e.printStackTrace(); // Handle exceptions accordingly
             }
@@ -74,7 +74,7 @@ public class serachEntrainementfront {
 
 
 
-        public void sendMessageToChatGPT(String message) throws Exception {
+       public void sendMessageToChatGPT(String message) throws Exception {
             String url = "https://api.openai.com/v1/chat/completions";  // URL de l'API ChatGPT
 
             MediaType mediaType = MediaType.parse("application/json");
@@ -88,17 +88,17 @@ public class serachEntrainementfront {
 
             try (Response response = client.newCall(request).execute()) {
                 if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
-
-                // Afficher la réponse ou l'utiliser dans votre application
                 System.out.println(response.body().string());
 
         }
     }
+
+
     @FXML
     private void handleChatButtonClicked(ActionEvent event) {
         String messageToSend = "Votre message ici"; // Remplacez cela par le message que vous souhaitez envoyer
         try {
-            sendMessageToChatGPT(messageToSend);
+            //sendMessageToChatGPT(messageToSend);
         } catch (Exception e) {
             e.printStackTrace(); // Gérez les exceptions selon vos besoins
         }

@@ -41,7 +41,7 @@ public class MainFX extends Application {
                 // Create a new stage for the new scene
                 Stage newStage = new Stage();
                 newStage.setTitle("New Scene");
-                newStage.setScene(new Scene(root, 800, 400)); // Set scene dimensions
+                newStage.setScene(new Scene(root, 880, 700)); // Set scene dimensions
                 newStage.show();
             } catch (Exception ex) {
                 System.err.println("Error loading FXML file: " + ex.getMessage());

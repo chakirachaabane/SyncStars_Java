@@ -16,6 +16,8 @@ import javax.mail.Authenticator;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.*;
@@ -70,6 +72,34 @@ public class addEntrainement {
             return;
         }
 
+        // Check all fields are filled
+        if (isEmptyField(nomEntrainementTF) || isEmptyField(niveauTF) || isEmptyField(dureeTF) || isEmptyField(periodeTF)) {
+            showAlert("Champ obligatoire", "Tous les champs sont requis.");
+            return;
+        }
+
+        // Check all fields
+        if (!isValidNumber(dureeTF.getText()) || !isValidNumber(periodeTF.getText()) ||!isValidNomEntrainement(nomEntrainementTF.getText()) || !isValidNiveau(niveauTF.getText()) || !isValidObjectif(objectifTF.getText()) ) {
+            showAlert("Erreur de saisie", "Veuillez saisir des valeurs numériques valides pour Durée ou  Période ou nom de l'entrainement ou le niveau ou l'objectif ");
+            return;
+        }
+
+        // Perform additional validation checks for nomEntrainementTF, niveauTF, and objectifTF
+        if (!isValidNomEntrainement(nomEntrainementTF.getText())) {
+            showAlert("Erreur de saisie", "Le nom de l'entraînement n'est pas valide.");
+            return;
+        }
+
+        if (!isValidNiveau(niveauTF.getText())) {
+            showAlert("Erreur de saisie", "Le niveau n'est pas valide.");
+            return;
+        }
+
+        if (!isValidObjectif(objectifTF.getText())) {
+            showAlert("Erreur de saisie", "L'objectif n'est pas valide.");
+            return;
+        }
+
         // Validation des champs numériques
         try {
             int duree = Integer.parseInt(dureeTF.getText());
@@ -90,7 +120,7 @@ public class addEntrainement {
             try {
 
 
-                sendNotificationEmail();  // Send notification email
+                sendNotificationEmail(nouvelEntrainement);  // Send notification email
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
                 alert.setTitle("Success");
@@ -137,7 +167,7 @@ public class addEntrainement {
         alert.setContentText(message);
         alert.showAndWait();
     }
-    private void sendNotificationEmail() {
+    private void sendNotificationEmail(entrainements nouvelEntrainement) {
         try {
             System.out.println("sendNotificationEmail is being called");
             // SMTP server properties
@@ -162,7 +192,7 @@ public class addEntrainement {
             String receiverEmail = "feten.azizi21@gmail.com";
 
             if (receiverEmail != null) {
-                sendEmail(session, username, receiverEmail,"Nouvel entraînement ajouté : ");
+                sendEmail(session, username, receiverEmail,"Nouvel entraînement ajouté : " + nouvelEntrainement.getNom_entrainement());
                 System.out.println("Notification email sent successfully.");
             } else {
                 System.out.println("Receiver email not found.");
@@ -206,6 +236,41 @@ public class addEntrainement {
         }
     }
 
+    private boolean isEmptyField(TextField field) {
+        return field.getText() == null || field.getText().trim().isEmpty();
+    }
+
+    private boolean isValidNumber(String text) {
+        try {
+            Integer.parseInt(text);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private boolean isValidNomEntrainement(String text) {
+        // Add your validation logic for the nomEntrainementTF field
+        // Return true if the text is valid, otherwise return false
+        // Example validation: The text should contain only letters and spaces
+        return text.matches("[a-zA-Z ]+");
+    }
+
+    private boolean isValidNiveau(String text) {
+        // Add your validation logic for the niveauTF field
+        // Return true if the text is valid, otherwise return false
+        // Example validation: The text should be one of the predefined levels (e.g., beginner, intermediate, advanced)
+        List<String> validLevels = Arrays.asList("avancée", "debutant", "intermediaire");
+        return validLevels.contains(text.toLowerCase());
+    }
+
+    private boolean isValidObjectif(String text) {
+        // Add your validation logic for the niveauTF field
+        // Return true if the text is valid, otherwise return false
+        // Example validation: The text should be one of the predefined levels (e.g., beginner, intermediate, advanced)
+        List<String> validLevels = Arrays.asList("se muscler", "perte de poids");
+        return validLevels.contains(text.toLowerCase());
+    }
 
 }
 
