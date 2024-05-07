@@ -67,26 +67,35 @@
                <Font name="System Bold" size="12.0" />
             </font>
          </Button>
+
          <Button mnemonicParsing="false" onAction="#listProductsSwitch" prefHeight="30.0" prefWidth="220.0" styleClass="buttonSidebar" text="Liste des produits">
+
             <font>
                <Font name="System Bold" size="12.0" />
             </font>
          </Button>
+
          <Button mnemonicParsing="false" onAction="#addProductSwitch" prefHeight="30.0" prefWidth="215.0" styleClass="buttonSidebar" text="Ajouter un produit">
+
             <font>
                <Font name="System Bold" size="12.0" />
             </font>
          </Button>
+
          <Button mnemonicParsing="false" onAction="#displayCategorySwitch" prefHeight="30.0" prefWidth="208.0" styleClass="buttonSidebar" text="Liste des catégories">
+
             <font>
                <Font name="System Bold" size="12.0" />
             </font>
          </Button>
+
          <Button mnemonicParsing="false" onAction="#addCategorySwitch" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" text="Ajouter une catégorie">
+
             <font>
                <Font name="System Bold" size="12.0" />
             </font>
          </Button>
+
 
       </children>
    </VBox>
@@ -100,5 +109,6 @@
          <FontAwesomeIconView fill="WHITE" glyphName="PIE_CHART" size="16.0" text="" />
       </graphic>
    </Button>
+
 
 </AnchorPane>

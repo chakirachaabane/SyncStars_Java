@@ -111,7 +111,9 @@
                 <Font name="System Bold" size="14.0" />
             </font>
          <graphic>
+
             <FontAwesomeIconView fill="WHITE" glyphName="CHECK" size="14.0" text="" />
+
          </graphic></Button>
         <ImageView fx:id="imageView" fitHeight="55.0" fitWidth="55.0" layoutX="592.0" layoutY="539.0" pickOnBounds="true" preserveRatio="true" />
         <Label layoutX="235.0" layoutY="38.0" text="Ajouter un admin" textFill="#000000e5">

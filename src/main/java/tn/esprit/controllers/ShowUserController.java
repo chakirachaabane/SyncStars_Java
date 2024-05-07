@@ -18,6 +18,12 @@ import tn.esprit.models.Data;
 
 import java.io.IOException;
 import java.net.URL;
+
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -54,7 +60,9 @@ public class ShowUserController implements Initializable {
         telephoneTf.setText(String.valueOf(Data.user.getPhone_number()));
         addressTf.setText(Data.user.getAddress());
 
-        String imagePath = "file:\\C:\\Users\\Nawres\\Desktop\\SecondProject1\\public\\FrontOffice\\img\\"+Data.user.getImage();
+
+        String imagePath = "file:\\C:\\Users\\user\\Desktop\\SecondProject1\\public\\FrontOffice\\img\\"+Data.user.getImage();
+
         // Load the image
         Image image = new Image(imagePath);
         // Set the image to the ImageView
@@ -100,6 +108,10 @@ public class ShowUserController implements Initializable {
             // User clicked OK, proceed with deletion
             UserService.deleteUser(Data.user.getId());
             Data.user = null;
+
+            Data.currentUserMail="";
+            clearEmailFileContent();
+
             loginSwitch(event);
         } else {
             // User clicked Cancel or closed the dialog, do nothing or handle accordingly
@@ -138,6 +150,23 @@ public class ShowUserController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(SignInController.class
                     .getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+
+    private void clearEmailFileContent() {
+        try {
+            // Get the path to the email.txt file in the resources directory
+            Path filePath = Paths.get(getClass().getResource("/email.txt").toURI());
+
+            // Write an empty string to the file to clear its content
+            Files.write(filePath, "".getBytes(StandardCharsets.UTF_8));
+
+            System.out.println("File content cleared successfully.");
+        } catch (IOException e) {
+            System.err.println("Error clearing email file content: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
     }
 

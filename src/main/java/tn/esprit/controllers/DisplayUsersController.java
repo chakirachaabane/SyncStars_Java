@@ -44,8 +44,6 @@ public class DisplayUsersController implements Initializable {
     private TableColumn<?, ?> dobColumn;
     @FXML
     private TableColumn<?, ?> roleColumn;
-
-
     @FXML
     private ImageView imageViewUser;
     @FXML
@@ -72,8 +70,7 @@ public class DisplayUsersController implements Initializable {
 
         });
 
-
-        String imagePath = "file:\\C:\\Users\\Nawres\\Desktop\\SecondProject1\\public\\FrontOffice\\img\\"+ Data.user.getImage();
+        String imagePath = "file:\\C:\\Users\\user\\Desktop\\SecondProject1\\public\\FrontOffice\\img\\"+ Data.user.getImage();
         // Load the image
         Image image = new Image(imagePath);
         // Set the image to the ImageView
@@ -110,8 +107,10 @@ public class DisplayUsersController implements Initializable {
 
         if (searchTf.getText().isEmpty()) {
             usersList = UserService.displayUsers();
+
         }else{
             usersList = (ArrayList<User>) UserService.displayUsers().stream().filter(user->user.getFirstname().toLowerCase().contains(searchTf.getText().toLowerCase()) || user.getLastname().toLowerCase().contains(searchTf.getText().toLowerCase()) || (user.getFirstname()+" "+ user.getLastname()).toLowerCase().contains(searchTf.getText().toLowerCase())).collect(Collectors.toList());
+            System.out.println(usersList);
         }
         cinColumn.setCellValueFactory(new PropertyValueFactory<>("cin"));
         fNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstname"));
@@ -125,7 +124,6 @@ public class DisplayUsersController implements Initializable {
             ((TableView<User>) usersTab).setItems(FXCollections.observableArrayList(usersList));
         }
     }
-
 
     private void loginSwitch() {
         try {
@@ -154,6 +152,7 @@ public class DisplayUsersController implements Initializable {
             Stage currentStage = (Stage) comboBoxUser.getScene().getWindow(); // Assuming comboBox is part of your current scene
             currentStage.close();
             stage.setTitle("User infos");
+
             stage.setScene(scene);
             stage.show();
 
@@ -171,7 +170,9 @@ public class DisplayUsersController implements Initializable {
             // Close the current stage
             Stage currentStage = (Stage) comboBoxUser.getScene().getWindow(); // Assuming comboBox is part of your current scene
             currentStage.close();
+
             stage.setTitle("Ajouter un admin");
+
             stage.setScene(scene);
             stage.show();
 
@@ -213,6 +214,7 @@ public class DisplayUsersController implements Initializable {
             Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     public void addProductSwitch(ActionEvent event) {
         try {
@@ -276,6 +278,7 @@ public class DisplayUsersController implements Initializable {
             Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 
 
     private void clearEmailFileContent() {
