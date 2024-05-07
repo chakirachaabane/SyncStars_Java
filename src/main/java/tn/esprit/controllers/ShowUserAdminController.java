@@ -18,10 +18,12 @@ import tn.esprit.models.Data;
 
 import java.io.IOException;
 import java.net.URL;
+
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -54,6 +56,7 @@ public class ShowUserAdminController implements Initializable {
         dobTf.setText(String.valueOf(Data.user.getBirth_date()));
         telephoneTf.setText(String.valueOf(Data.user.getPhone_number()));
         addressTf.setText(Data.user.getAddress());
+
 
 
         String imagePath = "file:\\C:\\Users\\user\\Desktop\\SecondProject1\\public\\FrontOffice\\img\\"+Data.user.getImage();
@@ -103,8 +106,10 @@ public class ShowUserAdminController implements Initializable {
             // User clicked OK, proceed with deletion
             UserService.deleteUser(Data.user.getId());
             Data.user = null;
+
             Data.currentUserMail="";
             clearEmailFileContent();
+
             loginswitch(event);
         } else {
             // User clicked Cancel or closed the dialog, do nothing or handle accordingly
@@ -146,6 +151,7 @@ public class ShowUserAdminController implements Initializable {
         }
     }
 
+
     private void clearEmailFileContent() {
         try {
             // Get the path to the email.txt file in the resources directory
@@ -161,6 +167,7 @@ public class ShowUserAdminController implements Initializable {
             System.err.println("Error: " + e.getMessage());
         }
     }
+
 
 }
 

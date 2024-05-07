@@ -1,0 +1,80 @@
+
+#tableC {
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: #cccccc;
+}
+
+
+.table-column {
+    -fx-font-size: 12px;
+    -fx-alignment: center-left;
+}
+.label {
+    -fx-font-size: 16px;
+    -fx-font-family: Arial, sans-serif;
+    -fx-text-fill: #333333;
+    -fx-font-weight: bold;
+}
+
+.button {
+    -fx-font-size: 14px;
+    -fx-padding: 5px 5px;
+    -fx-background-color:#7fad39;
+    -fx-text-fill: white;
+    -fx-background-radius: 1px;
+}
+
+
+.button:hover {
+    -fx-background-color:#4fad39 ;
+}
+
+.content {
+    margin-left: 250px;
+    padding: 20px;
+}
+.text-field {
+    -fx-font-size: 14px;
+    -fx-pref-height: 30px;
+    -fx-pref-width: 200px;
+    -fx-background-color: #f9f9f9;
+    -fx-border-color: #cccccc;
+}
+
+.sidebaritem:hover{
+    -fx-background-color: #146886;
+    -fx-border-color: white;
+    -fx-border-width: 0px 0px 0px 3px;
+}
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+.produit-item{
+
+    -fx-background-color: white;
+    -fx-background-radius: 30;
+}
+
+.shadow{
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);
+}
+.combo-box {
+    -fx-font-size: 14px;
+    -fx-padding: 5px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #aaaaaa;
+}
+
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.combo-box .list-cell {
+    -fx-font-size: 14px;
+}
+
+
+.combo-box .list-cell:selected {
+    -fx-background-color: #dddddd;
+}

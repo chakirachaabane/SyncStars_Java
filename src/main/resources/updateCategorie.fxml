@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #DCEDFF;" stylesheets="@accueilProduit.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.updateCategorie">
+   <children>
+      <StackPane layoutX="105.0" layoutY="68.0" prefHeight="618.0" prefWidth="690.0" style="-fx-background-radius: 20px; -fx-border-width: 1px; -fx-background-color: #94B0DA;" />
+      <VBox layoutX="197.0" layoutY="112.0" prefHeight="507.0" prefWidth="522.0" spacing="15.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" wrappingWidth="44.74374198913574">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Text>
+            <TextField fx:id="nomCTF" styleClass="shadow" stylesheets="@accueilProduit.css" />
+            <Text fx:id="NomcTextError" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="313.3367118835449" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Text>
+            <TextArea fx:id="descriptionCArea" prefHeight="157.0" prefWidth="310.0" styleClass="shadow" stylesheets="@accueilProduit.css" />
+            <Text fx:id="DescriptioncTextError" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="313.3367118835449" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Disponibilité">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Text>
+            <TextField fx:id="disponibiliteTF" styleClass="shadow" stylesheets="@accueilProduit.css" />
+            <Text fx:id="DisponibiliteTextError" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="313.3367118835449" />
+            <HBox alignment="CENTER">
+               <children>
+                  <Button onAction="#updateCategories" prefHeight="35.0" prefWidth="118.0" styleClass="confirmBtn" stylesheets="@backUserStyle.css" text=" Confirmer">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="CHECK" size="16" />
+                     </graphic></Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Text layoutX="257.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier catégorie" wrappingWidth="486.41717529296875">
+         <font>
+            <Font name="System Bold" size="40.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

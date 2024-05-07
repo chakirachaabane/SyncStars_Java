@@ -1,8 +1,12 @@
 package tn.esprit.controllers;
 
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
@@ -38,6 +42,7 @@ public class WelcomeController implements Initializable {
 
 
         String imagePath = "file:\\C:\\Users\\user\\Desktop\\SecondProject1\\public\\FrontOffice\\img\\"+Data.user.getImage();
+
         // Load the image
         Image image = new Image(imagePath);
         // Set the image to the ImageView
@@ -100,6 +105,24 @@ public class WelcomeController implements Initializable {
                     .getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @FXML
+    private void showProductsSwitch(ActionEvent event) {
+        try {
+            Parent parent2 = FXMLLoader
+                    .load(getClass().getResource("/displayFrontProduit.fxml"));
+
+            Scene scene = new Scene(parent2);
+            Stage stage = (Stage) ((Node) event.getSource())
+                    .getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Produits");
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 
     private void clearEmailFileContent() {
         try {

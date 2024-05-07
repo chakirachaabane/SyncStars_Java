@@ -104,8 +104,11 @@ public class SignInController implements Initializable {
             WritableImage fxImage = SwingFXUtils.toFXImage(image, null);
             captchaImageView.setImage(fxImage);
         }else{
+
             Data.user = userService.getUserData(Data.currentUserMail);
             String imagePath = "file:\\C:\\Users\\user\\Desktop\\SecondProject1\\public\\FrontOffice\\img\\"+Data.user.getImage();
+
+
             // Load the image
             Image image = new Image(imagePath);
             // Set the image to the ImageView
