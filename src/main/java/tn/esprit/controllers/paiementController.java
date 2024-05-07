@@ -71,15 +71,15 @@ public class paiementController implements Initializable {
     void payer(ActionEvent event) {
         if (cardNumberTextField.getText().isEmpty() || payment_email.getText().isEmpty() || expirymTextField.getText().isEmpty() || expiryyTextField.getText().isEmpty() || cvcTextField.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Payment Error");
+            alert.setTitle("Erreur de paiement");
             alert.setHeaderText(null);
-            alert.setContentText("Please fill in all the required fields.");
+            alert.setContentText("veuillez remplir tous les champs nécessaires.");
             alert.showAndWait();
         } else {
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
-            confirmAlert.setTitle("Confirm Payment");
+            confirmAlert.setTitle("Confirmation de paiement");
             confirmAlert.setHeaderText(null);
-            confirmAlert.setContentText("Are you sure you want to make this payment?");
+            confirmAlert.setContentText("Êtes-vous sur de passer ce paiement ?");
             Optional<ButtonType> result = confirmAlert.showAndWait();
 
             if (result.isPresent() && result.get() == ButtonType.OK) {

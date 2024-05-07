@@ -51,8 +51,9 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 public class displayProduit implements Initializable {
     private final ProduitService ps = new ProduitService();
 
+
     @FXML
-    private Button btnAjouter;
+    private Button btnModifier;
 
     @FXML
     private Button btnSupprimer;
@@ -80,6 +81,8 @@ public class displayProduit implements Initializable {
     private TableColumn<Produit,String> colCategorie;
     @FXML
     private Button btnExport;
+    @FXML
+    private Button btnDetails;
 
     @FXML
     private AnchorPane sidebar;
@@ -109,18 +112,31 @@ public class displayProduit implements Initializable {
         List<String> categoryNames = this.ps.getAllCategories();
         this.nomCategorie.getItems().addAll(categoryNames);
         showProduits();
+        btnSupprimer.setDisable(true);
+        btnDetails.setDisable(true);
+        btnModifier.setDisable(true);
+        tableP.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection == null) {
+                btnSupprimer.setDisable(true);
+                btnModifier.setDisable(true);
+                btnDetails.setDisable(true);
+            } else {
+                btnSupprimer.setDisable(false);
+                btnModifier.setDisable(false);
+                btnDetails.setDisable(false);
+            }
+        });
     }
     @FXML
     void openUpdateProduitDialog() {
         Alert alert;
         Produit produitSelect = tableP.getSelectionModel().getSelectedItem();
-        if (produitSelect != null) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/updateProduit.fxml"));
                 Parent root = loader.load();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
-                stage.setTitle("AlignVibe");
+                stage.setTitle("Modifier produit");
                 updateProduit controller = loader.getController();
                 controller.getData(produitSelect);
                 stage.setOnHiding(event -> {
@@ -131,17 +147,8 @@ public class displayProduit implements Initializable {
                 e.printStackTrace();
 
             }
-        } else {
-            System.out.println("veuillez choisir un Produit !");
-            if (produitSelect == null) {
-                alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Veuillez sélectionner un produit !");
-                alert.showAndWait();
-            }
         }
-    }
+
     public void showProduits() {
 
         ObservableList<Produit> produitList = ps.getAllProduits();
@@ -167,7 +174,6 @@ public class displayProduit implements Initializable {
         if (selectedProduit == null || selectedProduit.getImage() == null || selectedProduit.getImage().isEmpty()) {
             return;
         }
-
         try {
             String imageUrl = selectedProduit.getImage();
             if (!imageUrl.startsWith("http://") && !imageUrl.startsWith("https://")) {
@@ -179,12 +185,12 @@ public class displayProduit implements Initializable {
 
                     imageFile = new File(imageUrl.replace("file:///", ""));
                     if (!imageFile.exists()) {
-                        System.err.println("Fichier d'image introuvable : " + imageUrl);
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Erreur");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Fichier d'image introuvable : " + imageUrl);
-                        alert.showAndWait();
+                        System.err.println("Fichier d'image introuvable ");
+//                        Alert alert = new Alert(Alert.AlertType.ERROR);
+//                        alert.setTitle("Erreur");
+//                        alert.setHeaderText(null);
+//                        alert.setContentText("Fichier d'image introuvable : " + imageUrl);
+//                        alert.showAndWait();
                         return;
                     }
                 }
@@ -194,13 +200,13 @@ public class displayProduit implements Initializable {
             imageView.setImage(image);
 
         } catch (Exception e) {
-            System.err.println("Erreur lors du chargement de l'image : " + e.getMessage());
+            System.err.println("Erreur lors du chargement de l'image ");
             e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur");
-            alert.setHeaderText(null);
-            alert.setContentText("Erreur lors du chargement de l'image : " + e.getMessage());
-            alert.showAndWait();
+//            Alert alert = new Alert(Alert.AlertType.ERROR);
+//            alert.setTitle("Erreur");
+//            alert.setHeaderText(null);
+//            alert.setContentText("Erreur lors du chargement de l'image : " + e.getMessage());
+//            alert.showAndWait();
         }
     }
     @FXML
@@ -209,13 +215,6 @@ public class displayProduit implements Initializable {
         Produit produit = tableP.getSelectionModel().getSelectedItem();
 
         try {
-            if (produit == null) {
-                alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Veuillez sélectionner un produit !");
-                alert.showAndWait();
-            } else {
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setContentText("Veuillez d'abord sélectionner un produit");
                 alert.setHeaderText(null);
@@ -230,7 +229,7 @@ public class displayProduit implements Initializable {
                     alert.showAndWait();
                     showProduits();
                 }
-            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -253,7 +252,7 @@ public class displayProduit implements Initializable {
 
                 Stage dialogStage = new Stage();
                 dialogStage.setScene(scene);
-                dialogStage.setTitle("AlignVibe");
+                dialogStage.setTitle("Afficher produit");
                 dialogStage.initModality(Modality.WINDOW_MODAL);
                 dialogStage.initOwner(mainWindow);
                 dialogStage.showAndWait();
@@ -267,16 +266,42 @@ public class displayProduit implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(root);
+
+            // Modifier le titre de la scène
+            if (fxmlFile.equals("/statistiquesProduit.fxml")) {
+                stage.setTitle("Statistiques des produits");
+            }  if (fxmlFile.equals("/displayUsers-view.fxml")) {
+                stage.setTitle("Liste des Utilisateurs");
+            }  if (fxmlFile.equals("/addUserAdmin-view.fxml")) {
+                stage.setTitle("Ajouter un Administrateur");
+            }
+            if (fxmlFile.equals("/usersStatistics-view.fxml")) {
+                stage.setTitle("Statistiques des utilisateurs");
+            }
+            if (fxmlFile.equals("/displayCategorie")) {
+                stage.setTitle("Liste des catégories");
+            }
+
+            if (fxmlFile.equals("/addCategorie.fxml")) {
+                stage.setTitle("Ajouter une catégorie");
+            }
+            if (fxmlFile.equals("/addProduit.fxml")) {
+                stage.setTitle("Ajouter un produit");
+            }
+//            if (fxmlFile.equals("/displayProduit.fxml")) {
+//                stage.setTitle("Listes des produits");
+//            }
+            stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    @FXML
-    private void ProduitsButtonAction(ActionEvent event) {
-        loadPage("/displayProduit.fxml", event);
-    }
+//    @FXML
+//    private void ProduitsButtonAction(ActionEvent event) {
+//        loadPage("/displayProduit.fxml", event);
+//    }
 
     @FXML
     private void CategoriesButtonAction(ActionEvent event) {
@@ -437,6 +462,18 @@ public class displayProduit implements Initializable {
     @FXML
     void StatistiquesButton(ActionEvent event) {
         loadPage("/statistiquesProduit.fxml", event);
+    }
+    @FXML
+    void listesUserSwitch(ActionEvent event) {
+        loadPage("/displayUsers-view.fxml", event);
+    }
+    @FXML
+    void addAdmin(ActionEvent event) {
+        loadPage("/addUserAdmin-view.fxml",event);
+    }
+    @FXML
+    void StatistiquesUser(ActionEvent event) {
+        loadPage("/usersStatistics-view.fxml",event);
     }
 }
 

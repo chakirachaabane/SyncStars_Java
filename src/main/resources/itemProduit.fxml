@@ -17,7 +17,7 @@
          <children>
             <HBox prefHeight="34.0" prefWidth="225.0">
                <children>
-                  <Label fx:id="nomLabel" prefHeight="34.0" prefWidth="182.0" text="    Label ">
+                  <Label fx:id="nomLabel" prefHeight="34.0" prefWidth="182.0" text="    Label " textFill="#18593b">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -25,14 +25,14 @@
                         <Font name="Cambria" size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="prixLabel" layoutX="15.0" layoutY="10.0" prefHeight="44.0" prefWidth="96.0" text="Label">
+                  <Label fx:id="prixLabel" layoutX="15.0" layoutY="10.0" prefHeight="44.0" prefWidth="96.0" text="Label" textFill="#18593b">
                      <font>
-                        <Font name="Cambria Bold" size="16.0" />
+                        <Font name="Cambria Bold" size="15.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <ImageView fx:id="imageView" fitHeight="131.0" fitWidth="188.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageView" fitHeight="125.0" fitWidth="158.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
             <HBox alignment="BOTTOM_CENTER" prefHeight="30.0" prefWidth="215.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#generateQrcode" prefHeight="13.0" prefWidth="30.0" style="-fx-background-radius: 10px;">
@@ -48,7 +48,11 @@
                      <font>
                         <Font size="10.0" />
                      </font></Label>
-                  <Button fx:id="PanierButton" layoutX="179.0" layoutY="11.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="66.0" style="-fx-background-radius: 20px;" text="Ajouter " />
+                  <Button fx:id="PanierButton" layoutX="179.0" layoutY="11.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="66.0" style="-fx-background-radius: 20px;" text="Ajouter " textFill="WHITE">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+                  </Button>
                </children>
             </HBox>
          </children>

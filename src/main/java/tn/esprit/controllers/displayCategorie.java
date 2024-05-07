@@ -31,8 +31,6 @@ import tn.esprit.controllers.displayProduit;
 public class displayCategorie implements Initializable {
 
     private final CategorieService cs = new CategorieService();
-    @FXML
-    private Button btnAjouter;
 
     @FXML
     private Button btnModifier;
@@ -47,6 +45,9 @@ public class displayCategorie implements Initializable {
 
     @FXML
     private Button sidebarProduit;
+
+    @FXML
+    private Button btnDetails;
     @FXML
     private TableView<Categorie> tableC;
 
@@ -62,27 +63,22 @@ public class displayCategorie implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         showCategorie();
-
+        btnSupprimer.setDisable(true);
+        btnModifier.setDisable(true);
+        btnDetails.setDisable(true);
+        tableC.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection == null) {
+                btnSupprimer.setDisable(true);
+                btnModifier.setDisable(true);
+                btnDetails.setDisable(true);
+            } else {
+                btnSupprimer.setDisable(false);
+                btnModifier.setDisable(false);
+                btnDetails.setDisable(false);
+            }
+        });
 
     }
-
-
-//    void openAddCategorieDialog() {
-//        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/addCategorie.fxml"));
-//            Parent root = loader.load();
-//            Stage stage = new Stage();
-//            stage.setScene(new Scene(root));
-//            stage.setTitle("AlignVibe");
-//            stage.setOnHidden(event -> {
-//                addCategorie controller = (addCategorie) loader.getController();
-//                showCategorie();
-//            });
-//            stage.showAndWait();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        }
 
     @FXML
     void AddCategorieSidebar(ActionEvent event) {
@@ -121,16 +117,8 @@ public class displayCategorie implements Initializable {
                 e.printStackTrace();
 
             }
-        } else {
-            System.out.println("veuillez choisir une catégorie !");
-            if (categorieSelect == null) {
-                alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Veuillez sélectionner une catégorie !");
-                alert.showAndWait();
         }
-        }}
+        }
 
 
     @FXML
@@ -139,13 +127,6 @@ public class displayCategorie implements Initializable {
         Categorie categorie = tableC.getSelectionModel().getSelectedItem();
 
         try {
-            if (categorie == null) {
-                alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Veuillez sélectionner une catégorie");
-                alert.showAndWait();
-            } else {
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setContentText("Veuillez d'abord sélectionner une catégorie");
                 alert.setHeaderText(null);
@@ -160,7 +141,7 @@ public class displayCategorie implements Initializable {
                     alert.showAndWait();
                     showCategorie();
                 }
-            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -197,16 +178,39 @@ public class displayCategorie implements Initializable {
         loadPage("/displayProduit.fxml", event);
     }
 
-    @FXML
-    private void CategoriesButtonAction(ActionEvent event) {
-        loadPage("/displayCategorie.fxml", event);
-    }
-    private void loadPage(String fxmlFile, ActionEvent event) {
+//    @FXML
+//    private void CategoriesButtonAction(ActionEvent event) {
+//        loadPage("/displayCategorie.fxml", event);
+//    }
+    private  void loadPage(String fxmlFile, ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(root);
+
+            // Modifier le titre de la scène
+            if (fxmlFile.equals("/statistiquesProduit.fxml")) {
+                stage.setTitle("Statistiques des produits");
+            }  if (fxmlFile.equals("/displayUsers-view.fxml")) {
+                stage.setTitle("Liste des Utilisateurs");
+            }  if (fxmlFile.equals("/addUserAdmin-view.fxml")) {
+                stage.setTitle("Ajouter un Administrateur");
+            }
+            if (fxmlFile.equals("/usersStatistics-view.fxml")) {
+                stage.setTitle("Statistiques des utilisateurs");
+            }
+
+            if (fxmlFile.equals("/displayProduit.fxml")) {
+                stage.setTitle("Liste des produits");
+            }
+            if (fxmlFile.equals("/addCategorie.fxml")) {
+                stage.setTitle("Ajouter une catégorie");
+            }
+            if (fxmlFile.equals("/addProduit.fxml")) {
+                stage.setTitle("Ajouter un produit");
+            }
+            stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -228,6 +232,19 @@ public class displayCategorie implements Initializable {
         loadPage("/statistiquesProduit.fxml", event);
     }
 
+    @FXML
+    void StatistiquesUser(ActionEvent event) {
+        loadPage("/usersStatistics-view.fxml",event);
+    }
+    @FXML
+    void listesUserSwitch(ActionEvent event) {
+        loadPage("/displayUsers-view.fxml", event);
+    }
+    @FXML
+    void addAdmin(ActionEvent event) {
+        loadPage("/addUserAdmin-view.fxml",event);
+
+    }
     }
 
 

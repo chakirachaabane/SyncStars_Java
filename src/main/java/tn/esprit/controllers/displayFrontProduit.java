@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class displayFrontProduit implements Initializable {
     private final ProduitService ps = new ProduitService();
@@ -106,7 +108,13 @@ public void initialize(URL location, ResourceBundle resources) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(root);
+            if (fxmlFile.equals("/historique.fxml")) {
+                stage.setTitle("Panier");
+            }   if (fxmlFile.equals("/welcome-view.fxml")) {
+                stage.setTitle("Acceuil");
+            }
+            stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -117,5 +125,9 @@ public void initialize(URL location, ResourceBundle resources) {
         loadPage("/historique.fxml", event);
     }
 
+    @FXML
+    void showAccueilSwitch(ActionEvent event) {
+        loadPage("/welcome-view.fxml", event);
+    }
 
 }

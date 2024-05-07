@@ -60,12 +60,12 @@ public class itemFrontProduit {
 
                     imageFile = new File(imageUrl.replace("file:///", ""));
                     if (!imageFile.exists()) {
-                        System.err.println("Fichier d'image introuvable : " + imageUrl);
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Erreur");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Fichier d'image introuvable : " + imageUrl);
-                        alert.showAndWait();
+                        System.err.println("Fichier d'image introuvable ");
+//                        Alert alert = new Alert(Alert.AlertType.ERROR);
+//                        alert.setTitle("Erreur");
+//                        alert.setHeaderText(null);
+//                        alert.setContentText("Fichier d'image introuvable : " + imageUrl);
+//                        alert.showAndWait();
                         return;
                     }
                 }
@@ -75,13 +75,13 @@ public class itemFrontProduit {
             imageView.setImage(image);
 
         } catch (Exception e) {
-            System.err.println("Erreur lors du chargement de l'image : " + e.getMessage());
+            System.err.println("Erreur lors du chargement de l'image : " );
             e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur");
-            alert.setHeaderText(null);
-            alert.setContentText("Erreur lors du chargement de l'image : " + e.getMessage());
-            alert.showAndWait();
+//            Alert alert = new Alert(Alert.AlertType.ERROR);
+//            alert.setTitle("Erreur");
+//            alert.setHeaderText(null);
+//            alert.setContentText("Erreur lors du chargement de l'image : " + e.getMessage());
+//            alert.showAndWait();
         }
         PanierButton.setOnAction(event -> addToCart(event, produit));
     }
@@ -97,7 +97,7 @@ public class itemFrontProduit {
 
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
-                stage.setTitle("Produit Panier");
+                stage.setTitle("Confirmation panier");
                 stage.show();
             } catch (IOException e) {
                 e.printStackTrace();

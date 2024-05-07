@@ -32,8 +32,8 @@ public class HistoriquePanierController {
     private TableColumn<Produit,Float> total;
     @FXML
     private TableColumn<Produit,String> imageProduit;
-
-
+    @FXML
+    private Button btnSupprimer;
 
     @FXML
     private Label totalLabel;
@@ -43,6 +43,14 @@ public class HistoriquePanierController {
     private final ProduitService ps = new ProduitService();
     @FXML
     public void initialize() {
+      btnSupprimer.setDisable(true);
+        historiqueTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection == null) {
+                btnSupprimer.setDisable(true);
+            } else {
+                btnSupprimer.setDisable(false);
+            }
+        });
         refreshTableView();
 
         float totalPanier=0;
@@ -113,7 +121,14 @@ public class HistoriquePanierController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(root);
+            if (fxmlFile.equals("/paiement.fxml")) {
+                stage.setTitle("Paiement");
+            }
+            if (fxmlFile.equals("/displayFrontProduit.fxml")) {
+                stage.setTitle("Produits");
+            }
+            stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -136,12 +151,6 @@ public class HistoriquePanierController {
             ps.removeFromPanier(produitId);
             refreshTableView();
             updateTotalLabel();
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur");
-            alert.setHeaderText(null);
-            alert.setContentText("Veuillez sélectionner un produit à supprimer.");
-            alert.showAndWait();
         }
     }
     private void updateTotalLabel() {
