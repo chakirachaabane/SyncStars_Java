@@ -97,7 +97,6 @@
             <artifactId>controlsfx</artifactId>
             <version>11.1.0</version>
         </dependency>
-
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
@@ -107,16 +106,6 @@
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>21.0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.rapidpm.modul</groupId>
-            <artifactId>javafx-chart-pie-drilldown</artifactId>
-            <version>1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.zxing</groupId>
-            <artifactId>javase</artifactId>
-            <version>2.3.0</version>
         </dependency>
     </dependencies>
     <build>

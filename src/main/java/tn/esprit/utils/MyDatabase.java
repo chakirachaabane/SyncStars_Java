@@ -5,14 +5,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class MyDatabase {
-    private final String URL = "jdbc:mysql://localhost/pidevjavatest";
+    private final String URL = "jdbc:mysql://localhost/pidevfinal";
     final String USER = "root";
     final String PASSWORD = "";
     private Connection connection;
     private static MyDatabase instance;
     private MyDatabase() {
         try {
-            this.connection = DriverManager.getConnection("jdbc:mysql://localhost/pidevjavatest", "root", "");
+            this.connection = DriverManager.getConnection("jdbc:mysql://localhost/pidevfinal", "root", "");
             System.out.println("Connected");
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
