@@ -44,6 +44,8 @@ public class DisplayUsersController implements Initializable {
     private TableColumn<?, ?> dobColumn;
     @FXML
     private TableColumn<?, ?> roleColumn;
+
+
     @FXML
     private ImageView imageViewUser;
     @FXML
@@ -64,8 +66,14 @@ public class DisplayUsersController implements Initializable {
 
         showUsers();
 
+        //Déselection btn supprimer
 
-        String imagePath = "file:\\C:\\Users\\user\\Desktop\\SecondProject1\\public\\FrontOffice\\img\\"+ Data.user.getImage();
+        usersTab.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+
+        });
+
+
+        String imagePath = "file:\\C:\\Users\\Nawres\\Desktop\\SecondProject1\\public\\FrontOffice\\img\\"+ Data.user.getImage();
         // Load the image
         Image image = new Image(imagePath);
         // Set the image to the ImageView
@@ -102,9 +110,8 @@ public class DisplayUsersController implements Initializable {
 
         if (searchTf.getText().isEmpty()) {
             usersList = UserService.displayUsers();
-            System.out.println(usersList);
         }else{
-            usersList = (ArrayList<User>) UserService.displayUsers().stream().filter(user->user.getFirstname().toLowerCase().contains(searchTf.getText().toLowerCase())).collect(Collectors.toList());
+            usersList = (ArrayList<User>) UserService.displayUsers().stream().filter(user->user.getFirstname().toLowerCase().contains(searchTf.getText().toLowerCase()) || user.getLastname().toLowerCase().contains(searchTf.getText().toLowerCase()) || (user.getFirstname()+" "+ user.getLastname()).toLowerCase().contains(searchTf.getText().toLowerCase())).collect(Collectors.toList());
         }
         cinColumn.setCellValueFactory(new PropertyValueFactory<>("cin"));
         fNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstname"));
@@ -118,6 +125,8 @@ public class DisplayUsersController implements Initializable {
             ((TableView<User>) usersTab).setItems(FXCollections.observableArrayList(usersList));
         }
     }
+
+
     private void loginSwitch() {
         try {
             pt = FXMLLoader.load(getClass().getResource("/signIn-view.fxml"));
@@ -144,6 +153,7 @@ public class DisplayUsersController implements Initializable {
             // Close the current stage
             Stage currentStage = (Stage) comboBoxUser.getScene().getWindow(); // Assuming comboBox is part of your current scene
             currentStage.close();
+            stage.setTitle("User infos");
             stage.setScene(scene);
             stage.show();
 
@@ -161,6 +171,7 @@ public class DisplayUsersController implements Initializable {
             // Close the current stage
             Stage currentStage = (Stage) comboBoxUser.getScene().getWindow(); // Assuming comboBox is part of your current scene
             currentStage.close();
+            stage.setTitle("Ajouter un admin");
             stage.setScene(scene);
             stage.show();
 
@@ -202,6 +213,70 @@ public class DisplayUsersController implements Initializable {
             Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    @FXML
+    public void addProductSwitch(ActionEvent event) {
+        try {
+            Parent parent2 = FXMLLoader
+                    .load(getClass().getResource("/addProduit.fxml"));
+
+            Scene scene = new Scene(parent2);
+            Stage stage = (Stage) ((Node) event.getSource())
+                    .getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Ajouter un produit");
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    @FXML
+    public void listProductsSwitch(ActionEvent event) {
+        try {
+            Parent parent2 = FXMLLoader.load(getClass().getResource("/displayProduit.fxml"));
+
+            Scene scene = new Scene(parent2);
+            Stage stage = (Stage) ((Node) event.getSource())
+                    .getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Liste des Produits");
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    @FXML
+    public void addCategorySwitch(ActionEvent event) {
+        try {
+            Parent parent2 = FXMLLoader
+                    .load(getClass().getResource("/addCategorie.fxml"));
+
+            Scene scene = new Scene(parent2);
+            Stage stage = (Stage) ((Node) event.getSource())
+                    .getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Ajouter une catégorie");
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    @FXML
+    public void displayCategorySwitch(ActionEvent event) {
+        try {
+            Parent parent2 = FXMLLoader
+                    .load(getClass().getResource("/displayCategorie.fxml"));
+
+            Scene scene = new Scene(parent2);
+            Stage stage = (Stage) ((Node) event.getSource())
+                    .getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Liste des catégories");
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 
     private void clearEmailFileContent() {
         try {

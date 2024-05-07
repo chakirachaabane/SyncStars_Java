@@ -259,7 +259,7 @@ public class SignUpController implements Initializable {
             if (selectedFile != null) {
                 try {
                     // Définir le répertoire de destination
-                    String destinationDirectory =  "C:\\Users\\user\\Desktop\\SecondProject1\\public\\FrontOffice\\img";
+                    String destinationDirectory =  "C:\\Users\\Nawres\\Desktop\\SecondProject1\\public\\FrontOffice\\img";
                     File destinationDir = new File(destinationDirectory);
 
 

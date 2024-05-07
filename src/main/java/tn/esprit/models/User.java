@@ -12,7 +12,6 @@ public class User {
     LocalDate birth_date;
     String image;
 
-
     public User() {
 
     }
