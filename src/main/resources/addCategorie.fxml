@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #DCEDFF;" stylesheets="@accueilProduit.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.addCategorie">
+   <StackPane layoutX="105.0" layoutY="112.0" prefHeight="515.0" prefWidth="690.0" style="-fx-border-width: 1px; -fx-background-radius: 20px; -fx-background-color: #94B0DA;" />
+   <VBox layoutX="197.0" layoutY="156.0" prefHeight="507.0" prefWidth="522.0" spacing="15.0">
+      <children>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-style" text="Nom" wrappingWidth="44.74374198913574">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Text>
+         <TextField fx:id="nomCTF" prefHeight="31.0" prefWidth="489.0" promptText="Nom de catégorie" styleClass="shadow" stylesheets="@accueilProduit.css" />
+         <Text fx:id="NomcTextError" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="313.3367118835449" />
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Text>
+         <TextArea fx:id="descriptionCArea" prefHeight="75.0" prefWidth="314.0" promptText="Description de catégorie" styleClass="shadow" stylesheets="@accueilProduit.css" />
+         <Text fx:id="DescriptioncTextError" layoutX="10.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="313.3367118835449" />
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Disponibilité">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Text>
+         <TextField fx:id="disponibiliteTF" promptText="Disponibilité de catégorie" styleClass="shadow" stylesheets="@accueilProduit.css" />
+         <Text fx:id="DisponibiliteTextError" layoutX="10.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="313.3367118835449" />
+         <HBox alignment="CENTER">
+            <children>
+               <Button onAction="#addCategories" prefHeight="35.0" prefWidth="118.0" styleClass="confirmBtn" stylesheets="@backUserStyle.css" text=" Confirmer" textFill="WHITE">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+                  <graphic>
+                     <FontAwesomeIconView fill="WHITE" glyphName="CHECK" size="16" />
+                  </graphic>
+               </Button>
+            </children>
+         </HBox>
+      </children>
+   </VBox>
+   <Button fx:id="RetourButoon" layoutX="772.0" layoutY="645.0" mnemonicParsing="false" onAction="#RetourDisplay" prefHeight="35.0" prefWidth="100.0" styleClass="returnBtn" stylesheets="@backUserStyle.css" text=" Retour" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="14.0" />
+      </font>
+      <graphic>
+         <FontAwesomeIconView fill="WHITE" glyphName="ARROW_LEFT" size="16" />
+      </graphic>
+   </Button>
+   <Text layoutX="186.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter une Catégorie" wrappingWidth="528.5367965698242">
+      <font>
+         <Font name="System Bold" size="50.0" />
+      </font>
+   </Text>
+</AnchorPane>

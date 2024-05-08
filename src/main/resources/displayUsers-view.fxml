@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane onDragDetected="#dashboardUserSwitch" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #DCEDFF;" styleClass="button" stylesheets="@backUserStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.DisplayUsersController">
+    <TableView fx:id="usersTab" layoutX="230.0" layoutY="152.0" prefHeight="476.0" prefWidth="662.0">
+        <columns>
+            <TableColumn fx:id="cinColumn" minWidth="0.0" prefWidth="82.0" style="-fx-font-size: 14px" text="Cin" />
+            <TableColumn fx:id="fNameColumn" minWidth="0.0" prefWidth="92.0" style="-fx-font-size: 14px" text="Prénom" />
+            <TableColumn fx:id="lNameColumn" minWidth="0.0" prefWidth="92.0" style="-fx-font-size: 14px" text="Nom" />
+            <TableColumn fx:id="emailColumn" minWidth="0.0" prefWidth="188.79998779296875" style="-fx-font-size: 14px" text="Email" />
+            <TableColumn fx:id="dobColumn" minWidth="0.0" prefWidth="135.20001220703125" style="-fx-font-size: 14px" text="Date de naissance" />
+            <TableColumn fx:id="roleColumn" minWidth="0.0" prefWidth="69.60001220703123" style="-fx-font-size: 14px" text="Role" />
+        </columns>
+      <styleClass>
+         <String fx:value="tableC" />
+         <String fx:value="table-column" />
+      </styleClass>
+    </TableView>
+   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="287.0" layoutY="38.0" prefHeight="74.0" prefWidth="415.0" text="Liste Utilisateurs">
+      <font>
+         <Font name="System Bold" size="50.0" />
+      </font>
+   </Label>
+   <ComboBox fx:id="comboBoxUser" layoutX="715.0" layoutY="20.0" opacity="0.9" prefHeight="34.0" prefWidth="179.0" style="-fx-text-fill: #DCEDFF; -fx-font-family: 'Dubai Bold'; -fx-font-size: 13px;">
+      <effect>
+         <InnerShadow>
+            <color>
+               <Color red="0.7019608020782471" green="0.3764705955982208" blue="0.6745098233222961" />
+            </color>
+         </InnerShadow>
+      </effect>
+   </ComboBox>
+   <Label fx:id="userNameTf" layoutX="723.0" layoutY="25.0" opacity="0.8" prefHeight="26.0" prefWidth="144.0" textFill="#b360ac">
+      <font>
+         <Font name="Dubai Bold" size="13.0" />
+      </font>
+   </Label>
+   <ImageView fx:id="imageViewUser" fitHeight="50.0" fitWidth="50.0" layoutX="660.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+      <clip>
+         <Rectangle arcHeight="50" arcWidth="50" height="50" width="50" />
+      </clip>
+   </ImageView>
+   <VBox layoutX="5.0" layoutY="152.0" prefHeight="500.0" prefWidth="205.0">
+      <children>
+         <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="211.0" styleClass="buttonSidebar" text="Liste des utilisateurs">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Button>
+         <Button mnemonicParsing="false" onAction="#addAdminSwitch" prefHeight="30.0" prefWidth="214.0" styleClass="buttonSidebar" text="Ajouter un admin">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Button>
+         <Button mnemonicParsing="false" onAction="#listProductsSwitch" prefHeight="30.0" prefWidth="220.0" styleClass="buttonSidebar" text="Liste des produits">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Button>
+         <Button mnemonicParsing="false" onAction="#addProductSwitch" prefHeight="30.0" prefWidth="215.0" styleClass="buttonSidebar" text="Ajouter un produit">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Button>
+         <Button mnemonicParsing="false" onAction="#displayCategorySwitch" prefHeight="30.0" prefWidth="208.0" styleClass="buttonSidebar" text="Liste des catégories">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Button>
+         <Button mnemonicParsing="false" onAction="#addCategorySwitch" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" text="Ajouter une catégorie">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Button>
+
+      </children>
+   </VBox>
+   <TextField fx:id="searchTf" layoutX="230.0" layoutY="111.0" onKeyTyped="#showUsers" prefHeight="31.0" prefWidth="154.0" promptText="Par nom ou prénom" styleClass="textfield" stylesheets="@backUserStyle.css" />
+   <FontAwesomeIconView glyphName="SEARCH" layoutX="411.0" layoutY="130.0" opacity="0.5" />
+   <Button layoutX="468.0" layoutY="640.0" mnemonicParsing="false" onAction="#statisticsSwitch" prefHeight="40.0" prefWidth="186.0" styleClass="confirmBtn" stylesheets="@backUserStyle.css" text="   Statistiques" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="18.0" />
+      </font>
+      <graphic>
+         <FontAwesomeIconView fill="WHITE" glyphName="PIE_CHART" size="16.0" text="" />
+      </graphic>
+   </Button>
+
+</AnchorPane>

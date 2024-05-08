@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="714.0" prefWidth="993.0" style="-fx-background-color: #DCEDFF;" styleClass="button" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AfficheController">
+   <TableView fx:id="eventsTable" editable="true" layoutX="231.0" layoutY="209.0" onMouseClicked="#showImage" prefHeight="490.0" prefWidth="560.0">
+      <columns>
+         <TableColumn fx:id="titretf" minWidth="0.0" prefWidth="110.40003967285156" style="-fx-font-size: 14px" text="Titre" />
+         <TableColumn fx:id="adressetf" prefWidth="86.4000244140625" text="Adresse" />
+         <TableColumn fx:id="datetf" prefWidth="65.60003662109375" text="Date" />
+         <TableColumn fx:id="categorieEvetf" prefWidth="65.5999755859375" text="Catégorie" />
+         <TableColumn fx:id="formatEvetf" prefWidth="59.20001220703125" text="Format" />
+         <TableColumn fx:id="descriptiontf" prefWidth="92.79998779296875" text="Description" />
+         <TableColumn fx:id="nbPlacestf" prefWidth="48.7999267578125" text="places" />
+         <TableColumn fx:id="heuretf" prefWidth="65.60003662109375" text="Heure" />
+      </columns>
+      <columnResizePolicy>
+         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+      </columnResizePolicy>
+   </TableView>
+   <Button layoutX="231.0" layoutY="169.0" mnemonicParsing="false" onAction="#getAddEventView" prefHeight="34.0" prefWidth="86.0" style="-fx-background-radius: 20px;" styleClass="returnBtn" stylesheets="@backUserStyle.css" text="Ajouter" textFill="#080808">
+      <graphic>
+         <FontAwesomeIconView fill="#054afa" glyphName="USER_PLUS" text="" />
+      </graphic>
+      <font>
+         <Font size="13.0" />
+      </font>
+   </Button>
+   <Button layoutX="326.0" layoutY="169.0" mnemonicParsing="false" onAction="#DeleteAction" prefHeight="34.0" prefWidth="103.0" styleClass="buttonDelete" stylesheets="@backUserStyle.css" text="Supprimer" textFill="WHITE">
+      <graphic>
+         <FontAwesomeIconView fill="WHITE" glyphName="TRASH" />
+      </graphic>
+      <font>
+         <Font size="13.0" />
+      </font>
+   </Button>
+   <Button layoutX="438.0" layoutY="169.0" mnemonicParsing="false" onAction="#PrintAction" prefHeight="34.0" prefWidth="115.0" style="-fx-background-radius: 20px;" styleClass="search-button-event" stylesheets="@style.css" text="Export PDF">
+      <graphic>
+         <FontAwesomeIconView fill="WHITE" glyphName="FILE_TEXT" size="16" />
+      </graphic>
+      <font>
+         <Font size="13.0" />
+      </font>
+   </Button>
+   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="269.0" layoutY="37.0" prefHeight="74.0" prefWidth="415.0" text="Liste événements">
+      <font>
+         <Font name="System Bold" size="50.0" />
+      </font>
+   </Label>
+   <ComboBox fx:id="comboBoxUser" layoutX="715.0" layoutY="20.0" opacity="0.9" prefHeight="34.0" prefWidth="179.0" style="-fx-text-fill: #DCEDFF; -fx-font-family: 'Dubai Bold'; -fx-font-size: 13px;">
+      <effect>
+         <InnerShadow>
+            <color>
+               <Color red="0.7019608020782471" green="0.3764705955982208" blue="0.6745098233222961" />
+            </color>
+         </InnerShadow>
+      </effect>
+   </ComboBox>
+   <Label fx:id="userNameTf" layoutX="723.0" layoutY="25.0" opacity="0.8" prefHeight="26.0" prefWidth="144.0" textFill="#b360ac">
+      <font>
+         <Font name="Dubai Bold" size="13.0" />
+      </font>
+   </Label>
+   <ImageView fx:id="imageViewUser" fitHeight="50.0" fitWidth="50.0" layoutX="660.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+      <clip>
+         <Rectangle arcHeight="50" arcWidth="50" height="50" width="50" />
+      </clip>
+   </ImageView>
+   <AnchorPane fx:id="sidebar">
+      <children>
+         <VBox layoutX="5.0" layoutY="152.0" prefHeight="428.0" prefWidth="206.0">
+            <children>
+               <Button maxWidth="210.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="211.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Liste des utilisateurs" textFill="#fcfafa">
+                  <font>
+                     <Font name="System Bold" size="15.0" />
+                  </font>
+               </Button>
+               <Button layoutX="10.0" layoutY="48.0" maxWidth="210.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="214.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Ajouter un admin" textFill="#fcfafa">
+                  <font>
+                     <Font name="System Bold" size="15.0" />
+                  </font>
+               </Button>
+               <Button layoutX="10.0" layoutY="48.0" maxWidth="210.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="220.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="   Liste des Produits" textFill="#fcfafa">
+                  <font>
+                     <Font name="System Bold" size="15.0" />
+                  </font>
+               </Button>
+               <Button maxWidth="210.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="215.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="  Ajouter Produit" textFill="#fcfafa">
+                  <font>
+                     <Font name="System Bold" size="15.0" />
+                  </font>
+               </Button>
+               <Button maxWidth="206.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="208.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Liste des Categories" textFill="#fcfafa">
+                  <font>
+                     <Font name="System Bold" size="15.0" />
+                  </font>
+               </Button>
+               <Button maxWidth="210.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="  Ajouter Categorie" textFill="#fcfafa">
+                  <font>
+                     <Font name="System Bold" size="15.0" />
+                  </font>
+               </Button>
+               <Button mnemonicParsing="false" onAction="#getEventList" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Liste des événements" textFill="#fcfafa">
+                  <font>
+                     <Font name="System Bold" size="12.0" />
+                  </font>
+               </Button>
+               <Button mnemonicParsing="false" onAction="#getCatList" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Catégories événement" textFill="#fcfafa">
+                  <font>
+                     <Font name="System Bold" size="12.0" />
+                  </font>
+               </Button>
+               <Button mnemonicParsing="false" onAction="#getFormatsList" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Liste des formats" textFill="#fcfafa">
+                  <font>
+                     <Font name="System Bold" size="12.0" />
+                  </font>
+               </Button>
+            </children>
+         </VBox>
+      </children>
+   </AnchorPane>
+            <ImageView fitHeight="155.0" fitWidth="168.0" layoutY="-17.0">
+               <image>
+                  <Image url="@images/logo.png" />
+               </image>
+            </ImageView>
+   <ImageView fx:id="imageView" fitHeight="220.0" fitWidth="189.0" layoutX="800.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true" />
+   <Button fx:id="rechercher" layoutX="429.0" layoutY="122.0" mnemonicParsing="false" onAction="#SearchEvenets" prefHeight="31.0" prefWidth="153.0" styleClass="confirmBtn" stylesheets="@backUserStyle.css" text=" rechercher" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="15.0" />
+      </font>
+      <graphic>
+         <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" size="16.0" />
+      </graphic>
+   </Button>
+   <TextField fx:id="rechercherTF" layoutX="227.0" layoutY="125.0" prefHeight="26.0" prefWidth="198.0" promptText="rechercher un événement" />
+   <Button id="search-button-event" fx:id="pieBtn" layoutX="758.0" layoutY="121.0" mnemonicParsing="false" onAction="#getPieChartEvent" prefHeight="34.0" prefWidth="218.0" styleClass="confirmBtn" stylesheets="@backUserStyle.css" text="Evenements par catégories" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="14.0" />
+      </font>
+      <graphic>
+         <FontAwesomeIconView fill="WHITE" glyphName="PIE_CHART" size="16" text="" />
+      </graphic>
+   </Button>
+   <Button id="search-button-event" fx:id="barChart" layoutX="768.0" layoutY="169.0" mnemonicParsing="false" onAction="#getBarChartEvent" prefHeight="34.0" prefWidth="198.0" styleClass="confirmBtn" stylesheets="@backUserStyle.css" text="Evenements par année" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="14.0" />
+      </font>
+      <graphic>
+         <FontAwesomeIconView fill="WHITE" glyphName="PIE_CHART" size="16" text="" />
+      </graphic>
+   </Button>
+   <Button layoutX="558.0" layoutY="169.0" mnemonicParsing="false" onAction="#getEventDetails" prefHeight="34.0" prefWidth="144.0" styleClass="returnBtn" stylesheets="@backUserStyle.css" text="Afficher Détails" textFill="#080808">
+      <font>
+         <Font size="13.0" />
+      </font>
+   </Button>
+
+</AnchorPane>

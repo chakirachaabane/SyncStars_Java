@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #DCEDFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.detailsCategorie">
+   <StackPane cache="true" layoutX="104.0" layoutY="102.0" prefHeight="518.0" prefWidth="690.0" style="-fx-background-radius: 20px; -fx-border-width: 1px; -fx-background-color: #94B0DA;" />
+   <Label fx:id="nomLabel" layoutX="263.0" layoutY="182.0" prefHeight="18.0" prefWidth="193.0" style="-fx-background-size: 25px; -fx-text-fill: #333333;" />
+   <Label fx:id="disponibiliteLabel" layoutX="263.0" layoutY="335.0" prefHeight="18.0" prefWidth="203.0" />
+   <Text layoutX="156.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :" wrappingWidth="59.143768310546875">
+      <font>
+         <Font name="System Bold" size="15.0" />
+      </font>
+   </Text>
+   <Text layoutX="156.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description :" wrappingWidth="98.13677978515625">
+      <font>
+         <Font name="System Bold" size="15.0" />
+      </font>
+   </Text>
+   <Text layoutX="156.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Disponibilité :" wrappingWidth="106.936767578125">
+      <font>
+         <Font name="System Bold" size="15.0" />
+      </font>
+   </Text>
+   <Text fill="#ed982b" layoutX="209.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Details de Catégorie" wrappingWidth="495.4726867675781">
+      <font>
+         <Font name="System Bold" size="50.0" />
+      </font>
+   </Text>
+   <Label fx:id="descriptionLabel" layoutX="263.0" layoutY="255.0" prefHeight="18.0" prefWidth="203.0" />
+
+</AnchorPane>

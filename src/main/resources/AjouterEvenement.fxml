@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #DCEDFF;" styleClass="button" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.addEvent">
+    <Button layoutX="795.0" layoutY="626.0" mnemonicParsing="false" onAction="#AjouterEvenement" prefHeight="25.0" prefWidth="88.0" styleClass="confirmBtn" stylesheets="@backUserStyle.css" text="Ajouter" textFill="WHITE">
+        <font>
+            <Font name="System Bold" size="12.0" />
+        </font>
+    </Button>
+    <Pane layoutX="239.0" layoutY="152.0" prefHeight="466.0" prefWidth="647.0" style="-fx-background-color: #94B0DA;">
+        <children>
+            <Label layoutX="56.0" layoutY="18.0" text="Titre">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
+            <TextField fx:id="titretf" layoutX="123.0" layoutY="14.0" prefHeight="25.0" prefWidth="320.0" />
+            <Label layoutX="47.0" layoutY="58.0" text="Adresse">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
+            <TextField fx:id="adressetf" layoutX="123.0" layoutY="54.0" prefHeight="25.0" prefWidth="320.0" />
+            <Label layoutX="49.0" layoutY="94.0" text="Format">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
+            <Label layoutX="42.0" layoutY="136.0" text="Catégorie">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
+            <Label layoutX="56.0" layoutY="181.0" text="Date">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
+            <Label layoutX="52.0" layoutY="225.0" text="Heure">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
+            <DatePicker fx:id="datetf" layoutX="123.0" layoutY="177.0" prefHeight="25.0" prefWidth="320.0" />
+            <ComboBox fx:id="heuretf" layoutX="123.0" layoutY="221.0" prefHeight="25.0" prefWidth="320.0">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="08:00:00" />
+                        <String fx:value="09:00:00" />
+                        <String fx:value="10:00:00" />
+                        <String fx:value="11:00:00" />
+                        <String fx:value="12:00:00" />
+                        <String fx:value="13:00:00" />
+                        <String fx:value="14:00:00" />
+                        <String fx:value="15:00:00" />
+                        <String fx:value="16:00:00" />
+                        <String fx:value="17:00:00" />
+                        <String fx:value="18:00:00" />
+                        <String fx:value="19:00:00" />
+                        <String fx:value="20:00:00" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
+            <Label layoutX="37.0" layoutY="293.0" text="Description">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
+            <TextField fx:id="descriptiontf" layoutX="123.0" layoutY="269.0" prefHeight="64.0" prefWidth="320.0" />
+            <Label layoutX="27.0" layoutY="354.0" text="Nombre places">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
+            <TextField fx:id="nbPlacestf" layoutX="123.0" layoutY="350.0" prefHeight="25.0" prefWidth="320.0" />
+            <Button fx:id="uploadImageButton" layoutX="47.0" layoutY="389.0" onAction="#chooseImageFile" prefHeight="39.0" prefWidth="44.0" text="" />
+            <TextField fx:id="imageTF" layoutX="123.0" layoutY="392.0" onMouseClicked="#chooseImageFile" prefHeight="33.0" prefWidth="320.0" promptText="Click here to choose an image file" />
+            <Pane fx:id="imagePane" layoutX="458.0" layoutY="128.0" prefHeight="183.0" prefWidth="179.0" />
+            <ChoiceBox fx:id="categorieEvetf" layoutX="123.0" layoutY="132.0" prefHeight="25.0" prefWidth="320.0" />
+            <ChoiceBox fx:id="formatEvetf" layoutX="123.0" layoutY="90.0" prefHeight="25.0" prefWidth="320.0" />
+              <ImageView fitHeight="30" fitWidth="30" layoutX="54.0" layoutY="394.0">
+                  <image>
+                      <Image url="@images/upload.png" />
+                  </image>
+              </ImageView>
+        </children>
+    </Pane>
+
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="287.0" layoutY="38.0" prefHeight="74.0" prefWidth="415.0" text="Liste événements">
+        <font>
+            <Font name="System Bold" size="50.0" />
+        </font>
+    </Label>
+    <ComboBox fx:id="comboBoxUser" layoutX="715.0" layoutY="20.0" opacity="0.9" prefHeight="34.0" prefWidth="179.0" style="-fx-text-fill: #DCEDFF; -fx-font-family: 'Dubai Bold'; -fx-font-size: 13px;">
+        <effect>
+            <InnerShadow>
+                <color>
+                    <Color red="0.7019608020782471" green="0.3764705955982208" blue="0.6745098233222961" />
+                </color>
+            </InnerShadow>
+        </effect>
+    </ComboBox>
+    <Label fx:id="userNameTf" layoutX="723.0" layoutY="25.0" opacity="0.8" prefHeight="26.0" prefWidth="144.0" textFill="#b360ac">
+        <font>
+            <Font name="Dubai Bold" size="13.0" />
+        </font>
+    </Label>
+    <ImageView fx:id="imageViewUser" fitHeight="50.0" fitWidth="50.0" layoutX="660.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+        <clip>
+            <Rectangle arcHeight="50" arcWidth="50" height="50" width="50" />
+        </clip>
+    </ImageView>
+    <AnchorPane fx:id="sidebar">
+        <children>
+            <VBox layoutX="5.0" layoutY="152.0" prefHeight="428.0" prefWidth="206.0">
+                <children>
+                    <Button maxWidth="210.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="211.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Liste des utilisateurs" textFill="#fcfafa">
+                        <font>
+                            <Font name="System Bold" size="15.0" />
+                        </font>
+                    </Button>
+                    <Button layoutX="10.0" layoutY="48.0" maxWidth="210.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="214.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Ajouter un admin" textFill="#fcfafa">
+                        <font>
+                            <Font name="System Bold" size="15.0" />
+                        </font>
+                    </Button>
+                    <Button layoutX="10.0" layoutY="48.0" maxWidth="210.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="220.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="   Liste des Produits" textFill="#fcfafa">
+                        <font>
+                            <Font name="System Bold" size="15.0" />
+                        </font>
+                    </Button>
+                    <Button maxWidth="210.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="215.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="  Ajouter Produit" textFill="#fcfafa">
+                        <font>
+                            <Font name="System Bold" size="15.0" />
+                        </font>
+                    </Button>
+                    <Button maxWidth="206.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="208.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Liste des Categories" textFill="#fcfafa">
+                        <font>
+                            <Font name="System Bold" size="15.0" />
+                        </font>
+                    </Button>
+                    <Button maxWidth="210.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="  Ajouter Categorie" textFill="#fcfafa">
+                        <font>
+                            <Font name="System Bold" size="15.0" />
+                        </font>
+                    </Button>
+                    <Button mnemonicParsing="false" onAction="#getEventList" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Liste des événements" textFill="#fcfafa">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+            <Button mnemonicParsing="false" onAction="#getCatList" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Liste des catégories" textFill="#fcfafa">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#getFormatsList" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Liste des formats" textFill="#fcfafa">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Button>
+                </children>
+            </VBox>
+        </children>
+    </AnchorPane>
+    <ImageView fitHeight="155.0" fitWidth="168.0" layoutY="-17.0">
+        <image>
+            <Image url="@images/logo.png" />
+        </image>
+    </ImageView>
+</AnchorPane>
