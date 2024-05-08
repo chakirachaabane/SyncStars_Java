@@ -23,7 +23,7 @@ public class MainJavaFx extends Application {
 
         // Set up the stage
         primaryStage.setTitle("Forum Page");
-        primaryStage.setScene(new Scene(root, 926, 536));
+        primaryStage.setScene(new Scene(root, 900, 700));
         primaryStage.show();
     }
 

@@ -23,6 +23,7 @@ import java.time.LocalDate;
 
 public class AddQuestionController {
 
+    ForumPageController EFS = new ForumPageController();
 
     @FXML
     private TextField titretf;
@@ -56,6 +57,7 @@ public class AddQuestionController {
 
             // Ajouter l'Evenement en utilisant le service
             ServiceQue.add(e);
+            EFS.sendNotificationEmail(e);
 
             // Afficher un message de succès
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -63,7 +65,6 @@ public class AddQuestionController {
             alert.setHeaderText(null);
             alert.setContentText("Question ajouté avec succès!");
             alert.showAndWait();
-
             // Get the current stage and close it
             Stage stage = (Stage) titretf.getScene().getWindow();
             stage.close();

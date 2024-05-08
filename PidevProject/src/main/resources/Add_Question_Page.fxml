@@ -7,9 +7,9 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddQuestionController">
    <Pane prefHeight="300.0" prefWidth="450.0">
-      <TextField fx:id="contenttf" layoutX="143.0" layoutY="104.0" promptText="Content :" styleClass="text-field_update" stylesheets="@style.css" />
-      <TextField fx:id="attachmenttf" editable="false" layoutX="130.0" layoutY="150.0" prefHeight="31.0" prefWidth="132.0" promptText="Click to choose file" styleClass="text-field_update" stylesheets="@style.css" />
-      <Button fx:id="file_chooser_button" layoutX="261.0" layoutY="150.0" onAction="#handleChooseFileButton" prefHeight="31.0" prefWidth="88.0" styleClass="file-chooser-button" stylesheets="@style.css" text="Choose File" />
+      <TextField fx:id="contenttf" layoutX="143.0" layoutY="104.0" promptText="Contenu : " styleClass="text-field_update" stylesheets="@style.css" />
+      <TextField fx:id="attachmenttf" editable="false" layoutX="130.0" layoutY="150.0" prefHeight="31.0" prefWidth="132.0" promptText="Fichier ..." styleClass="text-field_update" stylesheets="@style.css" />
+      <Button fx:id="file_chooser_button" layoutX="261.0" layoutY="150.0" onAction="#handleChooseFileButton" prefHeight="31.0" prefWidth="88.0" styleClass="file-chooser-button" stylesheets="@style.css" text="Choisire Ficher" />
       <TextField fx:id="titretf" layoutX="143.0" layoutY="56.0" promptText="Titre :" styleClass="text-field_update" stylesheets="@style.css" />
       <Button fx:id="saveButton" layoutX="114.0" layoutY="213.0" mnemonicParsing="false" onAction="#AddQuestion" prefHeight="31.0" prefWidth="74.0" stylesheets="@style.css" text="Ajouter" />
       <Button fx:id="cancelButton" layoutX="273.0" layoutY="213.0" mnemonicParsing="false" onAction="#closeTab" stylesheets="@style.css" text="Annuler" />

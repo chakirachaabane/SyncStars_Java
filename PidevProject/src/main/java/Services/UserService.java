@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserService implements IService<User> {
+public class UserService implements IServiceQ<User> {
 
     private Connection connection;
 

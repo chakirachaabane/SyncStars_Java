@@ -54,9 +54,13 @@ public class Response {
         this.QuestionId = questionId;
     }
 
-    public Response(String content) {
+    public Response(int id,String content, int userId, int questionId) {
+        this.id = id;
         this.Content = content;
+        this.UserId = userId;
+        this.QuestionId = questionId;
     }
+
 
 
     public Response() {

@@ -14,6 +14,7 @@ module com.example.pidevproject {
     requires java.validation;
     requires java.desktop;
     requires org.apache.pdfbox;
+    requires java.mail;
 
     opens com.example.pidevproject to javafx.fxml;
     exports com.example.pidevproject;

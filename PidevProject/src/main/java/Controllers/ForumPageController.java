@@ -38,12 +38,20 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
+
 
 public class ForumPageController {
 
@@ -208,9 +216,34 @@ public class ForumPageController {
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 // Delete the question from the database
                 questionService.delete(questionToDelete.getId());
+                System.out.println("Question Delete Successfully "+ questionToDelete.getId());
 
                 // Remove the question from the ListView
                 questionListView.getItems().remove(questionToDelete);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle SQL exception (e.g., show error message)
+        }
+    }
+
+    // Method to delete a response by its ID
+    public void deleteResponse(int responseId) {
+        try {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText(null);
+            alert.setContentText("Are you sure you want to delete this response?");
+
+            // Show the confirmation dialog and wait for the user's response
+            Optional<ButtonType> result = alert.showAndWait();
+
+            // Check if the user clicked the OK button
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                // Delete the question from the database
+                responseService.delete(responseId);
+                System.out.println("response supprimé avec succées : " +responseId);
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -224,6 +257,14 @@ public class ForumPageController {
 
         // Call the addResponse method in the ResponseService to insert the response into the database
         responseService.add(newResponse);
+    }
+
+    public void UpdateResponse(int id,int user_id,int questionId, String content) throws SQLException {
+        // Create a new Response object
+        Response UpdatedResponse = new Response(id,content,user_id, questionId);
+
+        // Call the addResponse method in the ResponseService to insert the response into the database
+        responseService.update(UpdatedResponse);
     }
 
     //------------------------------------ Other tabs  --------------------------------------------------
@@ -278,8 +319,31 @@ public class ForumPageController {
 
 
             Stage stage = new Stage();
-            stage.setTitle("Update A Question");
+            stage.setTitle("Ajouter nouveaux Question !");
             stage.setScene(new Scene(root, 450, 300));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void ReponseUpdateTab(Response response) {
+        try {
+            /*Parent root = FXMLLoader.load(getClass().getResource("/updateQuestionForm.fxml"));
+            // Get the controller for the update form
+            UpdateQuestionFormController updateController = new UpdateQuestionFormController();*/
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ResponseUpdatePage.fxml"));
+            Parent root = loader.load();
+
+            UpdateResponseController controller = loader.getController();
+
+            controller.setResponse(response);
+
+            Stage stage = new Stage();
+            stage.setTitle("Update A Response");
+            stage.setScene(new Scene(root, 304, 122));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -355,8 +419,9 @@ public class ForumPageController {
 
                         controller.questionService.addLike(question.getId(),questions);
                         // Update the button text to reflect the new number of likes
-                        likesButton.setText("Likes: " + (question.getNbr_Likes()+1));
+                        likesButton.setText("Likes : " + (question.getNbr_Likes()+1));
                         System.out.println("Like Added to : Question Id : "+ question.getId());
+                        controller.AllQuestions();
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                         // Handle SQL exception (e.g., show error message)
@@ -372,6 +437,7 @@ public class ForumPageController {
                         // Update the button text to reflect the new number of dislikes
                         dislikesButton.setText("Dislikes: " + (question.getNbr_DisLikes()+1));
                         System.out.println("DisLike Added to : Question Id : "+ question.getId());
+                        controller.AllQuestions();
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                         // Handle SQL exception (e.g., show error message)
@@ -392,6 +458,35 @@ public class ForumPageController {
                 if(!replies.isEmpty()) {
                     for (Response reply : replies) {
                         Label replyLabel = new Label(reply.getContent());
+                        // Create ContextMenu with update and delete options
+                        ContextMenu contextMenu = new ContextMenu();
+                        MenuItem updateItemresponse = new MenuItem("Modifier");
+                        updateItemresponse.getStyleClass().add("menu-item");
+                        MenuItem deleteItemresponse = new MenuItem("Supprimer");
+                        updateItemresponse.getStyleClass().add("menu-item");
+
+
+                        // Set actions for the menu items
+                        updateItemresponse.setOnAction(e -> {
+                            // Handle update action
+                            controller.ReponseUpdateTab(reply);
+                        });
+                        deleteItemresponse.setOnAction(e -> {
+                            // Handle delete action
+                            controller.deleteResponse(reply.getId());
+                            try {
+                                controller.AllQuestions();
+                            } catch (SQLException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                        });
+
+                        // Add menu items to the context menu
+                        contextMenu.getItems().addAll(updateItemresponse, deleteItemresponse);
+
+                        // Attach context menu to label
+                        replyLabel.setContextMenu(contextMenu);
+
                         repliesVBox.getChildren().add(replyLabel);
                         replyLabel.getStyleClass().add("reply-label");
                     }
@@ -406,9 +501,9 @@ public class ForumPageController {
 
 // Create menu items for update and delete actions
                 MenuItem updateMenuItem = new MenuItem("Modifier");
-                updateMenuItem.getStyleClass().add("menu-item-question");
+                updateMenuItem.getStyleClass().add("menu-item-question1");
                 MenuItem deleteMenuItem = new MenuItem("Supprimer");
-                deleteMenuItem.getStyleClass().add("menu-item-question");
+                deleteMenuItem.getStyleClass().add("menu-item-question1");
 
 // Set action event handlers for menu items
                 updateMenuItem.setOnAction(event -> {
@@ -431,7 +526,8 @@ public class ForumPageController {
                 responseTextField.getStyleClass().add("text-field_update");
 
 // Create a Button to add the response
-                Button addResponseButton = new Button("Add Response");
+                Button addResponseButton = new Button("Ajouter");
+                addResponseButton.getStyleClass().add("file-chooser-button");
                 addResponseButton.setOnAction(e -> {
                     String responseText = responseTextField.getText();
                     if (!responseText.isEmpty()) {
@@ -467,6 +563,7 @@ public class ForumPageController {
 /*                likesLabel.getStyleClass().add("question-likes-dislikes");
                 dislikesLabel.getStyleClass().add("question-likes-dislikes");*/
                 vbox.getStyleClass().add("question-details");
+                vbox.getStyleClass().add("vbox");
                 repliesVBox.getStyleClass().add("replies-vbox");
                 setGraphic(vbox);
 
@@ -499,7 +596,7 @@ public class ForumPageController {
 
             // Set up the stage
             stage.setTitle("Forum Page");
-            stage.setScene(new Scene(root, 900, 550));
+            stage.setScene(new Scene(root, 926, 536));
             stage.show();
             System.out.println("Page Refreshed");
 
@@ -538,6 +635,15 @@ public class ForumPageController {
             contentStream.drawImage(logo, logoPositionX, logoPositionY, logoWidth, logoHeight);*/
             // Set font for text
             contentStream.setFont(PDType1Font.HELVETICA, 12);
+
+            // Add today's date and time to the top of the page
+            LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+            String formattedDateTime = now.format(formatter);
+            contentStream.beginText();
+            contentStream.newLineAtOffset(50, 750); // Adjust position as needed
+            contentStream.showText("Date & Time: " + formattedDateTime);
+            contentStream.endText();
 
             // Draw table with question information
             drawTable(contentStream, question);
@@ -620,6 +726,54 @@ public class ForumPageController {
         yPosition -= 20 + cellMargin;
         drawCell(contentStream, margin, yPosition, tableWidth / 4, 20, "Date");
         drawCell(contentStream, margin + tableWidth / 4, yPosition, tableWidth / 4, 20, String.valueOf(question.getD_Post()));
+    }
+
+
+    public void sendNotificationEmail(Question question) {
+        try {
+            // SMTP server properties
+            Properties props = new Properties();
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.host", "smtp.gmail.com");
+            props.put("mail.smtp.port", "25");
+
+            /*// Sender's email credentials
+            String username = "zoghlami.dhirar.10@gmail.com";
+            String password = "badt mwvs cgpd bueg";  // Add your password/ key  here*/
+            // Sender's email credentials
+            String username = "Zouaghi.mohamedaziz@esprit.tn";
+            String password = "vgoe xate vqvv nvqm";  // Add your password/ key  here
+
+            javax.mail.Session session = javax.mail.Session.getInstance(props, new Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(username, password);
+                }
+            });
+
+            // Receiver's email
+            String receiverEmail = "aziz.boss2001@gmail.com";
+
+            if (receiverEmail != null) {
+                sendEmail(session, username, receiverEmail, "New Question added: " + question.getTitle() +" By User = "+ question.getUserId());
+                System.out.println("Notification email sent successfully.");
+            } else {
+                System.out.println("Receiver email not found.");
+            }
+
+        } catch (MessagingException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void sendEmail(javax.mail.Session session, String from, String to, String content) throws MessagingException {
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(from));
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+        message.setSubject("New Question Notification");
+        message.setText(content);
+        Transport.send(message);
     }
 
 }

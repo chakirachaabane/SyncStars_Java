@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResponseService implements IService<Response>{
+public class ResponseService implements IServiceQ<Response>{
     private Connection connection;
     public ResponseService(){
         connection = MyDatabase.getInstance().getConnection();
@@ -27,22 +27,24 @@ public class ResponseService implements IService<Response>{
 
     @Override
     public void update(Response response) throws SQLException {
-        String sql = "UPDATE response SET Content=? WHERE id=?";
+        String sql = "UPDATE response SET Content=?,user_id=?,question_id=? WHERE id=?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, response.getContent());
-        preparedStatement.setInt(2, response.getId());
+        preparedStatement.setInt(2, response.getUserId());
+        preparedStatement.setInt(3, response.getQuestionId());
+        preparedStatement.setInt(4, response.getId());
 
         preparedStatement.executeUpdate();
     }
 
 
     @Override
-    public void delete(int questionId) throws SQLException {
+    public void delete(int responseId) throws SQLException {
         String sql = "DELETE FROM response WHERE id=?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, questionId);
+        preparedStatement.setInt(1, responseId);
 
         preparedStatement.executeUpdate();
     }
@@ -100,6 +102,7 @@ public class ResponseService implements IService<Response>{
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     Response response = new Response(
+                            resultSet.getInt("id"),
                             resultSet.getString("content"),
                             resultSet.getInt("User_id"),
                             resultSet.getInt("question_id")

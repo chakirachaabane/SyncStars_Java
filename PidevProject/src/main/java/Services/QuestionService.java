@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionService implements IService<Question>{
+public class QuestionService implements IServiceQ<Question>{
     private Connection connection;
     public QuestionService(){
         connection = MyDatabase.getInstance().getConnection();
@@ -47,13 +47,36 @@ public class QuestionService implements IService<Question>{
 
     @Override
     public void delete(int questionId) throws SQLException {
-        String sql = "DELETE FROM question WHERE id=?";
+        try {
+            // Start a transaction
+            connection.setAutoCommit(false);
 
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, questionId);
+            // Delete the responses related to the question
+            String deleteResponsesSql = "DELETE FROM response WHERE question_id=?";
+            try (PreparedStatement deleteResponsesStatement = connection.prepareStatement(deleteResponsesSql)) {
+                deleteResponsesStatement.setInt(1, questionId);
+                deleteResponsesStatement.executeUpdate();
+            }
 
-        preparedStatement.executeUpdate();
+            // Delete the question
+            String deleteQuestionSql = "DELETE FROM question WHERE id=?";
+            try (PreparedStatement deleteQuestionStatement = connection.prepareStatement(deleteQuestionSql)) {
+                deleteQuestionStatement.setInt(1, questionId);
+                deleteQuestionStatement.executeUpdate();
+            }
+
+            // Commit the transaction
+            connection.commit();
+        } catch (SQLException ex) {
+            // Rollback the transaction if an error occurs
+            connection.rollback();
+            throw ex;
+        } finally {
+            // Restore auto-commit mode
+            connection.setAutoCommit(true);
+        }
     }
+
 
 
     @Override
