@@ -9,10 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -27,6 +24,9 @@ import org.example.services.FormatService;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -51,6 +51,9 @@ public class addEvent {
     private TextField imagetf;
 
     @FXML
+    private ComboBox<String> heuretf;
+
+    @FXML
     private TextField descriptiontf;
 
     @FXML
@@ -73,7 +76,7 @@ public class addEvent {
         // Check if any of the fields are empty
         if (titretf.getText().isEmpty() || adressetf.getText().isEmpty() ||
                 formatEvetf.getSelectionModel().isEmpty() || categorieEvetf.getSelectionModel().isEmpty() ||
-                datetf.getValue() == null || imageTF.getText().isEmpty() || descriptiontf.getText().isEmpty() ||
+                datetf.getValue() == null || heuretf.getSelectionModel().isEmpty() || descriptiontf.getText().isEmpty() ||
                 nbPlacestf.getText().isEmpty()) {
             // Display an error alert
             displayAlert("Error", "Please fill in all the fields.");
@@ -91,13 +94,21 @@ public class addEvent {
             return;
         }
 
+        LocalDate currentDate = LocalDate.now();
+        LocalDate selectedDate = datetf.getValue();
+        if (selectedDate.isBefore(currentDate)) {
+            // Display an error alert
+            displayAlert("Error", "Please select a date after the current date.");
+            return;
+        }
+
         // Now you can proceed with adding the event using the entered values
         String titre = titretf.getText();
         String adresse = adressetf.getText();
         String format = formatEvetf.getSelectionModel().getSelectedItem().toString();
         String categorie = categorieEvetf.getSelectionModel().getSelectedItem().toString();
         LocalDate date = datetf.getValue();
-
+        String heure = heuretf.getSelectionModel().getSelectedItem().toString();
         String image = imageTF.getText();
         String description = descriptiontf.getText();
 
@@ -107,6 +118,7 @@ public class addEvent {
         event.setTitre(titre);
         event.setAdresse(adresse);
         event.setDate(date);
+        event.setHeure(Time.valueOf(heure));
         event.setImage(image);
         event.setDescription(description);
         event.setNbPlaces(nbPlaces);
@@ -187,6 +199,7 @@ public class addEvent {
         File selectedFile = fileChooser.showOpenDialog(stage);
 
         if (selectedFile != null) {
+            String selectedFileName = selectedFile.getName();
             // Set the image path to the imageTF text field
             imageTF.setText(selectedFile.getAbsolutePath());
             // Load the selected image into the imagePane
@@ -196,6 +209,15 @@ public class addEvent {
             imageView.setFitHeight(100); // Adjust the height as needed
             imagePane.getChildren().clear(); // Clear existing content
             imagePane.getChildren().add(imageView); // Add the image to the pane
+
+            // Move the selected file to the target directory
+            File targetDir = new File("C:/Users/LENOVO/Documents/piDevJava/src/main/resources/img/");
+            File newFile = new File(targetDir, selectedFileName);
+            try {
+                Files.copy(selectedFile.toPath(), newFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -226,7 +248,7 @@ public class addEvent {
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             // Load the new FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Statistiques.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/PieChartEvent.fxml"));
             Parent root = loader.load();
 
             // Create a new stage

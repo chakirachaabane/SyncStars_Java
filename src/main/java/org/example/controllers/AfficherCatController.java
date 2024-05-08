@@ -4,7 +4,6 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,16 +20,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.util.converter.IntegerStringConverter;
 import org.example.model.Category;
-import org.example.model.Evenement;
 import org.example.services.CategoryService;
-import org.example.services.EvenementService;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -197,7 +192,7 @@ public class AfficherCatController {
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             // Load the new FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Statistiques.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/PieChartEvent.fxml"));
             Parent root = loader.load();
 
             // Create a new stage
@@ -244,4 +239,55 @@ public class AfficherCatController {
         categoryTable.setItems(evenementsList);
         editData();
     }
+
+    public void getStat(ActionEvent event) {
+        try {
+            // Get the current stage
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Load the new FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/PieChartEvent.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            // Close the current stage
+            currentStage.close();
+
+            // Show the new stage
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getCategorie(ActionEvent event) {
+    }
+
+    public void getFormats(ActionEvent event) {
+
+        try {
+            // Get the current stage
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Load the new FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/AfficherFormat.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            // Close the current stage
+            currentStage.close();
+
+            // Show the new stage
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

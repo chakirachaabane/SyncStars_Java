@@ -16,7 +16,7 @@ public class CategoryService {
     }
 
     public void insert(Category category) {
-        String query = "INSERT INTO categorie (nom) VALUES (?)";
+        String query = "INSERT INTO categorie_evenement (nom) VALUES (?)";
         try {
             PreparedStatement pst = conn.prepareStatement(query);
             pst.setString(1, category.getNom());
@@ -28,7 +28,7 @@ public class CategoryService {
     }
 
     public void update(Category category) {
-        String query = "UPDATE categorie SET nom=? WHERE id=?";
+        String query = "UPDATE categorie_evenement SET nom=? WHERE id=?";
         try {
             PreparedStatement pst = conn.prepareStatement(query);
             pst.setString(1, category.getNom());
@@ -41,7 +41,7 @@ public class CategoryService {
     }
 
     public void delete(int id) {
-        String query = "DELETE FROM categorie WHERE id=?";
+        String query = "DELETE FROM categorie_evenement WHERE id=?";
         try {
             PreparedStatement pst = conn.prepareStatement(query);
             pst.setInt(1, id);
@@ -53,7 +53,7 @@ public class CategoryService {
     }
 
     public Category readById(int id) {
-        String query = "SELECT * FROM categorie WHERE id=?";
+        String query = "SELECT * FROM categorie_evenement WHERE id=?";
         Category category = null;
         try {
             PreparedStatement pst = conn.prepareStatement(query);
@@ -72,7 +72,7 @@ public class CategoryService {
     }
 
     public Category readByName(String name) {
-        String query = "SELECT * FROM categorie WHERE nom=?";
+        String query = "SELECT * FROM categorie_evenement WHERE nom=?";
         Category category = null;
         try {
             PreparedStatement pst = conn.prepareStatement(query);
@@ -92,7 +92,7 @@ public class CategoryService {
 
     public ArrayList<Category> readAll() {
         ArrayList<Category> categories = new ArrayList<>();
-        String query = "SELECT * FROM categorie";
+        String query = "SELECT * FROM categorie_evenement";
         try {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);

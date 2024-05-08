@@ -10,11 +10,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.model.Category;
-import org.example.model.Evenement;
 import org.example.services.CategoryService;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 public class addCatEvent {
 
@@ -100,14 +98,16 @@ public class addCatEvent {
         }
     }
 
-    public void generatePieChart(ActionEvent event) {
+
+
+    public void getcatList(ActionEvent event) {
 
         try {
             // Get the current stage
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             // Load the new FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Statistiques.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/AfficherCategorieEve.fxml"));
             Parent root = loader.load();
 
             // Create a new stage
@@ -122,7 +122,29 @@ public class addCatEvent {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    public void getFormatList(ActionEvent event) {
 
+        try {
+            // Get the current stage
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Load the new FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/AfficherFormat.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            // Close the current stage
+            currentStage.close();
+
+            // Show the new stage
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

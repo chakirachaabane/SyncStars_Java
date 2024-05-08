@@ -101,7 +101,7 @@ public class AjouterFormatController {
                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
                 // Load the new FXML file
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Statistiques.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/PieChartEvent.fxml"));
                 Parent root = loader.load();
 
                 // Create a new stage
@@ -120,4 +120,52 @@ public class AjouterFormatController {
 
         }
 
+    public void getCatList(ActionEvent event) {
+
+        try {
+            // Get the current stage
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Load the new FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/AfficherCategorieEve.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            // Close the current stage
+            currentStage.close();
+
+            // Show the new stage
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getFormatList(ActionEvent event) {
+
+        try {
+            // Get the current stage
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Load the new FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/AfficherFormat.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            // Close the current stage
+            currentStage.close();
+
+            // Show the new stage
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

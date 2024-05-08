@@ -35,33 +35,51 @@
                         <!-- Contenu de votre pane -->
                         <Label fx:id="titre" alignment="CENTER" layoutX="38.0" layoutY="25.0" prefHeight="35.0" prefWidth="668.0" text="Label">
                      <font>
-                        <Font name="System Bold" size="21.0" />
+                        <Font name="Georgia Bold" size="22.0" />
                      </font></Label>
                         <Label fx:id="descriptionLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="318.0" prefHeight="102.0" prefWidth="697.0" text="Label">
                      <font>
                         <Font name="Cambria" size="16.0" />
                      </font></Label>
                         <ImageView fx:id="imageView" fitHeight="207.0" fitWidth="456.0" layoutX="25.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="adresse" layoutX="563.0" layoutY="117.0" text="Label">
+                  <Label fx:id="adresse" layoutX="558.0" layoutY="85.0" text="Label">
                      <font>
                         <Font name="Cambria" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="date" layoutX="563.0" layoutY="169.0" text="Label">
+                  <Label fx:id="date" layoutX="558.0" layoutY="135.0" text="Label">
                      <font>
                         <Font name="Cambria" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="place" layoutX="563.0" layoutY="220.0" text="Label">
+                  <Label fx:id="place" layoutX="558.0" layoutY="188.0" text="Label">
                      <font>
                         <Font name="Cambria" size="16.0" />
                      </font>
                   </Label>
-                  <FontAwesomeIconView fill="#18593b" glyphName="MAP_MARKER" layoutX="545.0" layoutY="132.0" selectionFill="#18593b" size="17" wrappingWidth="10.285714149475098">
+                  <FontAwesomeIconView fill="#18593b" glyphName="MAP_MARKER" layoutX="540.0" layoutY="100.0" selectionFill="#18593b" size="17" wrappingWidth="10.285714149475098">
                      <font>
                         <Font size="1.0" />
                      </font>
                   </FontAwesomeIconView>
+                  <FontAwesomeIconView fill="#18593b" glyphName="CALENDAR_ALT" layoutX="537.0" layoutY="150.0" selectionFill="#167649" size="17" />
+                  <FontAwesomeIconView fill="#18593b" glyphName="TICKET" layoutX="536.0" layoutY="203.0" selectionFill="#167649" size="17" />
+                  <Label fx:id="format" layoutX="558.0" layoutY="238.0" text="Label" textFill="#277e2c">
+                     <font>
+                        <Font name="Cambria Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="categorie" layoutX="558.0" layoutY="283.0" text="Label" textFill="RED">
+                     <font>
+                        <Font name="Cambria Bold" size="16.0" />
+                     </font>
+                  </Label>
+                        <Label fx:id="heure" layoutX="558.0" layoutY="179.0" text="Label">
+                            <font>
+                                <Font name="Cambria" size="16.0" />
+                            </font>
+                        </Label>
+                        <FontAwesomeIconView fill="#18593b" glyphName="CALENDAR_ALT" layoutX="537.0" layoutY="194.0" selectionFill="#167649" size="17" />
                     </children>
                 </Pane>
             </children>

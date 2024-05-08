@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #DCEDFF;" styleClass="button"  xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AjouterFormatController">
-    <Button layoutX="769.0" layoutY="250.0" mnemonicParsing="false" onAction="#AjouterFormat" prefHeight="25.0" prefWidth="88.0" text="Ajouter" textFill="#343f3e">
+    <Button layoutX="769.0" layoutY="250.0" mnemonicParsing="false" onAction="#AjouterFormat" prefHeight="25.0" prefWidth="88.0" text="Ajouter" textFill="WHITE" styleClass="confirmBtn" stylesheets="@../css/blackUserStyle.css">
         <font>
             <Font name="System Bold" size="12.0" />
         </font>
@@ -57,52 +57,17 @@
     </ImageView>
     <VBox layoutX="5.0" layoutY="152.0" prefHeight="500.0" prefWidth="205.0">
         <children>
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@../css/blackUserStyle.css" text="Statistiques" textFill="WHITE">
-                <font>
-                    <Font name="System Bold" size="18.0" />
-                </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="211.0" styleClass="buttonSidebar" text="Liste des utilisateurs">
+            <Button mnemonicParsing="false" onAction="#getEventList" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@../css/blackUserStyle.css" text="Liste des événements">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="214.0" styleClass="buttonSidebar" text="Ajouter un admin">
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="206.0" onAction="#getCatList" styleClass="buttonSidebar" stylesheets="@../css/blackUserStyle.css" text="Liste des catégories">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="220.0" styleClass="buttonSidebar" text="Liste des produits">
-                <font>
-                    <Font name="System Bold" size="12.0" />
-                </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="215.0" styleClass="buttonSidebar" text="Ajouter un prduit">
-                <font>
-                    <Font name="System Bold" size="12.0" />
-                </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" text="Ajouter une catégorie">
-                <font>
-                    <Font name="System Bold" size="12.0" />
-                </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="208.0" styleClass="buttonSidebar" text="Liste des catégories">
-                <font>
-                    <Font name="System Bold" size="12.0" />
-                </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#getEventList" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" text="Liste des événements">
-                <font>
-                    <Font name="System Bold" size="12.0" />
-                </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" text="Liste des catégories événement">
-                <font>
-                    <Font name="System Bold" size="12.0" />
-                </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" text="Liste des formats">
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="206.0" onAction="#getFormatList" styleClass="buttonSidebar" stylesheets="@../css/blackUserStyle.css" text="Liste des formats">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>

@@ -20,9 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.example.model.Category;
 import org.example.model.Format;
-import org.example.services.CategoryService;
 import org.example.services.FormatService;
 
 import java.io.File;
@@ -172,7 +170,7 @@ public class AfficherFormatController {
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             // Load the new FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Statistiques.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/PieChartEvent.fxml"));
             Parent root = loader.load();
 
             // Create a new stage
@@ -267,5 +265,31 @@ public class AfficherFormatController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void getStat(ActionEvent event) {
+        try {
+            // Get the current stage
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Load the new FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/PieChartEvent.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            // Close the current stage
+            currentStage.close();
+
+            // Show the new stage
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void refrech(ActionEvent event) {
     }
 }

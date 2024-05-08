@@ -34,10 +34,19 @@ public class EventItemController {
     private Label date;
 
     @FXML
+    private Label heure;
+
+    @FXML
     private Label place;
 
     @FXML
     private Label adresse;
+
+    @FXML
+    private Label format;
+
+    @FXML
+    private Label categorie;
 
     public void initData(Evenement event) {
         titre.setText(event.getTitre());
@@ -47,8 +56,11 @@ public class EventItemController {
             imageView.setImage(image);
         }
         date.setText(event.getDate().toLocalDate().toString());
+        heure.setText(event.getHeure().toString());
         place.setText(String.valueOf(event.getNbPlaces()) + " places");
         adresse.setText(event.getAdresse());
+        format.setText(event.getFormat().getNom());
+        categorie.setText(event.getCategorie().getNom());
 
     }
 

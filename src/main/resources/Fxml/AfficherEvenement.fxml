@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,23 +16,23 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #DCEDFF;" styleClass="button" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AfficheController">
-   <TableView fx:id="eventsTable" editable="true" layoutX="233.0" layoutY="213.0" prefHeight="476.0" prefWidth="662.0">
+<AnchorPane prefHeight="754.0" prefWidth="1000.0" style="-fx-background-color: #DCEDFF;" styleClass="button" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AfficheController">
+   <TableView fx:id="eventsTable" editable="true" layoutX="231.0" layoutY="252.0" onMouseClicked="#showImage" opacity="0.8" prefHeight="490.0" prefWidth="554.0">
       <columns>
-         <TableColumn fx:id="titretf" minWidth="0.0" prefWidth="82.0" style="-fx-font-size: 14px" text="Titre" />
-         <TableColumn fx:id="adressetf" prefWidth="76.0" text="Adresse" />
-         <TableColumn fx:id="datetf" prefWidth="70.4000244140625" text="Date" />
-         <TableColumn fx:id="categorieEvetf" prefWidth="86.39996337890625" text="Catégorie" />
-         <TableColumn fx:id="formatEvetf" text="Format" />
-         <TableColumn fx:id="imagetf" prefWidth="56.800048828125" text="Image" />
-         <TableColumn fx:id="descriptiontf" prefWidth="112.0" text="Description" />
-         <TableColumn fx:id="nbPlacestf" prefWidth="102.4000244140625" text="Nombre places" />
+         <TableColumn fx:id="titretf" minWidth="0.0" prefWidth="110.40003967285156" style="-fx-font-size: 14px" text="Titre" />
+         <TableColumn fx:id="adressetf" prefWidth="86.4000244140625" text="Adresse" />
+         <TableColumn fx:id="datetf" prefWidth="65.60003662109375" text="Date" />
+         <TableColumn fx:id="categorieEvetf" prefWidth="65.5999755859375" text="Catégorie" />
+         <TableColumn fx:id="formatEvetf" prefWidth="59.20001220703125" text="Format" />
+         <TableColumn fx:id="descriptiontf" prefWidth="92.79998779296875" text="Description" />
+         <TableColumn fx:id="nbPlacestf" prefWidth="48.7999267578125" text="places" />
+         <TableColumn fx:id="heuretf" prefWidth="65.60003662109375" text="Heure" />
       </columns>
       <columnResizePolicy>
          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
       </columnResizePolicy>
    </TableView>
-   <Button layoutX="239.0" layoutY="167.0" mnemonicParsing="false" onAction="#getAddEventView" prefHeight="34.0" prefWidth="86.0" text="Ajouter" textFill="#080808">
+   <Button layoutX="244.0" layoutY="202.0" mnemonicParsing="false" onAction="#getAddEventView" prefHeight="34.0" prefWidth="86.0" style="-fx-background-radius: 20px;" styleClass="returnBtn" stylesheets="@../css/blackUserStyle.css" text="Ajouter" textFill="#080808">
       <graphic>
          <FontAwesomeIconView fill="#054afa" glyphName="USER_PLUS" text="" />
       </graphic>
@@ -39,17 +40,17 @@
          <Font size="13.0" />
       </font>
    </Button>
-   <Button layoutX="337.0" layoutY="166.0" mnemonicParsing="false" onAction="#DeleteAction" prefHeight="34.0" prefWidth="120.0" text="Supprimer">
+   <Button layoutX="342.0" layoutY="202.0" mnemonicParsing="false" onAction="#DeleteAction" prefHeight="34.0" prefWidth="103.0" styleClass="buttonDelete" stylesheets="@../css/blackUserStyle.css" text="Supprimer" textFill="WHITE">
       <graphic>
-         <FontAwesomeIconView fill="RED" glyphName="TRASH" />
+         <FontAwesomeIconView fill="WHITE" glyphName="TRASH" />
       </graphic>
       <font>
          <Font size="13.0" />
       </font>
    </Button>
-   <Button layoutX="472.0" layoutY="166.0" mnemonicParsing="false" onAction="#PrintAction" prefHeight="34.0" prefWidth="70.0" text="Print">
+   <Button layoutX="454.0" layoutY="202.0" mnemonicParsing="false" onAction="#PrintAction" prefHeight="34.0" prefWidth="103.0" style="-fx-background-radius: 20px;" styleClass="search-button-event" stylesheets="@../css/style.css" text="Export PDF">
       <graphic>
-         <FontAwesomeIconView fill="#ff00e4" glyphName="PRINT" />
+         <FontAwesomeIconView fill="WHITE" glyphName="PRINT" />
       </graphic>
       <font>
          <Font size="13.0" />
@@ -79,54 +80,19 @@
          <Rectangle arcHeight="50" arcWidth="50" height="50" width="50" />
       </clip>
    </ImageView>
-            <VBox layoutX="5.0" layoutY="152.0" prefHeight="500.0" prefWidth="205.0">
+            <VBox layoutX="7.0" layoutY="196.0" prefHeight="500.0" prefWidth="205.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@../css/blackUserStyle.css" text="Statistiques" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="211.0" styleClass="buttonSidebar" text="Liste des utilisateurs">
+                  <Button mnemonicParsing="false" onAction="#getEventList" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@../css/blackUserStyle.css" text="Liste des événements">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="214.0" styleClass="buttonSidebar" text="Ajouter un admin">
+                  <Button mnemonicParsing="false" onAction="#getCatList" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@../css/blackUserStyle.css" text="Liste des catégories">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="220.0" styleClass="buttonSidebar" text="Liste des produits">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="215.0" styleClass="buttonSidebar" text="Ajouter un prduit">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" text="Ajouter une catégorie">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="208.0" styleClass="buttonSidebar" text="Liste des catégories">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#getEventList" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" text="Liste des événements">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#getCatList" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" text="Liste des catégories événement">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#getFormatsList" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" text="Liste des formats">
+                  <Button mnemonicParsing="false" onAction="#getFormatsList" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@../css/blackUserStyle.css" text="Liste des formats">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -138,5 +104,30 @@
                   <Image url="@../img/logo.png" />
                </image>
             </ImageView>
+   <ImageView fx:id="imageView" fitHeight="218.0" fitWidth="191.0" layoutX="795.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true" />
+   <Button fx:id="rechercher" layoutX="561.0" layoutY="154.0" mnemonicParsing="false" onAction="#SearchEvenets" prefHeight="31.0" prefWidth="153.0" styleClass="confirmBtn" stylesheets="@../css/blackUserStyle.css" text=" rechercher" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="15.0" />
+      </font>
+      <graphic>
+         <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" size="16.0" />
+      </graphic>
+   </Button>
+   <TextField fx:id="rechercherTF" layoutX="240.0" layoutY="152.0" prefHeight="31.0" prefWidth="314.0" promptText="Rechercher un événement" />
+   <Button id="search-button-event" fx:id="pieBtn" layoutX="795.0" layoutY="561.0" mnemonicParsing="false" onAction="#getPieChartEvent" prefHeight="34.0" prefWidth="197.0" styleClass="confirmBtn" stylesheets="@../css/blackUserStyle.css" text="Evenements par catégories" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="14.0" />
+      </font>
+   </Button>
+   <Button id="search-button-event" fx:id="barChart" layoutX="804.0" layoutY="619.0" mnemonicParsing="false" onAction="#getBarChartEvent" prefHeight="34.0" prefWidth="179.0" styleClass="confirmBtn" stylesheets="@../css/blackUserStyle.css" text="Evenements par année" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="14.0" />
+      </font>
+   </Button>
+   <Button layoutX="566.0" layoutY="202.0" mnemonicParsing="false" onAction="#getEventDetails" prefHeight="34.0" prefWidth="144.0" styleClass="returnBtn" stylesheets="@../css/blackUserStyle.css" text="Afficher Détails" textFill="#080808">
+      <font>
+         <Font size="13.0" />
+      </font>
+   </Button>
 
 </AnchorPane>

@@ -24,7 +24,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
         </columnResizePolicy>
     </TableView>
-    <Button layoutX="261.0" layoutY="161.0" mnemonicParsing="false" onAction="#getAddFormat" text="Ajouter" textFill="#080808">
+    <Button layoutX="261.0" layoutY="158.0" mnemonicParsing="false" onAction="#getAddFormat" prefHeight="30.0" prefWidth="94.0" style="-fx-background-radius: 20px;" styleClass="returnBtn" stylesheets="@../css/blackUserStyle.css" text="Ajouter" textFill="#080808">
         <graphic>
             <FontAwesomeIconView fill="#054afa" glyphName="USER_PLUS" text="" />
         </graphic>
@@ -32,17 +32,17 @@
             <Font size="13.0" />
         </font>
     </Button>
-    <Button layoutX="350.0" layoutY="159.0" mnemonicParsing="false" onAction="#DeleteAction" prefHeight="30.0" prefWidth="118.0" text="Supprimer">
+    <Button layoutX="360.0" layoutY="159.0" mnemonicParsing="false" onAction="#DeleteAction" prefHeight="30.0" prefWidth="108.0" styleClass="buttonDelete" stylesheets="@../css/blackUserStyle.css" text="Supprimer" textFill="WHITE">
         <graphic>
-            <FontAwesomeIconView fill="RED" glyphName="TRASH" />
+            <FontAwesomeIconView fill="WHITE" glyphName="TRASH" />
         </graphic>
         <font>
             <Font size="13.0" />
         </font>
     </Button>
-    <Button layoutX="477.0" layoutY="159.0" mnemonicParsing="false" onAction="#PrintAction" prefHeight="30.0" prefWidth="69.0" text="Print">
+    <Button layoutX="477.0" layoutY="159.0" mnemonicParsing="false" onAction="#PrintAction" prefHeight="30.0" prefWidth="118.0" style="-fx-background-radius: 20px;" styleClass="search-button-event" stylesheets="@../css/style.css" text="Export PDF">
         <graphic>
-            <FontAwesomeIconView fill="#ff00e4" glyphName="PRINT" />
+            <FontAwesomeIconView fill="WHITE" glyphName="PRINT" />
         </graphic>
         <font>
             <Font size="13.0" />
@@ -74,52 +74,17 @@
     </ImageView>
     <VBox layoutX="5.0" layoutY="152.0" prefHeight="500.0" prefWidth="205.0">
         <children>
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@../css/blackUserStyle.css" text="Statistiques" textFill="WHITE">
-                <font>
-                    <Font name="System Bold" size="18.0" />
-                </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="211.0" styleClass="buttonSidebar" text="Liste des utilisateurs">
+            <Button mnemonicParsing="false" onAction="#getEventList" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@../css/blackUserStyle.css" text="Liste des événements">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="214.0" styleClass="buttonSidebar" text="Ajouter un admin">
+            <Button mnemonicParsing="false" onAction="#getcatList" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@../css/blackUserStyle.css" text="Liste des catégories ">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="220.0" styleClass="buttonSidebar" text="Liste des produits">
-                <font>
-                    <Font name="System Bold" size="12.0" />
-                </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="215.0" styleClass="buttonSidebar" text="Ajouter un prduit">
-                <font>
-                    <Font name="System Bold" size="12.0" />
-                </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" text="Ajouter une catégorie">
-                <font>
-                    <Font name="System Bold" size="12.0" />
-                </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="208.0" styleClass="buttonSidebar" text="Liste des catégories">
-                <font>
-                    <Font name="System Bold" size="12.0" />
-                </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#getEventList" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" text="Liste des événements">
-                <font>
-                    <Font name="System Bold" size="12.0" />
-                </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" text="Liste des catégories évenement">
-                <font>
-                    <Font name="System Bold" size="12.0" />
-                </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" text="Liste des formats">
+            <Button mnemonicParsing="false" onAction="#refrech" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@../css/blackUserStyle.css" text="Liste des formats">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>

@@ -23,16 +23,17 @@ public class EvenementService {
     }
 
     public void insert(Evenement evenement) {
-        String query = "INSERT INTO evenement (titre,adresse,date,categorie_id,format_id,image,description,nbPlaces) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO evenement (categorie_id, format_id, titre, date, heure, description, image, adresse, nb_places) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
         try (PreparedStatement pst = conn.prepareStatement(query)) {
-            pst.setString(1, evenement.getTitre());
-            pst.setString(2, evenement.getAdresse());
-            pst.setDate(3, evenement.getDate());
-            pst.setInt(4, evenement.getCategorie().getId());
-            pst.setInt(5, evenement.getFormat().getId());
-            pst.setString(6, evenement.getImage());
-            pst.setString(7, evenement.getDescription());
-            pst.setInt(8, evenement.getNbPlaces());
+            pst.setInt(1, evenement.getCategorie().getId());
+            pst.setInt(2, evenement.getFormat().getId());
+            pst.setString(3, evenement.getTitre());
+            pst.setDate(4, evenement.getDate());
+            pst.setTime(5, evenement.getHeure());
+            pst.setString(6, evenement.getDescription());
+            pst.setString(7, evenement.getImage());
+            pst.setString(8, evenement.getAdresse());
+            pst.setInt(9, evenement.getNbPlaces());
             pst.executeUpdate();
             System.out.println("Event added successfully.");
         } catch (SQLException ex) {
@@ -40,17 +41,18 @@ public class EvenementService {
         }
     }
     public void update(Evenement evenement) {
-        String query = "UPDATE evenement SET titre = ?, format_id = ?, categorie_id = ?, adresse = ?, image = ?, date = ?, nbPlaces = ?, description = ? WHERE id = ?";
+        String query = "UPDATE evenement SET categorie_id = ?, format_id = ?, titre = ?, date = ?, heure = ?,description = ?, image = ?, adresse = ?, nb_places = ? WHERE id = ?";
         try (PreparedStatement pst = conn.prepareStatement(query)) {
-            pst.setString(1, evenement.getTitre());
+            pst.setInt(1, evenement.getCategorie().getId());
             pst.setInt(2, evenement.getFormat().getId());
-            pst.setInt(3, evenement.getCategorie().getId());
-            pst.setString(4, evenement.getAdresse());
-            pst.setString(5, evenement.getImage());
-            pst.setDate(6, evenement.getDate());
-            pst.setInt(7, evenement.getNbPlaces());
-            pst.setString(8, evenement.getDescription());
-            pst.setInt(9, evenement.getId());
+            pst.setString(3, evenement.getTitre());
+            pst.setDate(4, evenement.getDate());
+            pst.setTime(5, evenement.getHeure());
+            pst.setString(6, evenement.getDescription());
+            pst.setString(7, evenement.getImage());
+            pst.setString(8, evenement.getAdresse());
+            pst.setInt(9, evenement.getNbPlaces());
+            pst.setInt(10, evenement.getId());
             pst.executeUpdate();
             System.out.println("Event updated successfully.");
         } catch (SQLException ex) {
@@ -77,14 +79,15 @@ public class EvenementService {
             if (rs.next()) {
                 return new Evenement(
                         rs.getInt("id"),
-                        rs.getString("titre"),
-                        rs.getString("adresse"),
-                        rs.getDate("date"),
                         new Category(rs.getInt("categorie_id")), // Assuming you have a Category constructor with an ID
                         new Format(rs.getInt("format_id"), ""),     // Assuming you have a Format constructor with an ID
-                        rs.getString("image"),
+                        rs.getString("titre"),
+                        rs.getDate("date"),
+                        rs.getTime("heure"),
                         rs.getString("description"),
-                        rs.getInt("nbPlaces")
+                        rs.getString("image"),
+                        rs.getString("adresse"),
+                        rs.getInt("nb_places")
                 );
             }
         } catch (SQLException ex) {
@@ -103,14 +106,15 @@ public class EvenementService {
             while (rs.next()) {
                 Evenement event = new Evenement(
                         rs.getInt("id"),
-                        rs.getString("titre"),
-                        rs.getString("adresse"),
-                        rs.getDate("date"),
                         x.readById(rs.getInt("categorie_id")), // Assuming you have a Category constructor with an ID
                         y.readById(rs.getInt("format_id")),   // Assuming you have a Format constructor with an ID
-                        rs.getString("image"),
+                        rs.getString("titre"),
+                        rs.getDate("date"),
+                        rs.getTime("heure"),
                         rs.getString("description"),
-                        rs.getInt("nbPlaces")
+                        rs.getString("image"),
+                        rs.getString("adresse"),
+                        rs.getInt("nb_places")
                 );
                 events.add(event);
             }
@@ -138,6 +142,8 @@ public class EvenementService {
                 Date date = pst.getDate("date");
                 e.setDate(date.toLocalDate());
 
+                e.setHeure(pst.getTime("heure"));
+
                 // Récupérer la catégorie et le format à partir de la base de données
                 int categoryId = pst.getInt("categorie_id");
                 Category category = new CategoryService().readById(categoryId);
@@ -149,7 +155,7 @@ public class EvenementService {
                 e.setFormat(format);
                 e.setImage(pst.getString("image"));
                 e.setDescription(pst.getString("description"));
-                e.setNbPlaces(pst.getInt("nbPlaces"));
+                e.setNbPlaces(pst.getInt("nb_places"));
 
                 eventList.add(e);
             }
@@ -181,9 +187,8 @@ public class EvenementService {
     public Map<Category, Long> getDataByCategory() {
         Map<Category, Long> dataByCategory = new HashMap<>();
         String query = "SELECT categorie_id, COUNT(*) AS count FROM evenement GROUP BY categorie_id";
-        try (Connection conn = MyConnections.getInstance().getCnx();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
+        try (Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(query)) {
 
             CategoryService categoryService = new CategoryService();
 
@@ -203,10 +208,9 @@ public class EvenementService {
 
     public Map<Integer, Long> getDataByYear() {
         Map<Integer, Long> dataByYear = new HashMap<>();
-        String query = "SELECT YEAR(date) AS year, COUNT(*) AS count FROM event GROUP BY YEAR(date)";
-        try (Connection conn = MyConnections.getInstance().getCnx();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
+        String query = "SELECT YEAR(date) AS year, COUNT(*) AS count FROM evenement GROUP BY YEAR(date)";
+        try (Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(query)) {
 
             while (rs.next()) {
                 int year = rs.getInt("year");

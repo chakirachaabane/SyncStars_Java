@@ -6,6 +6,8 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import com.twilio.Twilio;
+import io.github.cdimascio.dotenv.Dotenv;
 import io.github.palexdev.materialfx.utils.SwingFXUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,7 +15,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
+import com.twilio.rest.api.v2010.account.Message;
+import io.github.cdimascio.dotenv.Dotenv;
+
+import com.twilio.Twilio;
+import io.github.cdimascio.dotenv.Dotenv;
+import com.twilio.type.PhoneNumber;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -22,12 +29,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import org.controlsfx.control.Rating;
 import org.example.model.Category;
 import org.example.model.Evenement;
 import org.example.model.Format;
@@ -61,11 +67,32 @@ public class DisplayEventsController implements Initializable {
     @FXML
     private ComboBox formatComboBox;
 
+
+    @FXML
+    private Button likeButton;
+
+    @FXML
+    private Button dislikeButton;
+
     private final int MAX_CLICK_DURATION = 250; // Maximum duration between clicks in milliseconds
     private final int MAX_CLICKS = 2; // Maximum number of clicks to consider as a double click
 
     private long lastClickTime = 0;
     private int clickCount = 0;
+
+    private int likeCount = 0;
+    private int dislikeCount = 0;
+
+    private boolean hasLiked = false;
+    private boolean hasDisliked = false;
+
+    // Vos identifiants Twilio
+    private static final String ACCOUNT_SID = "ACc87ded6bedeb009e570c8f50f10e90f4";
+    private static final String AUTH_TOKEN = "60990c89561369f066f05a8737c3a1bb";
+
+    // Numéro Twilio
+    private static final String TWILIO_NUMBER = "+17205230423";
+
 
     EvenementService se = new EvenementService();
     CategoryService sc = new CategoryService();
@@ -95,11 +122,9 @@ public class DisplayEventsController implements Initializable {
                 } else {
 
 
-
                     GridPane container = new GridPane();
 
                     TextFlow textFlow = new TextFlow();
-
 
 
                     // Style des labels
@@ -108,45 +133,144 @@ public class DisplayEventsController implements Initializable {
 // Style des champs de texte
                     String textFieldStyle = "-fx-font-size: 14px; -fx-prompt-text-fill: #999999;";
 
-                    Label nbTicketsLabel = new Label("Nombre de tickets:");
+                    /*Text likeCountText = new Text(String.valueOf(e.getLikeCount()));
+                    likeCountText.setStyle("-fx-fill: #1f9f1f;");
+                    Text dislikeCountText = new Text(String.valueOf(e.getDislikeCount()));
+                    dislikeCountText.setStyle("-fx-fill: #ff0101;");
+
+                    Button likeButton = new Button("J'aime");
+                    likeButton.setStyle("-fx-background-color: #1f9f1f; -fx-text-fill: white; -fx-font-weight: bold;");
+                    Button dislikeButton = new Button("Je n'aime pas");
+                    dislikeButton.setStyle("-fx-background-color: #FF0000; -fx-text-fill: white; -fx-font-weight: bold;");
+
+
+                    likeButton.setOnAction(event -> {
+                        if (!e.isHasLiked()) {
+                            e.incrementLikeCount();
+                            e.setHasLiked(true);
+                            if (e.isHasDisliked()) {
+                                e.decrementDislikeCount();
+                                e.setHasDisliked(false);
+                            }
+                            likeCountText.setText(String.valueOf(e.getLikeCount()));
+                            dislikeCountText.setText(String.valueOf(e.getDislikeCount()));
+                            se.update(e);
+                        }
+                    });
+
+                    dislikeButton.setOnAction(event -> {
+                        if (!e.isHasDisliked()) {
+                            e.incrementDislikeCount();
+                            e.setHasDisliked(true);
+                            if (e.isHasLiked()) {
+                                e.decrementLikeCount();
+                                e.setHasLiked(false);
+                            }
+                            likeCountText.setText(String.valueOf(e.getLikeCount()));
+                            dislikeCountText.setText(String.valueOf(e.getDislikeCount()));
+                            se.update(e);
+                        }
+                    }); */
+
+                    // Remplacez la création du champ de texte nbTicketsField par un HBox contenant un champ de texte et des boutons
+                    HBox nbTicketsBox = new HBox();
+                    Label nbTicketsLabel = new Label("tickets:");
                     nbTicketsLabel.setStyle(labelStyl);
                     TextField nbTicketsField = new TextField();
-                    nbTicketsField.setPromptText("Entrez le nombre de tickets");
                     nbTicketsField.setStyle(textFieldStyle);
                     nbTicketsField.setPrefWidth(50); // Adjust width as needed
-                    container.add(nbTicketsLabel, 0, 1);
-                    container.add(nbTicketsField, 1, 1);
+
+                    Button incrementButton = new Button("+");
+                    incrementButton.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-min-width: 30px; -fx-min-height: 30px; -fx-background-color: #d9aa55;");
+                    incrementButton.setOnAction(event -> {
+                        String text = nbTicketsField.getText();
+                        int current = text.isEmpty() ? 0 : Integer.parseInt(text);
+                        nbTicketsField.setText(String.valueOf(current + 1));
+                    });
+
+                    Button decrementButton = new Button("-");
+                    decrementButton.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-min-width: 30px; -fx-min-height: 30px; -fx-background-color: #d9aa55;");
+                    decrementButton.setOnAction(event -> {
+                        String text = nbTicketsField.getText();
+                        int current = text.isEmpty() ? 0 : Integer.parseInt(text);
+                        if (current > 0) {
+                            nbTicketsField.setText(String.valueOf(current - 1));
+                        }
+                    });
+
+                    /* likeButton.setOnAction(event -> {
+                        if (e.isHasLiked()) {
+                            e.decrementLikeCount();
+                            e.setHasLiked(false);
+                            likeCountText.setText(String.valueOf(e.getLikeCount()));
+                            dislikeCountText.setText(String.valueOf(e.getDislikeCount()));
+                        } else {
+                            e.incrementLikeCount();
+                            e.setHasLiked(true);
+                            if (e.isHasDisliked()) {
+                                e.decrementDislikeCount();
+                                e.setHasDisliked(false);
+                                dislikeCountText.setText(String.valueOf(e.getDislikeCount()));
+                            }
+                            likeCountText.setText(String.valueOf(e.getLikeCount()));
+                        }
+                        se.update(e);
+                    });
+
+                    dislikeButton.setOnAction(event -> {
+                        if (e.isHasDisliked()) {
+                            e.decrementDislikeCount();
+                            e.setHasDisliked(false);
+                            dislikeCountText.setText(String.valueOf(e.getDislikeCount()));
+                        } else {
+                            e.incrementDislikeCount();
+                            e.setHasDisliked(true);
+                            if (e.isHasLiked()) {
+                                e.decrementLikeCount();
+                                e.setHasLiked(false);
+                                likeCountText.setText(String.valueOf(e.getLikeCount()));
+                            }
+                            dislikeCountText.setText(String.valueOf(e.getDislikeCount()));
+                        }
+                        se.update(e);
+                    }); */
+
 
                     Button participateButton = new Button("Participer");
-                    participateButton.setStyle("-fx-background-color: #d9aa55; -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold;");
+                    participateButton.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-min-width: 80px; -fx-min-height: 30px; -fx-background-color: #d9aa55;");
+                    participateButton.setPrefWidth(153);
                     participateButton.setOnAction(event -> {
                         String nbTicketsText = nbTicketsField.getText();
                         if (!nbTicketsText.isEmpty()) {
-                        int nbTickets = Integer.parseInt(nbTicketsField.getText());
-                        se.decrementNbPlaces(e, nbTickets); // Decrement the number of places of the event
-                        // Refresh the display to reflect the new value of nbPlaces
-                        updateItem(e, empty);
-
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Confirmation de participation");
-                        alert.setHeaderText("Bienvenue!");
-                        alert.setContentText("Vous avez bien participé à l'événement. Nombre de places : " + nbTickets);
-                        alert.showAndWait();
-
-                    } else {
-                        // Handle the case where the text field is empty
-                        // For example, show an alert to the user
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Error");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Please enter a valid number of tickets.");
-                        alert.showAndWait();
-                    }
+                            int nbTickets = Integer.parseInt(nbTicketsText);
+                            if (nbTickets > 0) {
+                                sendSMS();
+                                se.decrementNbPlaces(e, nbTickets);
+                                updateItem(e, empty);
+                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                alert.setTitle("Confirmation de participation");
+                                alert.setHeaderText("Bienvenue!");
+                                alert.setContentText("Vous avez bien participé à l'événement. Nombre de places : " + nbTickets);
+                                alert.showAndWait();
+                            } else {
+                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setTitle("Erreur");
+                                alert.setHeaderText(null);
+                                alert.setContentText("Veuillez entrer un nombre de tickets valide.");
+                                alert.showAndWait();
+                            }
+                        } else {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Erreur");
+                            alert.setHeaderText(null);
+                            alert.setContentText("Veuillez entrer un nombre de tickets.");
+                            alert.showAndWait();
+                        }
                     });
 
-                    container.add(participateButton, 2,1); // Ajoute le bouton à la deuxième ligne de la GridPane
-
-
+                    nbTicketsBox.getChildren().addAll(nbTicketsLabel, incrementButton, nbTicketsField, decrementButton);
+                    container.add(nbTicketsBox, 2, 1);
+                    container.add(participateButton, 2, 2);
 
 
                     String nameStyle = "-fx-fill: #18593b;  -fx-font-size: 25;";
@@ -155,7 +279,7 @@ public class DisplayEventsController implements Initializable {
                     String dateStyle = "-fx-fill: black; -fx-font-size: 13; -fx-font-weight: bold;";
 
 
-                    Text nameData = new Text(e.getTitre() + "\n");
+                    Text nameData = new Text(e.getTitre() + "\n\n");
                     nameData.setStyle(nameStyle);
 
                     Text descriptionText = new Text("Description: ");
@@ -167,6 +291,17 @@ public class DisplayEventsController implements Initializable {
                     dateText.setStyle(labelStyle);
                     Text dateData = new Text(e.getDate() + "\n");
                     dateData.setStyle(dateStyle);
+
+                    // Ajouter un Text et un Label pour afficher l'heure
+                    Text heureText = new Text("Heure: ");
+                    heureText.setStyle(labelStyle);
+                    Text heureData = new Text(e.getHeure().toString() + "\n");
+                    heureData.setStyle(dateStyle);
+
+                    Text adresseText = new Text("Adresse: ");
+                    adresseText.setStyle(labelStyle);
+                    Text adresseData = new Text(e.getAdresse() + "\n");
+                    adresseData.setStyle(dateStyle);
 
                     Text formatText = new Text("Format: ");
                     formatText.setStyle(labelStyle);
@@ -191,12 +326,11 @@ public class DisplayEventsController implements Initializable {
                             nameData.getText() + " : \n" +
                                     descriptionText.getText() + " \n" +
                                     descriptionData.getText() + " \n" +
-                                    categoryText.getText() + " \n" +
-                                    formatText.getText() + " \n"+
-                                    dateText.getText()+ " \n"+
-                                    nbPlaceData.getText()+ " \n"+
-                                    categoryText.getText()+ " \n"+
-                                    categoryData.getText()
+                                    dateText.getText() + " \n" +
+                                    dateData.getText() + " \n" +
+                                    heureData.getText() + " \n" +
+                                    nbPlaceText.getText() + " \n" +
+                                    nbPlaceData.getText()
                             , 120);
                     Image qrCodeImageFX = SwingFXUtils.toFXImage(qrCodeImage, null);
                     ImageView Qr = new ImageView(qrCodeImageFX);
@@ -209,10 +343,14 @@ public class DisplayEventsController implements Initializable {
                     descriptionText.setWrappingWidth(200);
                     dateText.setWrappingWidth(200);
                     dateData.setWrappingWidth(200);
+                    heureText.setWrappingWidth(200);
+                    heureData.setWrappingWidth(200);
                     formatText.setWrappingWidth(200);
                     formatData.setWrappingWidth(200);
                     categoryText.setWrappingWidth(200);
                     categoryData.setWrappingWidth(200);
+                    adresseText.setWrappingWidth(200);
+                    adresseData.setWrappingWidth(200);
                     nbPlaceText.setWrappingWidth(200);
                     nbPlaceData.setWrappingWidth(200);
                     ColumnConstraints col1 = new ColumnConstraints(200);
@@ -223,7 +361,7 @@ public class DisplayEventsController implements Initializable {
                     container.add(Qr, 2, 0);
 
 
-                    textFlow.getChildren().addAll(nameData, descriptionText, descriptionData, dateText,dateData,nbPlaceText,nbPlaceData, formatText, formatData, categoryText, categoryData);
+                    textFlow.getChildren().addAll(nameData, descriptionText, descriptionData, dateText, dateData,heureText,heureData, adresseText, adresseData, nbPlaceText, nbPlaceData, formatText, formatData, categoryText, categoryData);
                     container.add(textFlow, 1, 0);
                     container.add(imageView, 0, 0);
 
@@ -234,7 +372,6 @@ public class DisplayEventsController implements Initializable {
                     container.setHgap(30);
 
                     setGraphic(container);
-
 
 
                     listEvents.setOnMouseClicked(event -> {
@@ -261,7 +398,6 @@ public class DisplayEventsController implements Initializable {
         listEvents.getItems().addAll(se.getAll());
 
 
-
     }
 
     private void redirectToDescriptionPage(Evenement selectedEvent) {
@@ -270,7 +406,7 @@ public class DisplayEventsController implements Initializable {
         Parent root;
         try {
             root = loader.load();
-            EventItemController controller= loader.getController();
+            EventItemController controller = loader.getController();
             controller.initData(selectedEvent); // Passer les données de l'événement à la page de description
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
@@ -337,7 +473,7 @@ public class DisplayEventsController implements Initializable {
     }
 
 
-    public void handleFilterAction(ActionEvent actionEvent){
+    public void handleFilterAction(ActionEvent actionEvent) {
 
         Object selectedCategoryObj = categoryComboBox.getValue();
         Object selectedFormatObj = formatComboBox.getValue();
@@ -356,11 +492,21 @@ public class DisplayEventsController implements Initializable {
         System.out.println("Selected Format: " + selectedFormat);
 
         List<Evenement> filteredEvents = se.getByCategoryAndFormat(selectedCategory, selectedFormat);
-        System.out.println("Filtered Events: " + filteredEvents.size());
 
         listEvents.getItems().clear();
         listEvents.getItems().addAll(filteredEvents);
-}
+
+        if (filteredEvents.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Échec");
+            alert.setHeaderText(null);
+            alert.setContentText("Aucun événement trouvé.");
+            alert.showAndWait();
+        } else {
+            listEvents.getItems().clear();
+            listEvents.getItems().addAll(filteredEvents);
+        }
+    }
 
     public void clearFilterAction(ActionEvent actionEvent) {
         // Effacer le filtrage en réinitialisant la liste des événements
@@ -370,4 +516,27 @@ public class DisplayEventsController implements Initializable {
         categoryComboBox.getSelectionModel().clearSelection();
         formatComboBox.getSelectionModel().clearSelection();
     }
+
+    private void sendSMS() {
+        // Initialize Twilio with your Account SID and Auth Token
+        Twilio.init("ACc87ded6bedeb009e570c8f50f10e90f4", "60990c89561369f066f05a8737c3a1bb");
+        // Remplacer les valeurs suivantes par votre numéro Twilio et le numéro de téléphone de destination
+        String twilioNumber = "+17205230423";
+// Votre numéro Twilio
+        String recipientNumber = "+21627873721";
+        // Numéro de téléphone du destinataire
+        String messageBody = "Participation confirmée !";
+        Message message = Message.creator( new PhoneNumber(recipientNumber), new PhoneNumber(twilioNumber), messageBody ).create();
+        System.out.println("Message SID: " + message.getSid());
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 }
+
+
