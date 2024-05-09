@@ -181,7 +181,7 @@ public class displayProduit implements Initializable {
                 if (imageFile.exists()) {
                     imageUrl = imageFile.toURI().toURL().toString();
                 } else {
-                    imageUrl = "file:///C:/Users/Nawres/SecondProject/public/FrontOffice/img/" + imageUrl;
+                    imageUrl = "file:///C:/Users/LENOVO/OneDrive - ESPRIT/Images/integration chakira +nawres+feten+azza+aziz/integration chakira +nawres+feten+azza - Copie2/integration chakira +nawres+feten/SecondProject1/public/FrontOffice/img/" + imageUrl;
 
                     imageFile = new File(imageUrl.replace("file:///", ""));
                     if (!imageFile.exists()) {
@@ -375,7 +375,7 @@ public class displayProduit implements Initializable {
 
 
             float imageY = titleY - 10;
-            PDImageXObject logoImage = PDImageXObject.createFromFile("C:/Users/Nawres/SecondProject/public/FrontOffice/img/logo.png", document);
+            PDImageXObject logoImage = PDImageXObject.createFromFile("C:/Users/LENOVO/OneDrive - ESPRIT/Images/integration chakira +nawres+feten+azza+aziz/integration chakira +nawres+feten+azza - Copie2/integration chakira +nawres+feten/SecondProject1/public/FrontOffice/img/logo.png", document);
             contentStream.drawImage(logoImage, 50, imageY, logoImage.getWidth() / 4, logoImage.getHeight() / 4);
             contentStream.beginText();
             contentStream.setFont(font, fontSize + 2);
@@ -471,10 +471,151 @@ public class displayProduit implements Initializable {
     void addAdmin(ActionEvent event) {
         loadPage("/addUserAdmin-view.fxml",event);
     }
+
     @FXML
-    void StatistiquesUser(ActionEvent event) {
-        loadPage("/usersStatistics-view.fxml",event);
+    public void displayListEventsSwitch1(ActionEvent event) {
+        try {
+            // Get the current stage
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Load the new FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEvenement.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            // Close the current stage
+            currentStage.close();
+
+            // Show the new stage
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+    @FXML
+    public void displayListCategoryESwitch1(ActionEvent event) {
+        try {
+            // Get the current stage
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Load the new FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherCategorieEve.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            // Close the current stage
+            currentStage.close();
+
+            // Show the new stage
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void displayFormatListSwitch1(ActionEvent event) {
+
+        try {
+            // Get the current stage
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Load the new FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherFormat.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            // Close the current stage
+            currentStage.close();
+
+            // Show the new stage
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    public void displayRecipeSwitch1(ActionEvent actionEvent) {
+        try {
+            // Charger le fichier FXML de la nouvelle vue
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/recetteList.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène avec la vue chargée
+            Scene scene = new Scene(root);
+
+            // Obtenir la fenêtre principale (stage) à partir de l'événement
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+            // Mettre la nouvelle scène dans la fenêtre principale
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void ConsulterRDVButtonAction1(ActionEvent actionEvent) {
+        try {
+            // Charger rdvListBack.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/rdvListBack.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène
+            Scene scene = new Scene(root);
+
+            // Obtenir la scène actuelle à partir du bouton et la mettre dans une fenêtre (Stage)
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+
+            // Afficher la nouvelle scène dans la même fenêtre
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Gérer l'exception en conséquence
+        }
+    }
+
+
+    @FXML
+    public void displayExercicesSwitch1(ActionEvent event) {
+
+        try {
+            // Get the current stage
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Load the new FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/getExercice.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            // Close the current stage
+            currentStage.close();
+
+            // Show the new stage
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
 }
 
 

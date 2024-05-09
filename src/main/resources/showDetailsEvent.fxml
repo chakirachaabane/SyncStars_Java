@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #DCEDFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.detailsEvent">
+    <children>
+        <StackPane layoutX="93.0" layoutY="69.0" prefHeight="586.0" prefWidth="690.0" style="-fx-border-width: 1px; -fx-background-radius: 20px; -fx-background-color: #94B0DA;" />
+        <StackPane layoutX="273.0" layoutY="136.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 1px; -fx-border-radius: 5px;">
+            <children>
+                <ImageView fx:id="imageView" fitHeight="100.0" fitWidth="195.0" preserveRatio="true" />
+            </children>
+        </StackPane>
+        <Label fx:id="titre" layoutX="206.0" layoutY="243.0" prefHeight="18.0" prefWidth="203.0" />
+        <Text layoutX="157.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="image :" wrappingWidth="48.9765625">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Text>
+        <Text layoutX="160.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre :" wrappingWidth="42.13671875">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Text>
+        <Text layoutX="157.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse :" wrappingWidth="88.25201416015614">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Text>
+        <Text fill="#eb952d" layoutX="278.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Details Evénement " wrappingWidth="320.7999267578124">
+            <font>
+                <Font name="System Bold" size="35.0" />
+            </font>
+        </Text>
+      <Label fx:id="adresse" layoutX="225.0" layoutY="346.0" prefHeight="18.0" prefWidth="117.0" />
+        <Text layoutX="160.0" layoutY="398.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description :" wrappingWidth="88.25201416015614">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Text>
+        <Label fx:id="description" layoutX="275.0" layoutY="398.0" />
+
+    </children>
+</AnchorPane>

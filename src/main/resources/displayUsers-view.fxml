@@ -9,6 +9,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -16,7 +17,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane onDragDetected="#dashboardUserSwitch" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #DCEDFF;" styleClass="button" stylesheets="@backUserStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.DisplayUsersController">
+<AnchorPane prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #DCEDFF;" styleClass="button" stylesheets="@backUserStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.DisplayUsersController">
     <TableView fx:id="usersTab" layoutX="230.0" layoutY="152.0" prefHeight="476.0" prefWidth="662.0">
         <columns>
             <TableColumn fx:id="cinColumn" minWidth="0.0" prefWidth="82.0" style="-fx-font-size: 14px" text="Cin" />
@@ -87,6 +88,36 @@
                <Font name="System Bold" size="12.0" />
             </font>
          </Button>
+         <Button mnemonicParsing="false" onAction="#displayListEventsSwitch" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Liste des événements" textFill="#fcfafa">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Button>
+         <Button mnemonicParsing="false" onAction="#displayListCategoryESwitch" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Catégories événement" textFill="#fcfafa">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Button>
+         <Button mnemonicParsing="false" onAction="#displayFormatListSwitch" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Liste des formats" textFill="#fcfafa">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Button>
+         <Button mnemonicParsing="false" onAction="#displayRecipeSwitch" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Espace recette" textFill="#fcfafa">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Button>
+         <Button mnemonicParsing="false" onAction="#ConsulterRDVButtonAction" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Espace RDV" textFill="#fcfafa">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Button>
+         <Button mnemonicParsing="false" onAction="#displayExercicesSwitch" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Espace exercice" textFill="#fcfafa">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Button>
 
       </children>
    </VBox>
@@ -100,5 +131,10 @@
          <FontAwesomeIconView fill="WHITE" glyphName="PIE_CHART" size="16.0" text="" />
       </graphic>
    </Button>
+   <ImageView fitHeight="155.0" fitWidth="168.0" layoutX="10.0" layoutY="-7.0">
+      <image>
+         <Image url="@images/logo.png" />
+      </image>
+   </ImageView>
 
 </AnchorPane>

@@ -241,7 +241,7 @@ public class ModifyUserAdminController implements Initializable {
             if (selectedFile != null) {
                 try {
                     // Définir le répertoire de destination
-                    String destinationDirectory = "C:\\Users\\Nawres\\Desktop\\SecondProject1\\public\\FrontOffice\\img";
+                    String destinationDirectory = "C:\\Users\\LENOVO\\OneDrive - ESPRIT\\Images\\integration chakira +nawres+feten+azza+aziz\\integration chakira +nawres+feten+azza - Copie2\\integration chakira +nawres+feten\\SecondProject1\\public\\FrontOffice\\img";
                     File destinationDir = new File(destinationDirectory);
 
                     // S'assurer que le répertoire de destination existe

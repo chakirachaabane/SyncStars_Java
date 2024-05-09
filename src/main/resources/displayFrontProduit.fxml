@@ -29,10 +29,10 @@
                            <children>
                               <Button mnemonicParsing="false" onAction="#showAccueilSwitch" opacity="0.8" prefHeight="38.0" prefWidth="82.0" styleClass="navBarBtn" stylesheets="@frontUserStyle.css" text="Accueil " />
                               <Button mnemonicParsing="false" opacity="0.8" prefHeight="38.0" prefWidth="86.0" styleClass="navBarBtn" stylesheets="@frontUserStyle.css" text="Produits" />
-                              <Button mnemonicParsing="false" opacity="0.8" prefHeight="37.0" prefWidth="113.0" styleClass="navBarBtn" stylesheets="@frontUserStyle.css" text="Evènements" />
-                              <Button mnemonicParsing="false" opacity="0.8" prefHeight="38.0" prefWidth="118.0" styleClass="navBarBtn" stylesheets="@frontUserStyle.css" text="Réservations" />
-                              <Button mnemonicParsing="false" opacity="0.8" prefHeight="38.0" prefWidth="129.0" styleClass="navBarBtn" stylesheets="@frontUserStyle.css" text="Entrainements" />
-                              <Button mnemonicParsing="false" opacity="0.8" prefHeight="38.0" prefWidth="79.0" styleClass="navBarBtn" stylesheets="@frontUserStyle.css" text="Forums" />
+                              <Button mnemonicParsing="false" onAction="#displayEventSwitch1" opacity="0.8" prefHeight="37.0" prefWidth="113.0" styleClass="navBarBtn" stylesheets="@frontUserStyle.css" text="Evènements" />
+                              <Button mnemonicParsing="false" onAction="#displayRdvSwitch1" opacity="0.8" prefHeight="38.0" prefWidth="118.0" styleClass="navBarBtn" stylesheets="@frontUserStyle.css" text="Réservations" />
+                              <Button mnemonicParsing="false" onAction="#displayEntSwitch1" opacity="0.8" prefHeight="38.0" prefWidth="129.0" styleClass="navBarBtn" stylesheets="@frontUserStyle.css" text="Entrainements" />
+                              <Button mnemonicParsing="false" onAction="#ShowForumSwitch1" opacity="0.8" prefHeight="38.0" prefWidth="79.0" styleClass="navBarBtn" stylesheets="@frontUserStyle.css" text="Forums" />
                               <Button layoutX="540.0" layoutY="10.0" mnemonicParsing="false" onAction="#showPanier" opacity="0.8" prefHeight="38.0" prefWidth="73.0" styleClass="navBarBtn" stylesheets="@frontUserStyle.css">
                                  <graphic>
                                     <FontAwesomeIconView fill="#18593b" glyphName="SHOPPING_CART" size="20" />

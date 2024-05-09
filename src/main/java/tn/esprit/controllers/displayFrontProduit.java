@@ -130,4 +130,98 @@ public void initialize(URL location, ResourceBundle resources) {
         loadPage("/welcome-view.fxml", event);
     }
 
+
+
+
+    @FXML
+    private void displayEventSwitch1(ActionEvent event) {
+        try {
+            // Charger le fichier FXML rdvList.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListeEvenement.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène
+            Scene scene = new Scene(root);
+
+            // Obtenir la référence de la fenêtre (stage)
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Modifier la scène de la fenêtre
+            stage.setScene(scene);
+
+            // Afficher la fenêtre
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    @FXML
+    private void displayRdvSwitch1(ActionEvent event) {
+        try {
+            // Charger le fichier FXML rdvList.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/rdvAcc.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène
+            Scene scene = new Scene(root);
+
+            // Obtenir la référence de la fenêtre (stage)
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Modifier la scène de la fenêtre
+            stage.setScene(scene);
+
+            // Afficher la fenêtre
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void displayEntSwitch1(ActionEvent event) {
+        try {
+            // Charger le fichier FXML rdvList.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/searchEntrainementfront.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène
+            Scene scene = new Scene(root);
+
+            // Obtenir la référence de la fenêtre (stage)
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Modifier la scène de la fenêtre
+            stage.setScene(scene);
+
+            // Afficher la fenêtre
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void ShowForumSwitch1(ActionEvent event) {
+        try {
+            /*Parent root = FXMLLoader.load(getClass().getResource("/updateQuestionForm.fxml"));
+            // Get the controller for the update form
+            UpdateQuestionFormController updateController = new UpdateQuestionFormController();*/
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main_Forum_Page.fxml"));
+            Parent root = loader.load();
+            ForumPageController controller = loader.getController();
+
+
+            Stage stage = new Stage();
+            stage.setTitle("Forum Page");
+            stage.setScene(new Scene(root, 900, 700));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

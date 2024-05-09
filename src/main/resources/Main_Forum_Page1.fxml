@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="_root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="926.0" styleClass="_root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ForumPageController">
+   <VBox prefHeight="562.0" prefWidth="205.0">
+      <AnchorPane fx:id="side_panel" prefHeight="674.0" prefWidth="206.0" styleClass="side_panel" stylesheets="@style.css">
+         <Pane fx:id="head_pane" layoutX="16.0" layoutY="19.0" prefHeight="113.0" prefWidth="173.0" styleClass="head-pane" stylesheets="@style.css">
+            <ImageView fitHeight="140.0" fitWidth="140.0" layoutX="17.0" layoutY="-13.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@images/logo.png" />
+            </ImageView>
+         </Pane>
+         <Button fx:id="Nav_buttons" layoutX="5.0" layoutY="146.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="194.0" styleClass="Nav_buttons" stylesheets="@style.css" text="Accueil">
+            <graphic>
+               <ImageView fitHeight="37.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@images/acceuil-removebg-preview.png" />
+               </ImageView>
+            </graphic>
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Button>
+         <Button fx:id="Nav_buttons1" layoutX="5.0" layoutY="204.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="194.0" styleClass="Nav_buttons" stylesheets="@style.css" text="Produits">
+            <graphic>
+               <ImageView fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@images/1170679-removebg-preview.png" />
+               </ImageView>
+            </graphic>
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Button>
+         <Button fx:id="Nav_buttons2" layoutX="5.0" layoutY="263.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="194.0" styleClass="Nav_buttons" stylesheets="@style.css" text="Evénements">
+            <graphic>
+               <ImageView fitHeight="37.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@images/evnement-removebg-preview.png" />
+               </ImageView>
+            </graphic>
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Button>
+         <Button fx:id="Nav_buttons3" layoutX="5.0" layoutY="321.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="194.0" styleClass="Nav_buttons" stylesheets="@style.css" text="Réservations">
+            <graphic>
+               <ImageView fitHeight="37.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@images/reservation-removebg-preview.png" />
+               </ImageView>
+            </graphic>
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Button>
+         <Button fx:id="Nav_buttons21" layoutX="5.0" layoutY="378.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="194.0" styleClass="Nav_buttons" stylesheets="@style.css" text="Entrainements">
+            <graphic>
+               <ImageView fitHeight="29.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@images/entrainement-removebg-preview.png" />
+               </ImageView>
+            </graphic>
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Button>
+         <Button fx:id="Nav_buttons31" layoutX="5.0" layoutY="436.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="194.0" styleClass="Nav_buttons" stylesheets="@style.css" text="Forum">
+            <graphic>
+               <ImageView fitHeight="31.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@images/x-removebg-preview.png" />
+               </ImageView>
+            </graphic>
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Button>
+      </AnchorPane>
+   </VBox>
+   <Pane prefHeight="562.0" prefWidth="730.0">
+      <Pane layoutX="1.0" layoutY="11.0" prefHeight="65.0" prefWidth="730.0">
+         <TextField fx:id="search_bar" layoutX="373.0" layoutY="16.0" prefHeight="33.0" prefWidth="182.0" promptText="Recherche :" styleClass="text-field_update" stylesheets="@style.css">
+            <font>
+               <Font name="Century Gothic" size="14.0" />
+            </font>
+         </TextField>
+         <ImageView fitHeight="65.0" fitWidth="66.0" layoutX="503.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@images/search-removebg-preview.png" />
+            </image>
+         </ImageView>
+         <Button fx:id="setting_button" layoutX="569.0" layoutY="18.0" minHeight="18.0" minWidth="36.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="36.0" styleClass="setting_button" stylesheets="@style.css">
+            <graphic>
+               <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@images/setting-removebg-preview.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
+         <Button fx:id="profile_button" layoutX="654.0" layoutY="11.0" minHeight="18.0" minWidth="53.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="53.0" styleClass="profile_button" stylesheets="@style.css" />
+         <ImageView fitHeight="67.0" fitWidth="56.0" layoutX="653.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@images/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396-removebg-preview.png" />
+            </image>
+         </ImageView>
+         <Button fx:id="refreshbutton" layoutX="233.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleRefreshButtonAction" text="refresh" />
+      </Pane>
+      <Label layoutX="38.0" layoutY="76.0" prefHeight="48.0" prefWidth="159.0" text="Page Forum">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Label>
+      <Label layoutX="38.0" layoutY="121.0" text="Demandez n'importe quoi en tête">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="41.0" fitWidth="43.0" layoutX="308.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/question__-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <MenuButton fx:id="Filter_button" layoutX="618.0" layoutY="111.0" mnemonicParsing="false" styleClass="Filter_button" stylesheets="@style.css">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#handleFilterMenuItemHR" text="Avoir des réponses" />
+            <MenuItem mnemonicParsing="false" onAction="#handleFilterMenuItemNR" text="pas de réponses" />
+            <MenuItem mnemonicParsing="false" onAction="#AllQuestions" text="Tous Les Questions" />
+         </items>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/filter-removebg-preview.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </MenuButton>
+      <ListView fx:id="questionListView" layoutX="5.0" layoutY="158.0" prefHeight="368.0" prefWidth="714.0" styleClass="questionListView" stylesheets="@style.css">
+         <opaqueInsets>
+            <Insets top="10.0" />
+         </opaqueInsets></ListView>
+      <Button fx:id="Ajouter_question" layoutX="524.0" layoutY="111.0" mnemonicParsing="false" onAction="#NewTabAdd" prefHeight="33.0" prefWidth="81.0" text="Ajouter">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/plus-removebg-preview.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="PDF_button" layoutX="385.0" layoutY="110.0" mnemonicParsing="false" onAction="#handleQuestionSelection" prefHeight="38.0" prefWidth="130.0" text="PDF FIle">
+         <graphic>
+            <ImageView fitHeight="31.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/deded-removebg-preview.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+   </Pane>
+</HBox>

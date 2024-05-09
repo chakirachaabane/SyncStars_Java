@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="700.0" maxWidth="880.0" prefHeight="700.0" prefWidth="880.0" style="-fx-background-color: #DFF2E7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.serachEntrainementfront">
+    <children>
+        <Button fx:id="chatButton" text="Envoyer message" />
+
+        <ImageView fitHeight="700.0" fitWidth="880.0">
+            <image>
+                <Image url="/images/carousel-3.jpg" />
+            </image>
+        </ImageView>
+        <Rectangle accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#dff2e7" height="700.0" opacity="0.7" stroke="#dff2e7" strokeType="INSIDE" width="880.0" />
+        <HBox prefHeight="62.0" prefWidth="880.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <opaqueInsets>
+                <Insets left="20.0" right="20.0" />
+            </opaqueInsets>
+         <children>
+            <HBox prefHeight="62.0" prefWidth="900.0">
+               <children>
+
+                   <Button mnemonicParsing="false" onAction="#showAccueilSwitch" opacity="0.8" prefHeight="38.0" prefWidth="82.0" styleClass="navBarBtn" stylesheets="@frontUserStyle.css" text="Accueil " />
+                   <Button mnemonicParsing="false" onAction="#showProductsSwitch" opacity="0.8" prefHeight="38.0" prefWidth="86.0" styleClass="navBarBtn" stylesheets="@frontUserStyle.css" text="Produits" />
+                   <Button mnemonicParsing="false" onAction="#displayEventSwitch1" opacity="0.8" prefHeight="37.0" prefWidth="113.0" styleClass="navBarBtn" stylesheets="@frontUserStyle.css" text="Evènements" />
+                   <Button mnemonicParsing="false" onAction="#displayRdvSwitch1" opacity="0.8" prefHeight="38.0" prefWidth="118.0" styleClass="navBarBtn" stylesheets="@frontUserStyle.css" text="Réservations" />
+                   <Button mnemonicParsing="false" onAction="#displayEntSwitch1" opacity="0.8" prefHeight="38.0" prefWidth="129.0" styleClass="navBarBtn" stylesheets="@frontUserStyle.css" text="Entrainements" />
+                   <Button mnemonicParsing="false" onAction="#ShowForumSwitch1" opacity="0.8" prefHeight="38.0" prefWidth="79.0" styleClass="navBarBtn" stylesheets="@frontUserStyle.css" text="Forums" />
+                   </children>
+               <opaqueInsets>
+                  <Insets left="20.0" right="20.0" />
+               </opaqueInsets>
+            </HBox>
+         </children>
+        </HBox>
+        <Label layoutX="291.0" layoutY="304.0" opacity="0.8" text="Bienvenue à AlignVibe" textFill="#18593b">
+            <font>
+                <Font name="Dubai Bold" size="36.0" />
+            </font>
+        </Label>
+        <ImageView fx:id="imageViewUser" fitHeight="50.0" fitWidth="50.0" layoutX="660.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+            <clip>
+                <Rectangle arcHeight="50" arcWidth="50" height="50" width="50" />
+            </clip>
+        </ImageView>
+        <ComboBox fx:id="comboBoxUser" layoutX="685.0" layoutY="8.0" opacity="0.9" prefHeight="34.0" prefWidth="179.0" style="-fx-text-fill: #18593b; -fx-font-family: 'Dubai Bold'; -fx-font-size: 13px;">
+            <effect>
+                <InnerShadow>
+                    <color>
+                        <Color blue="0.10488303750753403" green="0.5368421077728271" red="0.06561403721570969" />
+                    </color>
+                </InnerShadow>
+            </effect>
+      </ComboBox>
+        <HBox layoutX="70.0" layoutY="70.0" spacing="10.0" />
+      <Label layoutX="232.0" layoutY="93.0" prefHeight="64.0" prefWidth="405.0" text="Espace entrainement" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="41.0" />
+         </font>
+         <effect>
+            <DropShadow color="#006400" radius="5" spread="0.5" />
+         </effect>
+      </Label>
+      <Pane layoutX="133.0" layoutY="157.0" prefHeight="471.0" prefWidth="614.0" style="-fx-background-color: rgba(105, 191, 167, 0.8); -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #69BFA7; -fx-border-width: 5;">
+         <children>
+            <Label layoutX="117.0" layoutY="30.0" prefHeight="17.0" prefWidth="45.0" text="Poids:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+               <Label layoutX="117.0" layoutY="76.0" text="Objectif:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="poidsTF" layoutX="191.0" layoutY="25.0" prefHeight="25.0" prefWidth="139.0" />
+               <ComboBox fx:id="objectifComboBox" layoutX="191.0" layoutY="71.0" promptText="Choisir un objectif">
+                   <items>
+                       <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="se muscler" />
+                           <String fx:value="perte de poids" />
+                       </FXCollections>
+                   </items>
+               </ComboBox>
+               <Button layoutX="384.0" layoutY="71.0" onAction="#searchEntrainements" style="-fx-background-color: #18593B; -fx-text-fill: #FFFFFF;" text="Rechercher" />
+              <ScrollPane layoutX="103.0" layoutY="116.0" prefHeight="341.0" prefWidth="405.0">
+                  <content>
+                      <TilePane fx:id="entrainementsTilePane" prefWidth="450.0" />
+                  </content>
+              </ScrollPane>
+         </children>
+      </Pane>  </children>
+</AnchorPane>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="888.0" style="-fx-background-color: #DCEDFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.recetteUpdate">
+    <children>
+
+                <Pane layoutX="253.0" layoutY="146.0" prefHeight="378.0" prefWidth="505.0" style="-fx-background-color: rgba(179, 96, 172, 0.8); -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: rgba(179,96,172,0.8); -fx-border-width: 5;">
+                    <children>
+                        <TextField fx:id="Nomfield" layoutX="139.0" layoutY="30.0" prefHeight="31.0" prefWidth="245.0" />
+                        <ComboBox fx:id="problemeComboBox" layoutX="139.0" layoutY="308.0" prefHeight="31.0" prefWidth="245.0">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Obésité" />
+                                    <String fx:value="Diabète" />
+                                    <String fx:value="Anorexie" />
+                                    <String fx:value="Déséquilibre alimentaire" />
+                                    <String fx:value="Cholestérol" />
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                        <TextField fx:id="Ingredientsfield" layoutX="139.0" layoutY="87.0" prefHeight="78.0" prefWidth="245.0" />
+                        <TextField fx:id="etapesfield" layoutX="139.0" layoutY="187.0" prefHeight="92.0" prefWidth="245.0" />
+                        <Label fx:id="nomErrorLabel" layoutX="139.0" layoutY="68.0" prefHeight="21.0" prefWidth="245.0" text="" />
+                        <Label fx:id="ingredientsErrorLabel" layoutX="139.0" layoutY="161.0" prefHeight="21.0" prefWidth="245.0" text="" />
+                        <Label fx:id="etapesErrorLabel" layoutX="139.0" layoutY="280.0" prefHeight="21.0" prefWidth="245.0" text="" />
+                        <Label fx:id="problemeErrorLabel" layoutX="139.0" layoutY="341.0" prefHeight="21.0" prefWidth="245.0" text="" />
+                        <Label fx:id="NomLabel" layoutX="27.0" layoutY="33.0" prefHeight="35.0" prefWidth="69.0" text="Nom :" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+      
+                              <Label fx:id="IngredientsLabel" layoutX="27.0" layoutY="136.0" prefHeight="35.0" prefWidth="105.0" text="Ingredients :" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="EtapesLabel" layoutX="27.0" layoutY="233.0" prefHeight="35.0" prefWidth="105.0" text="Etapes :" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="ProblèmeDateLabel" layoutX="27.0" layoutY="306.0" prefHeight="35.0" prefWidth="105.0" text="Problème :" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+                <Button fx:id="modifierButton" layoutX="331.0" layoutY="572.0" mnemonicParsing="false" onAction="#modifierRecette" prefHeight="35.0" prefWidth="131.0" style="-fx-background-radius: 10;" text="Modifier" textFill="#18593b">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Button>
+                <Button layoutX="535.0" layoutY="572.0" mnemonicParsing="false" onAction="#consulterListeRecettesButtonAction" prefHeight="35.0" prefWidth="196.0" style="-fx-background-radius: 10;" text="Consulter liste recettes" textFill="#18593b">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Button>
+      <ImageView fitHeight="123.0" fitWidth="149.0" layoutX="30.0" layoutY="14.0">
+         <image>
+            <Image url="/images/logoAlignVibe.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="235.0" layoutY="51.0" prefHeight="74.0" prefWidth="523.0" text="Modifier recette">
+         <font>
+            <Font name="System Bold" size="50.0" />
+         </font>
+      </Label>
+      <VBox layoutX="2.0" layoutY="146.0" prefHeight="428.0" prefWidth="206.0">
+         <children>
+            <Button maxWidth="210.0"  onAction="#allerVersUser" mnemonicParsing="false" prefHeight="30.0" prefWidth="211.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Liste des utilisateurs" textFill="#fcfafa">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" onAction="#allerAjouterUser" layoutY="48.0" maxWidth="210.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="214.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Ajouter un admin" textFill="#fcfafa">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="48.0" onAction="#allerVersProduits"  maxWidth="210.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="220.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="   Liste des Produits" textFill="#fcfafa">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button maxWidth="210.0" mnemonicParsing="false" onAction="#allerAjouterProduits"  prefHeight="30.0" prefWidth="215.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="  Ajouter Produit" textFill="#fcfafa">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button maxWidth="206.0" onAction="#allerVersProduits" mnemonicParsing="false" prefHeight="30.0" prefWidth="208.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Liste des Categories" textFill="#fcfafa">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button maxWidth="210.0" onAction="#allerAjouterCat"  mnemonicParsing="false" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="  Ajouter Categorie" textFill="#fcfafa">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#getEventList" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Liste des événements" textFill="#fcfafa">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#getCatList" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Catégories événement" textFill="#fcfafa">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#getFormatsList" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Liste des formats" textFill="#fcfafa">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleConsulterListeRecettesButtonAction" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Espace recette" textFill="#fcfafa">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#ConsulterRDVButtonAction" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Espace RDV" textFill="#fcfafa">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleListeExerciceButtonAction" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Espace exercice" textFill="#fcfafa">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#EntrainementPath" prefHeight="30.0" prefWidth="206.0" styleClass="buttonSidebar" stylesheets="@backUserStyle.css" text="Espace entrainement" textFill="#fcfafa">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+           
+    </children>
+</AnchorPane>

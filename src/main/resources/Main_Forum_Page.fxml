@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="900.0" stylesheets="@frontUserStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ForumPageController">
+   <ImageView fitHeight="700.0" fitWidth="900.0">
+      <image>
+         <Image url="@images/carousel-3.jpg" />
+      </image>
+   </ImageView>
+   <Rectangle accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#dff2e7" height="700.0" opacity="0.7" stroke="#dff2e7" strokeType="INSIDE" width="900.0" />
+   <Pane prefHeight="700.0" prefWidth="900.0">
+      <Pane layoutY="39.0" prefHeight="66.0" prefWidth="900.0">
+         <TextField fx:id="search_bar" layoutX="373.0" layoutY="16.0" prefHeight="33.0" prefWidth="182.0" promptText="Recherche :" styleClass="text-field_update" stylesheets="@style.css">
+            <font>
+               <Font name="Century Gothic" size="14.0" />
+            </font>
+         </TextField>
+         <ImageView fitHeight="65.0" fitWidth="66.0" layoutX="503.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@images/search-removebg-preview.png" />
+            </image>
+         </ImageView>
+      </Pane>
+      <Button fx:id="Ajouter_question" layoutX="646.0" layoutY="141.0" mnemonicParsing="false" onAction="#NewTabAdd" prefHeight="33.0" prefWidth="81.0" stylesheets="@style.css" text="Ajouter">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/plus-removebg-preview.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="PDF_button" layoutX="485.0" layoutY="138.0" mnemonicParsing="false" onAction="#handleQuestionSelection" prefHeight="38.0" prefWidth="130.0" stylesheets="@style.css" text="PDF FIle">
+         <graphic>
+            <ImageView fitHeight="31.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/deded-removebg-preview.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <MenuButton fx:id="Filter_button" layoutX="765.0" layoutY="139.0" mnemonicParsing="false" styleClass="Filter_button" stylesheets="@style.css">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#handleFilterMenuItemHR" text="Avoir des réponses" />
+            <MenuItem mnemonicParsing="false" onAction="#handleFilterMenuItemNR" text="pas de réponses" />
+            <MenuItem mnemonicParsing="false" onAction="#AllQuestions" text="Tous Les Questions" />
+         </items>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/filter-removebg-preview.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </MenuButton>
+      <Label layoutX="26.0" layoutY="102.0" prefHeight="48.0" prefWidth="159.0" text="Page Forum">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Label>
+      <Label layoutX="26.0" layoutY="147.0" text="Demandez n'importe quoi en tête">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="41.0" fitWidth="43.0" layoutX="296.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/question__-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <ListView fx:id="questionListView" layoutX="51.0" layoutY="236.0" prefHeight="436.0" prefWidth="805.0" styleClass="questionListView" stylesheets="@style.css">
+         <opaqueInsets>
+            <Insets top="10.0" />
+         </opaqueInsets>
+      </ListView>
+   </Pane>
+   <HBox prefHeight="62.0" prefWidth="900.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <opaqueInsets>
+         <Insets left="20.0" right="20.0" />
+      </opaqueInsets>
+      <Button mnemonicParsing="false" onAction="#welcomeSwitch" opacity="0.8" prefHeight="38.0" prefWidth="82.0" styleClass="navBarBtn" stylesheets="@frontUserStyle.css" text="Accueil " />
+      <Button mnemonicParsing="false" onAction="#showProductsSwitch" opacity="0.8" prefHeight="38.0" prefWidth="86.0" styleClass="navBarBtn" stylesheets="@frontUserStyle.css" text="Produits" />
+      <Button mnemonicParsing="false" onAction="#EventPath" opacity="0.8" prefHeight="37.0" prefWidth="113.0" styleClass="navBarBtn" stylesheets="frontUserStyle.css" text="Evènements" />
+      <Button mnemonicParsing="false" onAction="#RDVPath" opacity="0.8" prefHeight="38.0" prefWidth="118.0" styleClass="navBarBtn" stylesheets="frontUserStyle.css" text="Réservations" />
+      <Button mnemonicParsing="false" onAction="#EntrainementPath" opacity="0.8" prefHeight="38.0" prefWidth="129.0" styleClass="navBarBtn" stylesheets="frontUserStyle.css" text="Entrainements" />
+      <Button mnemonicParsing="false" opacity="0.8" prefHeight="38.0" prefWidth="79.0" styleClass="navBarBtn" stylesheets="@frontUserStyle.css" text="Forums" />
+   </HBox>
+   <ImageView fx:id="imageViewUser" fitHeight="50.0" fitWidth="50.0" layoutX="660.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+      <clip>
+         <Rectangle arcHeight="50" arcWidth="50" height="50" width="50" />
+      </clip>
+   </ImageView>
+</AnchorPane>

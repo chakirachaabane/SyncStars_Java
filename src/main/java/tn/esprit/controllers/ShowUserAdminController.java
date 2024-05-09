@@ -52,7 +52,7 @@ public class ShowUserAdminController implements Initializable {
         addressTf.setText(Data.user.getAddress());
 
 
-        String imagePath = "file:\\C:\\Users\\Nawres\\Desktop\\SecondProject1\\public\\FrontOffice\\img\\"+Data.user.getImage();
+        String imagePath = "file:\\C:\\Users\\LENOVO\\OneDrive - ESPRIT\\Images\\integration chakira +nawres+feten+azza+aziz\\integration chakira +nawres+feten+azza - Copie2\\integration chakira +nawres+feten\\SecondProject1\\public\\FrontOffice\\img\\"+Data.user.getImage();
         // Load the image
         Image image = new Image(imagePath);
         // Set the image to the ImageView

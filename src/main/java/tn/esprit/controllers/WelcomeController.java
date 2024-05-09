@@ -39,7 +39,7 @@ public class WelcomeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
 
-        String imagePath = "file:\\C:\\Users\\Nawres\\Desktop\\SecondProject1\\public\\FrontOffice\\img\\"+Data.user.getImage();
+        String imagePath = "file:\\C:\\Users\\LENOVO\\OneDrive - ESPRIT\\Images\\integration chakira +nawres+feten+azza+aziz\\integration chakira +nawres+feten+azza - Copie2\\integration chakira +nawres+feten\\SecondProject1\\public\\FrontOffice\\img\\"+Data.user.getImage();
         // Load the image
         Image image = new Image(imagePath);
         // Set the image to the ImageView
@@ -68,7 +68,7 @@ public class WelcomeController implements Initializable {
     }
 
 
-    private void loginSwitch() {
+    public void loginSwitch() {
         try {
             pt = FXMLLoader.load(getClass().getResource("/signIn-view.fxml"));
             stage = new Stage();
@@ -86,7 +86,7 @@ public class WelcomeController implements Initializable {
 
     }
 
-    private void showUserSwitch() {
+    public void showUserSwitch() {
         try {
             pt = FXMLLoader.load(getClass().getResource("/showUser-view.fxml"));
             stage = new Stage();
@@ -103,7 +103,7 @@ public class WelcomeController implements Initializable {
         }
     }
     @FXML
-    private void showProductsSwitch(ActionEvent event) {
+    public void showProductsSwitch(ActionEvent event) {
         try {
             Parent parent2 = FXMLLoader
                     .load(getClass().getResource("/displayFrontProduit.fxml"));
@@ -119,7 +119,28 @@ public class WelcomeController implements Initializable {
         }
     }
 
-    private void clearEmailFileContent() {
+    @FXML
+    private void ShowForumSwitch(ActionEvent event) {
+        try {
+            /*Parent root = FXMLLoader.load(getClass().getResource("/updateQuestionForm.fxml"));
+            // Get the controller for the update form
+            UpdateQuestionFormController updateController = new UpdateQuestionFormController();*/
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main_Forum_Page.fxml"));
+            Parent root = loader.load();
+            ForumPageController controller = loader.getController();
+
+
+            Stage stage = new Stage();
+            stage.setTitle("Forum Page");
+            stage.setScene(new Scene(root, 900, 700));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void clearEmailFileContent() {
         try {
             // Get the path to the email.txt file in the resources directory
             Path filePath = Paths.get(getClass().getResource("/email.txt").toURI());
@@ -134,4 +155,76 @@ public class WelcomeController implements Initializable {
             System.err.println("Error: " + e.getMessage());
         }
     }
+
+    @FXML
+    private void displayEventSwitch(ActionEvent event) {
+        try {
+            // Charger le fichier FXML rdvList.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListeEvenement.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène
+            Scene scene = new Scene(root);
+
+            // Obtenir la référence de la fenêtre (stage)
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Modifier la scène de la fenêtre
+            stage.setScene(scene);
+
+            // Afficher la fenêtre
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    @FXML
+    private void displayRdvSwitch(ActionEvent event) {
+        try {
+            // Charger le fichier FXML rdvList.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/rdvAcc.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène
+            Scene scene = new Scene(root);
+
+            // Obtenir la référence de la fenêtre (stage)
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Modifier la scène de la fenêtre
+            stage.setScene(scene);
+
+            // Afficher la fenêtre
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void displayEntrainementSwitch(ActionEvent event) {
+        try {
+            // Charger le fichier FXML rdvList.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/searchEntrainementfront.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène
+            Scene scene = new Scene(root);
+
+            // Obtenir la référence de la fenêtre (stage)
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Modifier la scène de la fenêtre
+            stage.setScene(scene);
+
+            // Afficher la fenêtre
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
