@@ -45,14 +45,12 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.Properties;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -73,6 +71,12 @@ public class ForumPageController {
 
     @FXML
     private TextField search_bar;
+
+    // Maintain a set of users who liked the question
+    static Set<String> likedUsers = new HashSet<>();
+
+    // Maintain a set of users who disliked the question
+    static Set<String> dislikedUsers = new HashSet<>();
 
 
 
@@ -496,6 +500,7 @@ public class ForumPageController {
         protected void updateItem(Question question, boolean empty) {
             super.updateItem(question, empty);
 
+
             if (question != null) {
                 // Create a VBox to hold the elements
                 VBox vbox = new VBox();
@@ -536,15 +541,42 @@ public class ForumPageController {
 
 
                 Button likesButton = new Button("Likes: " + question.getNbr_Likes());
+                Button dislikesButton = new Button("Dislikes: " + question.getNbr_DisLikes());
+
                 likesButton.getStyleClass().add("button-like");
                 likesButton.setOnAction(e -> {
                     try {
+
                         List<Question> questions = controller.questionService.getAll();
 
-                        controller.questionService.addLike(question.getId(),questions);
-                        // Update the button text to reflect the new number of likes
-                        likesButton.setText("Likes : " + (question.getNbr_Likes()+1));
-                        System.out.println("Like Added to : Question Id : "+ question.getId());
+                        int currentUserId = Data.user.getId(); // Implement this method to get the current user
+                        System.out.println("current user :" + currentUserId);
+                        // Check if the current user has already liked the question
+                        if (likedUsers.contains(String.valueOf(Data.user.getId()))) {
+                            // If yes, remove their like
+                            controller.questionService.removeaddLike(question.getId(), questions);
+                            // Update the button text to reflect the new number of likes
+                            likesButton.setText("Likes: " + (question.getNbr_Likes() - 1));
+                            // Remove the user from the likedUsers set
+                            likedUsers.remove(String.valueOf(Data.user.getId()));
+                            System.out.println("Like Removed from : Question Id : " + question.getId());
+                        } else {
+                            // If the user hasn't liked the question, add their like
+                            controller.questionService.addLike(question.getId(), questions);
+                            // Update the button text to reflect the new number of likes
+                            likesButton.setText("Likes: " + (question.getNbr_Likes() + 1));
+                            // Add the user to the likedUsers set
+                            likedUsers.add(String.valueOf(Data.user.getId()));
+                            System.out.println("LikedUsers "+ likedUsers);
+                            System.out.println("Like Added to : Question Id : " + question.getId());
+                            // If the user has already liked the question, remove the like and add the dislike
+                            if (dislikedUsers.contains(String.valueOf(Data.user.getId()))) {
+                                controller.questionService.removedislike(question.getId(), questions);
+                                dislikesButton.setText("Likes: " + (question.getNbr_DisLikes() - 1));
+                                dislikedUsers.remove(String.valueOf(Data.user.getId()));
+                                System.out.println("dislike Removed from : Question Id : " + question.getId());
+                            }
+                        }
                         controller.AllQuestions();
                     } catch (SQLException ex) {
                         ex.printStackTrace();
@@ -552,15 +584,39 @@ public class ForumPageController {
                     }
                 });
 
-                Button dislikesButton = new Button("Dislikes: " + question.getNbr_DisLikes());
                 dislikesButton.getStyleClass().add("button-dislike");
                 dislikesButton.setOnAction(e -> {
                     try {
                         List<Question> questions = controller.questionService.getAll();
-                        controller.questionService.dislike(question.getId(),questions);
-                        // Update the button text to reflect the new number of dislikes
-                        dislikesButton.setText("Dislikes: " + (question.getNbr_DisLikes()+1));
-                        System.out.println("DisLike Added to : Question Id : "+ question.getId());
+                        int currentUserId = Data.user.getId(); // Implement this method to get the current user
+
+                        // Check if the current user has already disliked the question
+                        if (dislikedUsers.contains(String.valueOf(Data.user.getId()))) {
+                            // If yes, remove their dislike
+                            controller.questionService.removedislike(question.getId(), questions);
+                            // Update the button text to reflect the new number of dislikes
+                            dislikesButton.setText("Dislikes: " + (question.getNbr_DisLikes() - 1));
+                            // Remove the user from the dislikedUsers set
+                            dislikedUsers.remove(String.valueOf(Data.user.getId()));
+                            System.out.println("Dislike Removed from : Question Id : " + question.getId());
+
+                        } else {
+                            // If the user hasn't disliked the question, add their dislike
+                            controller.questionService.dislike(question.getId(), questions);
+                            // Update the button text to reflect the new number of dislikes
+                            dislikesButton.setText("Dislikes: " + (question.getNbr_DisLikes() + 1));
+                            // Add the user to the dislikedUsers set
+                            dislikedUsers.add(String.valueOf(Data.user.getId()));
+                            System.out.println("Dislike Added to : Question Id : " + question.getId());
+
+                            // If the user has already liked the question, remove the like and add the dislike
+                            if (likedUsers.contains(String.valueOf(Data.user.getId()))) {
+                                controller.questionService.removeaddLike(question.getId(), questions);
+                                likesButton.setText("Likes: " + (question.getNbr_Likes() - 1));
+                                likedUsers.remove(String.valueOf(Data.user.getId()));
+                                System.out.println("Like Removed from : Question Id : " + question.getId());
+                            }
+                        }
                         controller.AllQuestions();
                     } catch (SQLException ex) {
                         ex.printStackTrace();
@@ -890,7 +946,7 @@ public class ForumPageController {
             });
 
             // Receiver's email
-            String receiverEmail = "aziz.boss2001@gmail.com";
+            String receiverEmail = Data.user.getEmail();
 
             if (receiverEmail != null) {
                 String message = "Bonjour,\n\n"

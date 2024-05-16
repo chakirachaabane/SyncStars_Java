@@ -52,8 +52,31 @@ public class EventItemController {
         titre.setText(event.getTitre());
         descriptionLabel.setText(event.getDescription());
         if (event.getImage() != null && !event.getImage().isEmpty()) {
-            Image image = new Image(new File(event.getImage()).toURI().toString());
-            imageView.setImage(image);
+            try {
+                String imageUrl = event.getImage();
+
+                // Check if the image path is a valid URL or a local file
+                if (!imageUrl.startsWith("http://") && !imageUrl.startsWith("https://")) {
+                    File imageFile = new File(imageUrl);
+                    if (!imageFile.exists()) {
+                        // If the file doesn't exist, try to construct the full path
+                        imageUrl = "C:/Users/LENOVO/OneDrive - ESPRIT/Images/integration chakira +nawres+feten+azza+aziz/integration chakira +nawres+feten+azza - Copie2/integration chakira +nawres+feten/SecondProject1/public/FrontOffice/img/" + imageUrl;
+                        imageFile = new File(imageUrl);
+                        if (!imageFile.exists()) {
+                            System.err.println("Fichier d'image introuvable: " + imageUrl);
+                            return;
+                        }
+                    }
+                    imageUrl = imageFile.toURI().toString();
+                }
+
+                Image image = new Image(imageUrl, 700, 500, false, true);
+                imageView.setImage(image);
+
+            } catch (Exception e) {
+                System.err.println("Erreur lors du chargement de l'image: " + e.getMessage());
+                e.printStackTrace();
+            }
         }
         date.setText(event.getDate().toLocalDate().toString());
         heure.setText(event.getHeure().toString());

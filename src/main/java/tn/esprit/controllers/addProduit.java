@@ -209,7 +209,7 @@ else {
         else if (datePeremption.getValue() .isBefore(dateProduction.getValue())) {
             datePeremptionError.setText("La date de péremption doit être superieur à la date de production !");
             datePeremptionError.setFill(Color.RED);
-
+            isValid = false;
         }
        else {
             datePeremptionError.setText("");
@@ -224,13 +224,14 @@ else {
         else if (dateProduction.getValue() .isAfter(today)) {
                 dateProductionError.setText("La date de production doit être inferieur ou egale à la date actuelle !");
                dateProductionError.setFill(Color.RED);
-
+                 isValid = false;
         }else {
             dateProductionError.setText("");
         }
         if (nomCategorie.getValue() == null) {
             CategorieComboBoxError.setText("La catégorie du produit n'est pas sélectionnée");
             CategorieComboBoxError.setFill(Color.RED);
+            isValid = false;
         } else{
             CategorieComboBoxError.setText("");
         }

@@ -152,11 +152,37 @@ public class QuestionService implements Services.IServiceQ<Question> {
                 });
     }
 
+    public void removeaddLike(int questionId, List<Question> questionList) throws SQLException {
+        questionList.stream()
+                .filter(question -> question.getId() == questionId)
+                .forEach(question -> {
+                    question.setNbr_Likes(question.getNbr_Likes() - 1);
+                    try {
+                        update(question);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                });
+    }
+
     public void dislike(int questionId, List<Question> questionList) throws SQLException {
         questionList.stream()
                 .filter(question -> question.getId() == questionId)
                 .forEach(question -> {
                     question.setNbr_DisLikes(question.getNbr_DisLikes() + 1);
+                    try {
+                        update(question);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                });
+    }
+
+    public void removedislike(int questionId, List<Question> questionList) throws SQLException {
+        questionList.stream()
+                .filter(question -> question.getId() == questionId)
+                .forEach(question -> {
+                    question.setNbr_DisLikes(question.getNbr_DisLikes() - 1);
                     try {
                         update(question);
                     } catch (SQLException e) {

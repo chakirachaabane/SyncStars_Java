@@ -62,7 +62,7 @@
             <Font name="Dubai Bold" size="13.0" />
          </font>
       </Label>
-      <ListView fx:id="listEvents" layoutX="35.0" layoutY="204.0" prefHeight="486.0" prefWidth="846.0" />
+      <ListView fx:id="listEvents" layoutX="35.0" opacity="0.8" layoutY="204.0" prefHeight="486.0" prefWidth="846.0" />
       <HBox layoutX="31.0" layoutY="120.0" prefHeight="74.0" prefWidth="324.0" stylesheets="@style.css">
          <children>
             <TextField fx:id="SearchBar" alignment="CENTER" prefHeight="46.0" prefWidth="190.0" promptText="Rechercher un événement" styleClass="transparent" stylesheets="@style.css">

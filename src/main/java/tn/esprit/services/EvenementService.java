@@ -8,6 +8,14 @@ import tn.esprit.models.Format;
 import tn.esprit.services.CategorieService;
 import tn.esprit.services.FormatService;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +32,24 @@ public class EvenementService {
         conn = MyDatabase.getInstance().getConnection();
     }
 
-    public void insert(Evenement evenement) {
+    public void insert(Evenement evenement) throws IOException {
+        String destinationDirectory = "C:\\Users\\LENOVO\\OneDrive - ESPRIT\\Images\\integration chakira +nawres+feten+azza+aziz\\integration chakira +nawres+feten+azza - Copie2\\integration chakira +nawres+feten\\SecondProject1\\public\\FrontOffice\\img";
+        File imageFile = new File(evenement.getImage());
+        if (!imageFile.exists()) {
+            System.err.println("Fichier d'image introuvable ");
+            return;
+        }
+        String fileName = imageFile.getName();
+        int lastDotIndex = fileName.lastIndexOf('.');
+        String baseName = fileName.substring(0, lastDotIndex);
+        String extension = fileName.substring(lastDotIndex);
+        String encryptedBaseName = encryptMD5(baseName);
+        String encryptedFileName = encryptedBaseName + extension;
+        Path sourcePath = imageFile.toPath();
+        Path destinationPath = Paths.get(destinationDirectory, encryptedFileName);
+        Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+        System.out.println("Image uploaded to: " + destinationPath);
+        evenement.setImage(encryptedFileName);
         String query = "INSERT INTO evenement (categorie_id, format_id, titre, date, heure, description, image, adresse, nb_places) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
         try (PreparedStatement pst = conn.prepareStatement(query)) {
             pst.setInt(1, evenement.getCategorie().getId());
@@ -239,4 +264,20 @@ public class EvenementService {
         }
 
         return filteredEvents;}
+
+    private String encryptMD5(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(input.getBytes());
+            byte[] digest = md.digest();
+            StringBuilder sb = new StringBuilder();
+            for (byte b : digest) {
+                sb.append(String.format("%02x", b & 0xff));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

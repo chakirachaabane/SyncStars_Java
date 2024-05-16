@@ -34,7 +34,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Text>
-                  <Button fx:id="incrementBoutton" mnemonicParsing="false" onAction="#incrementQuantityPanier" text="+">
+                  <Button fx:id="decrementButton" mnemonicParsing="false" onAction="#decrementQuantityPanier" prefHeight="26.0" prefWidth="25.0" text="-">
                      <effect>
                         <InnerShadow>
                            <color>
@@ -43,14 +43,15 @@
                         </InnerShadow>
                      </effect></Button>
                   <Label fx:id="quantiteLabel" alignment="CENTER" prefHeight="25.0" prefWidth="42.0" />
-                  <Button fx:id="decrementButton" mnemonicParsing="false" onAction="#decrementQuantityPanier" text="-">
+                  <Button fx:id="incrementBoutton" mnemonicParsing="false" onAction="#incrementQuantityPanier" text="+">
                      <effect>
                         <InnerShadow>
                            <color>
                               <Color red="0.06666667014360428" green="0.5372549295425415" blue="0.10588235408067703" />
                            </color>
                         </InnerShadow>
-                     </effect></Button>
+                     </effect>
+                  </Button>
                </children>
             </HBox>
          </children>

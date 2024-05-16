@@ -66,7 +66,7 @@ public class itemFrontProduit {
 //                        alert.setHeaderText(null);
 //                        alert.setContentText("Fichier d'image introuvable : " + imageUrl);
 //                        alert.showAndWait();
-                        return;
+                     return;
                     }
                 }
             }

@@ -6,6 +6,14 @@ import tn.esprit.models.Categorie;
 import tn.esprit.models.Produit;
 import tn.esprit.utils.MyDatabase;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +33,24 @@ public class ProduitService implements IProduitService<Produit> {
 
     public void addProduits(Produit produit) {
         try {
+            String destinationDirectory = "C:\\Users\\LENOVO\\OneDrive - ESPRIT\\Images\\integration chakira +nawres+feten+azza+aziz\\integration chakira +nawres+feten+azza - Copie2\\integration chakira +nawres+feten\\SecondProject1\\public\\FrontOffice\\img";
+            File imageFile = new File(produit.getImage());
+            if (!imageFile.exists()) {
+                System.err.println("Fichier d'image introuvable ");
+                return;
+            }
+            String fileName = imageFile.getName();
+            int lastDotIndex = fileName.lastIndexOf('.');
+            String baseName = fileName.substring(0, lastDotIndex);
+            String extension = fileName.substring(lastDotIndex);
+            String encryptedBaseName = encryptMD5(baseName);
+            String encryptedFileName = encryptedBaseName + extension;
+            Path sourcePath = imageFile.toPath();
+            Path destinationPath = Paths.get(destinationDirectory, encryptedFileName);
+            Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("Image uploaded to: " + destinationPath);
+            produit.setImage(encryptedFileName);
+
             String sql = "INSERT INTO produit(image, nomp, description, prix, dateperemption, stock, dateproduction,idcategorie_id) VALUES (?, ?, ?, ?, ?, ?, ?,?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, produit.getImage());
@@ -39,9 +65,27 @@ public class ProduitService implements IProduitService<Produit> {
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Une erreur s'est produite lors de la récupération du produit : " + e.getMessage());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
+
+    private String encryptMD5(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(input.getBytes());
+            byte[] digest = md.digest();
+            StringBuilder sb = new StringBuilder();
+            for (byte b : digest) {
+                sb.append(String.format("%02x", b & 0xff));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     //combobox
     public List<String> getAllCategories() {
         List<String> categoryNames = new ArrayList<>();

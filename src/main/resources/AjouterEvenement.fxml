@@ -103,7 +103,7 @@
         </children>
     </Pane>
 
-    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="206.0" layoutY="51.0" prefHeight="74.0" prefWidth="575.0" text="formulaire événements">
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="206.0" layoutY="51.0" prefHeight="74.0" prefWidth="575.0" text="Ajouter événements">
         <font>
             <Font name="System Bold" size="50.0" />
         </font>

@@ -72,11 +72,11 @@ public class addEvent {
 
 
     @FXML
-    private void AjouterEvenement() {
+    private void AjouterEvenement() throws IOException {
         // Check if any of the fields are empty
         if (titretf.getText().isEmpty() || adressetf.getText().isEmpty() ||
                 formatEvetf.getSelectionModel().isEmpty() || categorieEvetf.getSelectionModel().isEmpty() ||
-                datetf.getValue() == null || heuretf.getSelectionModel().isEmpty() || descriptiontf.getText().isEmpty() ||
+                datetf.getValue() == null || heuretf.getSelectionModel().isEmpty() ||
                 nbPlacestf.getText().isEmpty()) {
             // Display an error alert
             displayAlert("Error", "Please fill in all the fields.");
@@ -134,7 +134,7 @@ public class addEvent {
     }
 
     private void displayAlert(String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(content);

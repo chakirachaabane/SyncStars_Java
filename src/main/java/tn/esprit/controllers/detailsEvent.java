@@ -53,7 +53,7 @@ public class detailsEvent {
                     if (imageFile.exists()) {
                         imageUrl = imageFile.toURI().toURL().toString();
                     } else {
-                        imageUrl = "C:/Users/LENOVO/Documents/piDevJava/src/main/resources/img" + imageUrl;
+                        imageUrl = "file:///C:/Users/LENOVO/OneDrive - ESPRIT/Images/integration chakira +nawres+feten+azza+aziz/integration chakira +nawres+feten+azza - Copie2/integration chakira +nawres+feten/SecondProject1/public/FrontOffice/img/" + imageUrl;
 
                         imageFile = new File(imageUrl.replace("file:///", ""));
                         if (!imageFile.exists()) {

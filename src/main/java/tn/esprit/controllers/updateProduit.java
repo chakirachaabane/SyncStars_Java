@@ -15,18 +15,18 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
-import javafx.stage.Stage;
-import org.controlsfx.control.Notifications;
-import tn.esprit.models.Categorie;
-
 import tn.esprit.models.Produit;
 import tn.esprit.services.ProduitService;
 import javafx.scene.text.Text;
-
-import javax.management.Notification;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -88,6 +88,32 @@ public class updateProduit implements Initializable {
 
         boolean isValid = true;
         LocalDate today = LocalDate.now();
+        String encryptedFileName = produitSelect.getImage();
+        if (!imageTF.getText().isEmpty()) {
+            File newImageFile = new File(imageTF.getText());
+            if (newImageFile.exists()) {
+                String fileName = newImageFile.getName();
+                int lastDotIndex = fileName.lastIndexOf('.');
+                String baseName = fileName.substring(0, lastDotIndex);
+                String extension = fileName.substring(lastDotIndex);
+                String encryptedBaseName = encryptMD5(baseName);
+                encryptedFileName = encryptedBaseName + extension;
+                imageTF.setText(encryptedFileName);
+                try {
+                    String destinationDirectory = "C:\\Users\\LENOVO\\OneDrive - ESPRIT\\Images\\integration chakira +nawres+feten+azza+aziz\\integration chakira +nawres+feten+azza - Copie2\\integration chakira +nawres+feten\\SecondProject1\\public\\FrontOffice\\img";
+                    Path sourcePath = newImageFile.toPath();
+                    Path destinationPath = Paths.get(destinationDirectory, encryptedFileName);
+                    Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+                    System.out.println("Image uploaded to: " + destinationPath);
+                    produitSelect.setImage(encryptedFileName);
+                } catch (IOException e) {
+                    System.err.println("Erreur lors de la copie du fichier d'image: " + e.getMessage());
+                }
+            } else {
+                System.err.println("Nouveau fichier d'image introuvable");
+            }
+        }
+
         if (imageTF.getText().isEmpty()) {
             imagetextError.setText("L'image du produit est vide");
             imagetextError.setFill(Color.RED);
@@ -191,10 +217,10 @@ public class updateProduit implements Initializable {
 
             isValid = false;
         }
-        else if (datePeremption.getValue() .isBefore(dateProduction.getValue())) {
+        else if (datePeremption.getValue().isBefore(dateProduction.getValue())) {
             datePeremptionError.setText("La date de péremption doit être superieur à la date de production !");
             datePeremptionError.setFill(Color.RED);
-
+            isValid = false;
         }
         else {
             datePeremptionError.setText("");
@@ -206,16 +232,17 @@ public class updateProduit implements Initializable {
 
             isValid = false;
         }
-        else if (dateProduction.getValue() .isAfter(today)) {
+        else if (dateProduction.getValue().isAfter(today)) {
             dateProductionError.setText("La date de production doit être inferieur ou egale à la date actuelle !");
             dateProductionError.setFill(Color.RED);
-
+            isValid = false;
         }else {
             dateProductionError.setText("");
         }
         if (nomCategorie.getValue() == null) {
             CategorieComboBoxError.setText("La catégorie du produit n'est pas sélectionnée");
             CategorieComboBoxError.setFill(Color.RED);
+            isValid = false;
         } else{
             CategorieComboBoxError.setText("");
         } if (isValid) {
@@ -291,6 +318,21 @@ public class updateProduit implements Initializable {
 
             }
         });
+    }
+    private String encryptMD5(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(input.getBytes());
+            byte[] digest = md.digest();
+            StringBuilder sb = new StringBuilder();
+            for (byte b : digest) {
+                sb.append(String.format("%02x", b & 0xff));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
 

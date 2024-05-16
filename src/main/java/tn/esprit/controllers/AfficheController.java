@@ -25,14 +25,15 @@ import javafx.util.converter.IntegerStringConverter;
 import javafx.util.converter.LocalDateStringConverter;
 import javafx.util.converter.LocalTimeStringConverter;
 import javafx.util.converter.TimeStringConverter;
-import tn.esprit.models.Category;
-import tn.esprit.models.Format;
-import tn.esprit.models.Evenement;
-import tn.esprit.models.Produit;
+import tn.esprit.models.*;
 import tn.esprit.services.EvenementService;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
@@ -41,6 +42,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AfficheController {
 
@@ -64,6 +67,13 @@ public class AfficheController {
         private TableColumn<Evenement, String> formatEvetf;
 
         @FXML
+        private ImageView imageViewUser;
+        @FXML
+        private Label userNameTf;
+        @FXML
+        private ComboBox comboBoxUser;
+
+        @FXML
         private TableColumn<Evenement, String> imagetf;
 
         @FXML
@@ -74,6 +84,10 @@ public class AfficheController {
 
         @FXML
         private TableColumn<Evenement, Time> heuretf;
+
+        private Stage stage;
+        private Scene scene;
+        private Parent pt;
 
         @FXML
         private Button pieBtn;
@@ -216,19 +230,39 @@ public class AfficheController {
                                         table.addCell(evenement.getHeure().toString());
 
                                         try {
-                                                Image image = Image.getInstance(evenement.getImage());
-                                                PdfPCell imageCell = new PdfPCell(image, true);
-                                                table.addCell(imageCell);
-                                        } catch (IOException e) {
+                                                String imagePath = evenement.getImage();
+                                                if (imagePath != null && !imagePath.isEmpty()) {
+                                                        if (!imagePath.startsWith("http://") && !imagePath.startsWith("https://")) {
+                                                                File imageFile = new File(imagePath);
+                                                                if (!imageFile.exists()) {
+                                                                        imagePath = "file:///C:/Users/LENOVO/OneDrive - ESPRIT/Images/integration chakira +nawres+feten+azza+aziz/integration chakira +nawres+feten+azza - Copie2/integration chakira +nawres+feten/SecondProject1/public/FrontOffice/img/" + imagePath;
+
+                                                                        imageFile = new File(imagePath.replace("file:///", ""));
+                                                                        if (!imageFile.exists()) {
+                                                                                System.err.println("Fichier d'image introuvable: " + imagePath);
+                                                                                table.addCell("Image non trouvée");
+                                                                                continue;
+                                                                        }
+                                                                }
+                                                        }
+
+                                                        com.itextpdf.text.Image image = com.itextpdf.text.Image.getInstance(imagePath);
+                                                        image.scaleToFit(100, 100); // Redimensionner l'image pour s'adapter à la cellule
+                                                        PdfPCell imageCell = new PdfPCell(image, true);
+                                                        imageCell.setFixedHeight(100); // Définir la hauteur de la cellule
+                                                        imageCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                                                        imageCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                                                        table.addCell(imageCell);
+                                                } else {
+                                                        table.addCell("Pas d'image");
+                                                }
+                                        } catch (Exception e) {
                                                 e.printStackTrace();
-                                                table.addCell(""); // Ajouter une cellule vide en cas d'erreur
+                                                table.addCell("Erreur d'image");
                                         }
                                 }
 
-
-
                                 document.add(table);
-
                                 System.out.println("PDF créé avec succès.");
                         }
                 } catch (Exception e) {
@@ -298,6 +332,8 @@ public class AfficheController {
                 });
 
 
+
+
         }
 
 
@@ -307,6 +343,75 @@ public class AfficheController {
         }
 
 
+        private void showUserAdminSwitch() {
+                try {
+                        pt = FXMLLoader.load(getClass().getResource("/showUserAdmin-view.fxml"));
+                        stage = new Stage();
+                        scene = new Scene(pt);
+                        // Close the current stage
+                        Stage currentStage = (Stage) comboBoxUser.getScene().getWindow(); // Assuming comboBox is part of your current scene
+                        currentStage.close();
+                        stage.setTitle("User infos");
+                        stage.setScene(scene);
+                        stage.show();
+
+                } catch (IOException ex) {
+                        Logger.getLogger(ShowUserAdminController.class
+                                .getName()).log(Level.SEVERE, null, ex);
+                }
+        }
+        @FXML
+        private void addAdminSwitch() {
+                try {
+                        pt = FXMLLoader.load(getClass().getResource("/addUserAdmin-view.fxml"));
+                        stage = new Stage();
+                        scene = new Scene(pt);
+                        // Close the current stage
+                        Stage currentStage = (Stage) comboBoxUser.getScene().getWindow(); // Assuming comboBox is part of your current scene
+                        currentStage.close();
+                        stage.setTitle("Ajouter un admin");
+                        stage.setScene(scene);
+                        stage.show();
+
+                } catch (IOException ex) {
+                        Logger.getLogger(AddUserAdminController.class
+                                .getName()).log(Level.SEVERE, null, ex);
+                }
+        }
+
+        private void clearEmailFileContent() {
+                try {
+                        // Get the path to the email.txt file in the resources directory
+                        Path filePath = Paths.get(getClass().getResource("/email.txt").toURI());
+
+                        // Write an empty string to the file to clear its content
+                        Files.write(filePath, "".getBytes(StandardCharsets.UTF_8));
+
+                        System.out.println("File content cleared successfully.");
+                } catch (IOException e) {
+                        System.err.println("Error clearing email file content: " + e.getMessage());
+                } catch (Exception e) {
+                        System.err.println("Error: " + e.getMessage());
+                }
+        }
+
+        private void loginSwitch() {
+                try {
+                        pt = FXMLLoader.load(getClass().getResource("/signIn-view.fxml"));
+                        stage = new Stage();
+                        scene = new Scene(pt);
+                        // Close the current stage
+                        Stage currentStage = (Stage) comboBoxUser.getScene().getWindow(); // Assuming comboBox is part of your current scene
+                        currentStage.close();
+                        stage.setScene(scene);
+                        stage.show();
+
+                } catch (IOException ex) {
+                        Logger.getLogger(SignUpController.class
+                                .getName()).log(Level.SEVERE, null, ex);
+                }
+
+        }
 
         @FXML
         public void initialize() {
@@ -329,6 +434,34 @@ public class AfficheController {
                         return new SimpleObjectProperty<>(heure);
                 });
 
+                String imagePath = "file:\\C:\\Users\\LENOVO\\OneDrive - ESPRIT\\Images\\integration chakira +nawres+feten+azza+aziz\\integration chakira +nawres+feten+azza - Copie2\\integration chakira +nawres+feten\\SecondProject1\\public\\FrontOffice\\img\\"+ Data.user.getImage();
+                // Load the image
+                javafx.scene.image.Image image = new javafx.scene.image.Image(imagePath);
+                // Set the image to the ImageView
+                imageViewUser.setImage(image);
+
+                // Ajout d'éléments à la liste déroulante
+                comboBoxUser.getItems().addAll( "Gérer mon compte","Se déconnecter");
+
+                comboBoxUser.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                        if (newValue != null && newValue.equals("Gérer mon compte")) {
+                                showUserAdminSwitch();
+                                System.out.println("Modifier profile is selected!");
+                        }
+
+                        if (newValue != null && newValue.equals("Se déconnecter")) {
+                                System.out.println("Se deconnecter is selected!");
+                                Data.user=null;
+                                //Session
+                                clearEmailFileContent();
+                                Data.currentUserMail="";
+
+                                loginSwitch();
+                        }
+                });
+
+                userNameTf.setText(Data.user.getFirstname()+" "+Data.user.getLastname());
+
                 // Fetch data from the database and populate the TableView
                 EvenementService evenementService = new EvenementService();
                 List<Evenement> evenements = evenementService.getAll();
@@ -350,7 +483,7 @@ public class AfficheController {
                                 if (imageFile.exists()) {
                                         imageUrl = imageFile.toURI().toURL().toString();
                                 } else {
-                                        imageUrl = "C:/Users/LENOVO/Documents/piDevJava/src/main/resources/img" + imageUrl;
+                                        imageUrl = "file:///C:/Users/LENOVO/OneDrive - ESPRIT/Images/integration chakira +nawres+feten+azza+aziz/integration chakira +nawres+feten+azza - Copie2/integration chakira +nawres+feten/SecondProject1/public/FrontOffice/img/" + imageUrl;
 
                                         imageFile = new File(imageUrl.replace("file:///", ""));
                                         if (!imageFile.exists()) {

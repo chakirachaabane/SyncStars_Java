@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import com.twilio.rest.api.v2010.account.Message;
 
 import com.twilio.type.PhoneNumber;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -267,6 +268,17 @@ public class DisplayEventsController implements Initializable {
                     container.add(nbTicketsBox, 2, 1);
                     container.add(participateButton, 2, 2);
 
+                    // Create an HBox to add spacing between elements
+                    HBox ticketBox = new HBox(1); // 10 is the spacing between elements
+                    ticketBox.getChildren().addAll(nbTicketsLabel, incrementButton, nbTicketsField, decrementButton);
+                    ticketBox.setAlignment(Pos.CENTER_LEFT);
+
+// Add the ticketBox and participateButton to a VBox to create vertical spacing
+                    VBox buttonBox = new VBox(6); // 10 is the vertical spacing between elements
+                    buttonBox.getChildren().addAll(ticketBox, participateButton);
+
+                    container.add(buttonBox, 2, 1);
+
 
                     String nameStyle = "-fx-fill: #18593b;  -fx-font-size: 25;";
                     String labelStyle = "-fx-fill: #69bfa7; -fx-font-size: 14; -fx-font-weight: bold;";
@@ -314,8 +326,32 @@ public class DisplayEventsController implements Initializable {
                     categoryData.setStyle(dataStyle);
 
                     String imagePath = e.getImage();
-                    Image productImage = new Image(new File(imagePath).toURI().toString());
-                    ImageView imageView = new ImageView(productImage);
+                    String imageUrl;
+                    if (imagePath != null && !imagePath.isEmpty()) {
+                        File imageFile = new File(imagePath);
+                        if (imageFile.exists()) {
+                            imageUrl = imageFile.toURI().toString();
+                        } else {
+                            imageUrl = "file:///C:/Users/LENOVO/OneDrive - ESPRIT/Images/integration chakira +nawres+feten+azza+aziz/integration chakira +nawres+feten+azza - Copie2/integration chakira +nawres+feten/SecondProject1/public/FrontOffice/img/" + imagePath;
+                            imageFile = new File(imageUrl.replace("file:///", ""));
+                            if (!imageFile.exists()) {
+                                System.err.println("Fichier d'image introuvable: " + imageUrl);
+                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setTitle("Erreur");
+                                alert.setHeaderText(null);
+                                alert.setContentText("Fichier d'image introuvable: " + imageUrl);
+                                alert.showAndWait();
+                                return;
+                            }
+                            imageUrl = imageFile.toURI().toString();
+                        }
+                        Image productImage = new Image(imageUrl);
+                        ImageView imageView = new ImageView(productImage);
+                        imageView.setFitHeight(200);
+                        imageView.setFitWidth(200);
+                        container.add(imageView, 0, 0);
+                    }
+
 
                     BufferedImage qrCodeImage = createQRImage(
                             nameData.getText() + " : \n" +
@@ -330,9 +366,6 @@ public class DisplayEventsController implements Initializable {
                     Image qrCodeImageFX = SwingFXUtils.toFXImage(qrCodeImage, null);
                     ImageView Qr = new ImageView(qrCodeImageFX);
 
-
-                    imageView.setFitHeight(200);
-                    imageView.setFitWidth(200);
                     nameData.setWrappingWidth(200);
                     descriptionData.setWrappingWidth(200);
                     descriptionText.setWrappingWidth(200);
@@ -358,7 +391,7 @@ public class DisplayEventsController implements Initializable {
 
                     textFlow.getChildren().addAll(nameData, descriptionText, descriptionData, dateText, dateData,heureText,heureData, adresseText, adresseData, nbPlaceText, nbPlaceData, formatText, formatData, categoryText, categoryData);
                     container.add(textFlow, 1, 0);
-                    container.add(imageView, 0, 0);
+
 
                     ColumnConstraints columnConstraints = new ColumnConstraints();
                     columnConstraints.setHgrow(Priority.ALWAYS);
@@ -518,7 +551,7 @@ public class DisplayEventsController implements Initializable {
         // Remplacer les valeurs suivantes par votre numéro Twilio et le numéro de téléphone de destination
         String twilioNumber = "+17205230423";
 // Votre numéro Twilio
-        String recipientNumber = "+21627873721";
+        String recipientNumber = "+216" + String.valueOf(Data.user.getPhone_number());
         // Numéro de téléphone du destinataire
         String messageBody = "Participation confirmée !";
         Message message = Message.creator( new PhoneNumber(recipientNumber), new PhoneNumber(twilioNumber), messageBody ).create();

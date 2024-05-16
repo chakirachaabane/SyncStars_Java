@@ -22,14 +22,14 @@ public class Produit {
         this.categorie = new Categorie();
     }
 
-    public Produit(String image, String nomp, String description, float prix, int stock, LocalDate dateProduction, LocalDate datePeremption, int idcategorie) {
+    public Produit(String image, String nomp, String description, float prix, int stock,LocalDate datePeremption, LocalDate dateProduction, int idcategorie) {
         this.image = image;
         this.nomp = nomp;
         this.description = description;
         this.prix = prix;
         this.stock = stock;
-        this.dateProduction = dateProduction;
         this.datePeremption = datePeremption;
+        this.dateProduction = dateProduction;
         this.categorie = new Categorie();
         this.categorie.setIdCategorie(idcategorie);
 //        this.likes = likes;

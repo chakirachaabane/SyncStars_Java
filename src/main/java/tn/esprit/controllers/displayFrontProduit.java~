@@ -86,7 +86,7 @@ public void initialize(URL location, ResourceBundle resources) {
     }
 
     private void filterProductsByCategory(String categoryName) {
-        if (categoryName == null || categoryName.equals("Tous")) {
+        if (categoryName == null || categoryName.isEmpty()) {
             showProduits();
         } else {
             List<Produit> produits = ps.getProduitsByCategory(categoryName);
